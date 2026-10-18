@@ -1,3 +1,5 @@
+Arquivo histórico. A fonte oficial dos dados é a pasta dados/.
+
 # Calistenia com peso do corpo e objetos de casa
 
 Pesquisa para o app de treino pessoal. Cada trilha vai do exercício mais fácil ao mais difícil. Os exercícios entram só quando todos os campos puderam ser preenchidos com segurança. Dúvidas ficam na seção "Fora por dúvida", no fim do arquivo.

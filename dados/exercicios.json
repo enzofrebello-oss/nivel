@@ -1,0 +1,4665 @@
+{
+  "versaoDados": 1,
+  "grupos": [
+    {
+      "id": "peito",
+      "nome": "Peito"
+    },
+    {
+      "id": "costas",
+      "nome": "Costas"
+    },
+    {
+      "id": "ombros",
+      "nome": "Ombros"
+    },
+    {
+      "id": "biceps",
+      "nome": "Bíceps"
+    },
+    {
+      "id": "triceps",
+      "nome": "Tríceps"
+    },
+    {
+      "id": "antebraco",
+      "nome": "Antebraço"
+    },
+    {
+      "id": "core",
+      "nome": "Core"
+    },
+    {
+      "id": "lombar",
+      "nome": "Lombar"
+    },
+    {
+      "id": "quadriceps",
+      "nome": "Quadríceps"
+    },
+    {
+      "id": "posterior",
+      "nome": "Posterior de coxa"
+    },
+    {
+      "id": "gluteos",
+      "nome": "Glúteos"
+    },
+    {
+      "id": "adutores",
+      "nome": "Adutores"
+    },
+    {
+      "id": "panturrilha",
+      "nome": "Panturrilha"
+    }
+  ],
+  "exercicios": [
+    {
+      "id": "flexao-na-parede",
+      "nome": "Flexão na parede",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "peitoral",
+        "tríceps",
+        "ombros"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Apoie as mãos na parede, na altura dos ombros, um pouco mais afastadas que os ombros.",
+        "Afaste os pés até o corpo ficar em linha reta da cabeça aos calcanhares.",
+        "Dobre os cotovelos aproximando o peito da parede e empurre de volta."
+      ],
+      "erroComum": "Deixar o quadril cair ou empinar.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-inclinada-mesa",
+      "nome": "Flexão inclinada na mesa",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "mesa firme"
+      ],
+      "musculos": [
+        "peitoral",
+        "tríceps",
+        "ombros"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Apoie as mãos na borda de uma mesa firme (encostada na parede, para não deslizar), um pouco mais afastadas que os ombros.",
+        "Afaste os pés até o corpo ficar inclinado e em linha reta da cabeça aos calcanhares.",
+        "Dobre os cotovelos até o peito quase tocar a borda e empurre de volta."
+      ],
+      "erroComum": "Deixar o quadril cair ou empinar.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-no-chao",
+      "nome": "Flexão no chão",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [],
+      "musculos": [
+        "peitoral",
+        "tríceps",
+        "ombros",
+        "core"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros",
+        "core"
+      ],
+      "passos": [
+        "Apoie as mãos no chão, um pouco mais afastadas que os ombros, com o corpo em prancha.",
+        "Mantenha o abdômen contraído e o corpo em linha reta.",
+        "Dobre os cotovelos até o peito ficar perto do chão e empurre de volta."
+      ],
+      "erroComum": "Deixar o quadril cair ou empinar.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-pes-elevados-cadeira",
+      "nome": "Flexão com pés elevados na cadeira",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "peitoral superior",
+        "ombros",
+        "tríceps",
+        "core"
+      ],
+      "grupos": [
+        "peito",
+        "ombros",
+        "triceps",
+        "core"
+      ],
+      "passos": [
+        "Apoie os pés sobre uma cadeira firme, encostada na parede, e as mãos no chão, um pouco mais afastadas que os ombros.",
+        "Mantenha o corpo em linha reta da cabeça aos calcanhares.",
+        "Dobre os cotovelos até o peito ficar perto do chão e empurre de volta."
+      ],
+      "erroComum": "Deixar o quadril cair ou empinar.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-diamante",
+      "nome": "Flexão diamante",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 4,
+      "equipamento": [],
+      "musculos": [
+        "tríceps",
+        "peitoral",
+        "ombros"
+      ],
+      "grupos": [
+        "triceps",
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Apoie as mãos no chão formando um losango, com os polegares e indicadores se tocando sob o peito.",
+        "Mantenha o corpo em linha reta da cabeça aos calcanhares.",
+        "Dobre os cotovelos mantendo-os junto ao corpo até o peito chegar perto das mãos e empurre de volta."
+      ],
+      "erroComum": "Abrir os cotovelos para os lados em vez de mantê-los junto ao corpo.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-arqueiro",
+      "nome": "Flexão arqueiro",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 5,
+      "equipamento": [],
+      "musculos": [
+        "peitoral",
+        "tríceps",
+        "ombros",
+        "core"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros",
+        "core"
+      ],
+      "passos": [
+        "Em posição de prancha, apoie as mãos no chão bem mais afastadas que os ombros, na mesma linha e com os dedos virados para fora.",
+        "Desça o peito em direção a uma das mãos, dobrando só esse cotovelo, enquanto o outro braço fica estendido.",
+        "Empurre de volta ao centro e repita para o outro lado."
+      ],
+      "erroComum": "Deixar o quadril girar ou cair para o lado em vez de manter o corpo alinhado.",
+      "imagem": null
+    },
+    {
+      "id": "puxada-toalha-isometria",
+      "nome": "Puxada com toalha (isometria)",
+      "tipo": "tempo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "toalha"
+      ],
+      "musculos": [
+        "costas (dorsais)",
+        "romboides",
+        "deltoide posterior"
+      ],
+      "grupos": [
+        "costas",
+        "ombros"
+      ],
+      "passos": [
+        "Em pé ou sentado, segure uma toalha esticada acima da cabeça, com as mãos bem afastadas.",
+        "Puxe as pontas para fora, como se fosse rasgar a toalha, e traga-a para baixo até a frente do peito, levando os cotovelos para baixo.",
+        "Mantenha a força máxima na posição baixa pelo tempo definido, respirando normalmente."
+      ],
+      "erroComum": "Encolher os ombros em direção às orelhas em vez de descer as escápulas.",
+      "imagem": null
+    },
+    {
+      "id": "superman",
+      "nome": "Superman",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [],
+      "musculos": [
+        "lombar",
+        "glúteos",
+        "costas (trapézio médio e romboides)"
+      ],
+      "grupos": [
+        "lombar",
+        "gluteos",
+        "costas"
+      ],
+      "passos": [
+        "Deite-se de bruços com os braços estendidos à frente e as pernas estendidas.",
+        "Eleve ao mesmo tempo braços, peito e pernas alguns centímetros do chão, olhando para o chão.",
+        "Segure 1 a 2 segundos no alto e desça devagar."
+      ],
+      "erroComum": "Jogar a cabeça para trás e forçar a lombar para subir mais alto.",
+      "imagem": null
+    },
+    {
+      "id": "remada-serrote-mochila",
+      "nome": "Remada serrote com mochila",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "mochila com livros",
+        "cadeira"
+      ],
+      "musculos": [
+        "costas (dorsais e romboides)",
+        "bíceps",
+        "deltoide posterior"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "ombros"
+      ],
+      "passos": [
+        "Apoie a mão e o joelho do mesmo lado no assento de uma cadeira firme e segure a mochila pela alça de mão com o outro braço estendido.",
+        "Com as costas retas e paralelas ao chão, puxe a mochila em direção ao quadril, levando o cotovelo para trás.",
+        "Desça devagar até estender o braço e troque de lado ao final da série."
+      ],
+      "erroComum": "Girar o tronco para subir a mochila.",
+      "imagem": null
+    },
+    {
+      "id": "remada-invertida-mesa-joelhos-dobrados",
+      "nome": "Remada invertida na mesa com joelhos dobrados",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "mesa firme"
+      ],
+      "musculos": [
+        "costas (dorsais e romboides)",
+        "bíceps",
+        "antebraços"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "antebraco"
+      ],
+      "passos": [
+        "Deite-se de costas embaixo de uma mesa firme, com o peito sob a borda, e segure a borda com as mãos na largura dos ombros.",
+        "Dobre os joelhos com os pés apoiados no chão e eleve o quadril até alinhar ombros, quadril e joelhos.",
+        "Puxe o peito em direção à borda, aproximando as escápulas, e desça devagar até estender os braços."
+      ],
+      "erroComum": "Deixar o quadril cair durante a puxada.",
+      "imagem": null
+    },
+    {
+      "id": "remada-invertida-mesa-pernas-estendidas",
+      "nome": "Remada invertida na mesa com pernas estendidas",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "mesa firme"
+      ],
+      "musculos": [
+        "costas (dorsais e romboides)",
+        "bíceps",
+        "core"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas embaixo de uma mesa firme, com o peito sob a borda, e segure a borda com as mãos na largura dos ombros.",
+        "Estique as pernas e apoie-se nos calcanhares, com o corpo em linha reta da cabeça aos pés.",
+        "Puxe o peito em direção à borda, aproximando as escápulas, e desça devagar até estender os braços."
+      ],
+      "erroComum": "Quadril caído ou corpo fora de linha durante a subida.",
+      "imagem": null
+    },
+    {
+      "id": "remada-invertida-pes-elevados-cadeira",
+      "nome": "Remada invertida na mesa com pés elevados",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "mesa firme",
+        "cadeira"
+      ],
+      "musculos": [
+        "costas (dorsais e romboides)",
+        "bíceps",
+        "core"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "core"
+      ],
+      "passos": [
+        "Deite-se embaixo de uma mesa firme e apoie os calcanhares no assento de uma cadeira firme, encostada na parede.",
+        "Segure a borda da mesa com as mãos na largura dos ombros e mantenha o corpo em linha reta.",
+        "Puxe o peito em direção à borda, aproximando as escápulas, e desça devagar."
+      ],
+      "erroComum": "Quadril caído ou cadeira que escorrega; teste a estabilidade antes.",
+      "imagem": null
+    },
+    {
+      "id": "mergulho-cadeira-joelhos-dobrados",
+      "nome": "Mergulho na cadeira com joelhos dobrados",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "tríceps",
+        "peitoral",
+        "ombros"
+      ],
+      "grupos": [
+        "triceps",
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Encoste o encosto de uma cadeira firme, sem rodinhas, na parede, sente-se na borda do assento e apoie as mãos ao lado do quadril, dedos para frente.",
+        "Deslize o quadril para fora do assento, com os joelhos dobrados e os pés no chão.",
+        "Dobre os cotovelos até cerca de 90 graus, com o quadril perto da cadeira, e empurre de volta até estender os braços."
+      ],
+      "erroComum": "Descer além de 90 graus ou deixar os ombros subirem até as orelhas, forçando a frente do ombro.",
+      "imagem": null
+    },
+    {
+      "id": "mergulho-cadeira-pernas-estendidas",
+      "nome": "Mergulho na cadeira com pernas estendidas",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "tríceps",
+        "peitoral",
+        "ombros"
+      ],
+      "grupos": [
+        "triceps",
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Com o encosto de uma cadeira firme, sem rodinhas, encostado na parede, sente-se na borda do assento com as mãos ao lado do quadril.",
+        "Deslize o quadril para fora do assento e estenda as pernas à frente, com os calcanhares no chão.",
+        "Dobre os cotovelos até cerca de 90 graus, com o quadril perto da cadeira, e empurre de volta até estender os braços."
+      ],
+      "erroComum": "Descer além de 90 graus ou deixar os ombros subirem até as orelhas, forçando a frente do ombro.",
+      "imagem": null
+    },
+    {
+      "id": "mergulho-pes-elevados-cadeira",
+      "nome": "Mergulho com pés elevados na cadeira",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "2 cadeiras (ou cadeira e sofá)"
+      ],
+      "musculos": [
+        "tríceps",
+        "peitoral",
+        "ombros"
+      ],
+      "grupos": [
+        "triceps",
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Apoie as mãos na borda de uma cadeira firme com o encosto na parede e os calcanhares em outra cadeira firme ou no sofá, com as pernas estendidas.",
+        "Desça o quadril dobrando os cotovelos até cerca de 90 graus, com o quadril perto da cadeira das mãos.",
+        "Empurre de volta até estender os braços."
+      ],
+      "erroComum": "Apoio dos pés que escorrega ou descida rápida e funda demais; teste os dois apoios antes.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-ate-cadeira",
+      "nome": "Agachamento até a cadeira",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Fique em pé na frente de uma cadeira firme, com os pés na largura dos ombros.",
+        "Empurre o quadril para trás e toque levemente o assento com o glúteo.",
+        "Levante-se empurrando o chão com os pés, mantendo o peito erguido."
+      ],
+      "erroComum": "Joelhos caindo para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-livre",
+      "nome": "Agachamento livre",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Fique em pé com os pés na largura dos ombros e as pontas levemente viradas para fora.",
+        "Desça dobrando quadril e joelhos, com o peso distribuído no pé inteiro e o peito erguido.",
+        "Suba empurrando o chão com os pés."
+      ],
+      "erroComum": "Calcanhares saindo do chão ou joelhos caindo para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-com-pausa",
+      "nome": "Agachamento com pausa no fundo",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Desça no agachamento livre até o fundo do movimento.",
+        "Segure essa posição por 2 segundos, sem deixar o peso ir para a ponta dos pés.",
+        "Suba devagar empurrando o chão com os pés."
+      ],
+      "erroComum": "Perder o equilíbrio ou arredondar as costas na pausa.",
+      "imagem": null
+    },
+    {
+      "id": "pistol-ate-cadeira",
+      "nome": "Pistol até a cadeira",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Fique em pé em uma perna, de costas para uma cadeira firme encostada na parede, com a outra perna estendida à frente.",
+        "Desça devagar na perna de apoio até sentar de leve no assento, com os braços à frente para equilibrar.",
+        "Suba empurrando o chão com a perna de apoio, sem impulso, e troque de lado ao final da série."
+      ],
+      "erroComum": "Desabar na cadeira no fim da descida em vez de controlar até o assento.",
+      "imagem": null
+    },
+    {
+      "id": "pistol-assistido",
+      "nome": "Pistol assistido",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "apoio firme (batente de porta ou móvel pesado)"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Fique em pé em uma perna, segurando com as mãos um apoio firme à sua frente, e estenda a outra perna à frente.",
+        "Desça devagar na perna de apoio até o fundo do movimento, usando as mãos só para equilibrar e ajudar o mínimo.",
+        "Suba empurrando o chão com a perna de apoio e troque de lado ao final da série."
+      ],
+      "erroComum": "Puxar com os braços em vez de fazer força com a perna, ou calcanhar de apoio saindo do chão.",
+      "imagem": null
+    },
+    {
+      "id": "pistol",
+      "nome": "Pistol",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 5,
+      "equipamento": [],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Fique em pé em uma perna e estenda a outra perna à frente, paralela ao chão.",
+        "Desça lentamente dobrando o joelho de apoio, mantendo o calcanhar no chão e o tronco ereto.",
+        "Suba devagar empurrando o chão com a perna de apoio e alterne os lados."
+      ],
+      "erroComum": "Calcanhar saindo do chão ou desequilíbrio no fundo do movimento.",
+      "imagem": null
+    },
+    {
+      "id": "afundo-estatico",
+      "nome": "Afundo estático",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Fique em posição de passada, com um pé à frente e outro atrás, afastados na largura do quadril, sem sair do lugar.",
+        "Dobre os dois joelhos até o joelho de trás quase tocar o chão, mantendo o tronco ereto.",
+        "Empurre com o pé da frente para subir, repita sem trocar de lado e troque ao final da série."
+      ],
+      "erroComum": "Pés na mesma linha, como numa corda bamba, o que tira o equilíbrio.",
+      "imagem": null
+    },
+    {
+      "id": "afundo-reverso",
+      "nome": "Afundo reverso",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Fique em pé com os pés na largura do quadril e dê um passo longo para trás.",
+        "Dobre os dois joelhos até o joelho de trás quase tocar o chão, mantendo o tronco ereto.",
+        "Empurre com o pé da frente para voltar à posição inicial e alterne os lados."
+      ],
+      "erroComum": "Joelho da frente caindo para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "passada-caminhando",
+      "nome": "Passada caminhando",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Dê um passo à frente e desça dobrando os dois joelhos até o joelho de trás quase tocar o chão.",
+        "Empurre com o pé da frente e avance com o outro pé para a próxima passada.",
+        "Continue alternando as pernas no espaço disponível."
+      ],
+      "erroComum": "Passos curtos demais e joelho da frente caindo para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-bulgaro",
+      "nome": "Agachamento búlgaro",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Apoie o peito do pé de trás no assento de uma cadeira firme encostada na parede, com o pé da frente bem afastado dela.",
+        "Dobre o joelho da frente até o joelho de trás quase tocar o chão, mantendo o tronco ereto.",
+        "Empurre com o pé da frente para subir e troque de lado ao final da série."
+      ],
+      "erroComum": "Pé da frente muito perto da cadeira, o que faz o tronco cair para frente.",
+      "imagem": null
+    },
+    {
+      "id": "ponte-de-gluteo",
+      "nome": "Ponte de glúteo",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [],
+      "musculos": [
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas, com os joelhos dobrados e os pés apoiados no chão na largura do quadril.",
+        "Empurre o chão com os calcanhares e eleve o quadril até o corpo ficar alinhado dos ombros aos joelhos.",
+        "Contraia os glúteos no alto e desça devagar."
+      ],
+      "erroComum": "Empurrar com a lombar em vez de usar os glúteos, e arquear demais as costas no alto.",
+      "imagem": null
+    },
+    {
+      "id": "ponte-pes-na-cadeira",
+      "nome": "Ponte com pés na cadeira",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas com os calcanhares apoiados na borda de uma cadeira firme, joelhos dobrados.",
+        "Eleve o quadril até o corpo ficar alinhado dos ombros aos joelhos.",
+        "Contraia os glúteos no alto e desça devagar."
+      ],
+      "erroComum": "Cadeira que escorrega; teste a firmeza antes.",
+      "imagem": null
+    },
+    {
+      "id": "ponte-unilateral",
+      "nome": "Ponte unilateral",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [],
+      "musculos": [
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas com um joelho dobrado e o pé apoiado no chão, e a outra perna estendida.",
+        "Empurre o chão com o calcanhar de apoio e eleve o quadril até o corpo alinhar.",
+        "Contraia o glúteo no alto e desça devagar, depois troque de lado."
+      ],
+      "erroComum": "Quadril caindo para o lado da perna estendida.",
+      "imagem": null
+    },
+    {
+      "id": "aducao-deitado-de-lado",
+      "nome": "Adução de quadril deitado de lado",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [],
+      "musculos": [
+        "adutores"
+      ],
+      "grupos": [
+        "adutores"
+      ],
+      "passos": [
+        "Deite de lado com a cabeça apoiada no braço de baixo, cruze a perna de cima à frente e apoie o pé dela no chão.",
+        "Com a perna de baixo estendida, suba essa perna o mais alto que conseguir sem girar o quadril.",
+        "Segure 1 segundo no alto e desça devagar, sem encostar no chão; termine as repetições e troque de lado."
+      ],
+      "erroComum": "Girar o quadril para trás ou balançar a perna para subir mais.",
+      "imagem": null
+    },
+    {
+      "id": "isometria-adutores-almofada",
+      "nome": "Isometria de adutores com almofada",
+      "tipo": "tempo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "almofada"
+      ],
+      "musculos": [
+        "adutores"
+      ],
+      "grupos": [
+        "adutores"
+      ],
+      "passos": [
+        "Deite de barriga para cima com os joelhos dobrados, os pés no chão e uma almofada firme entre os joelhos.",
+        "Aperte a almofada com os joelhos com força firme e constante, mantendo a lombar e os ombros no chão.",
+        "Mantenha a pressão respirando normalmente pelo tempo indicado e solte devagar."
+      ],
+      "erroComum": "Prender a respiração ou apertar em trancos em vez de manter a força constante.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-panturrilha-em-pe",
+      "nome": "Elevação de panturrilha em pé",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [],
+      "musculos": [
+        "panturrilha (gastrocnêmio e sóleo)"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Fique em pé com os pés na largura do quadril e as mãos apoiadas em uma parede para equilíbrio.",
+        "Suba na ponta dos pés o mais alto que conseguir e segure 1 segundo no alto.",
+        "Desça devagar até os calcanhares tocarem o chão."
+      ],
+      "erroComum": "Subir e descer rápido, sem pausa no alto e sem controle na descida.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-panturrilha-sentado-mochila",
+      "nome": "Elevação de panturrilha sentado com mochila",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "cadeira",
+        "mochila com livros"
+      ],
+      "musculos": [
+        "panturrilha (sóleo, gastrocnêmio)"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Sente-se em uma cadeira com os joelhos dobrados a 90 graus, os pés apoiados no chão e a mochila sobre as coxas, perto dos joelhos.",
+        "Suba os calcanhares o mais alto que conseguir, ficando na ponta dos pés.",
+        "Desça devagar até os calcanhares tocarem o chão."
+      ],
+      "erroComum": "Fazer movimentos curtos e rápidos, sem subir tudo nem descer tudo.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-panturrilha-degrau",
+      "nome": "Elevação de panturrilha no degrau",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "degrau"
+      ],
+      "musculos": [
+        "panturrilha (gastrocnêmio e sóleo)"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Apoie as pontas dos pés na borda de um degrau firme, com os calcanhares para fora e uma mão no corrimão ou na parede.",
+        "Suba na ponta dos pés o mais alto que conseguir.",
+        "Desça devagar até os calcanhares ficarem abaixo do degrau, sentindo alongar a panturrilha."
+      ],
+      "erroComum": "Descer rápido e quicar no fundo do movimento.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-panturrilha-unilateral",
+      "nome": "Elevação de panturrilha unilateral",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "panturrilha (gastrocnêmio e sóleo)"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Fique em um pé só, com a mão apoiada na parede para equilíbrio.",
+        "Suba na ponta do pé o mais alto que conseguir.",
+        "Desça devagar até o calcanhar tocar o chão e troque de lado ao final da série."
+      ],
+      "erroComum": "Inclinar o tronco para frente para ganhar altura em vez de subir na ponta do pé.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-panturrilha-unilateral-degrau",
+      "nome": "Elevação de panturrilha unilateral no degrau",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "degrau"
+      ],
+      "musculos": [
+        "panturrilha (gastrocnêmio e sóleo)"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Apoie a ponta de um pé na borda de um degrau firme, com o calcanhar para fora e uma mão no corrimão ou na parede.",
+        "Suba na ponta do pé o mais alto que conseguir.",
+        "Desça devagar até o calcanhar ficar abaixo do degrau e troque de lado ao final da série."
+      ],
+      "erroComum": "Usar a mão de apoio para puxar o corpo para cima.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-panturrilha-unilateral-degrau-mochila",
+      "nome": "Elevação de panturrilha unilateral no degrau com mochila",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "degrau",
+        "mochila com livros"
+      ],
+      "musculos": [
+        "panturrilha (gastrocnêmio e sóleo)"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Coloque a mochila nas costas, bem ajustada, e apoie a ponta de um pé na borda de um degrau firme, segurando o corrimão ou a parede.",
+        "Suba na ponta do pé o mais alto que conseguir.",
+        "Desça devagar até o calcanhar ficar abaixo do degrau e troque de lado ao final da série."
+      ],
+      "erroComum": "Encurtar a amplitude quando a carga pesa, sem descer o calcanhar abaixo do degrau.",
+      "imagem": null
+    },
+    {
+      "id": "prancha-antebracos",
+      "nome": "Prancha de antebraços",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [],
+      "musculos": [
+        "abdômen (reto e transverso)",
+        "lombar",
+        "glúteos"
+      ],
+      "grupos": [
+        "core",
+        "lombar",
+        "gluteos"
+      ],
+      "passos": [
+        "Apoie os antebraços e as pontas dos pés no chão, com os cotovelos sob os ombros.",
+        "Mantenha o corpo em linha reta da cabeça aos calcanhares, com o abdômen e os glúteos contraídos.",
+        "Segure pelo tempo definido, respirando normalmente."
+      ],
+      "erroComum": "Quadril caindo ou subindo demais.",
+      "imagem": null
+    },
+    {
+      "id": "prancha-alta",
+      "nome": "Prancha alta",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [],
+      "musculos": [
+        "abdômen",
+        "ombros",
+        "lombar",
+        "glúteos"
+      ],
+      "grupos": [
+        "core",
+        "ombros",
+        "lombar",
+        "gluteos"
+      ],
+      "passos": [
+        "Apoie as mãos no chão, na largura dos ombros, com os braços estendidos.",
+        "Mantenha o corpo em linha reta da cabeça aos calcanhares, com o abdômen e os glúteos contraídos.",
+        "Segure pelo tempo definido, respirando normalmente."
+      ],
+      "erroComum": "Quadril caindo ou subindo demais.",
+      "imagem": null
+    },
+    {
+      "id": "prancha-lateral",
+      "nome": "Prancha lateral",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [],
+      "musculos": [
+        "oblíquos",
+        "glúteo médio",
+        "ombros"
+      ],
+      "grupos": [
+        "core",
+        "gluteos",
+        "ombros"
+      ],
+      "passos": [
+        "Deite-se de lado e apoie o antebraço no chão, com o cotovelo sob o ombro.",
+        "Levante o quadril até o corpo ficar em linha reta, apoiado no antebraço e na borda do pé de baixo.",
+        "Segure pelo tempo definido e troque de lado."
+      ],
+      "erroComum": "Quadril caindo para frente ou para trás.",
+      "imagem": null
+    },
+    {
+      "id": "cadeirinha-na-parede",
+      "nome": "Cadeirinha na parede",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "passos": [
+        "Encoste as costas em uma parede com os pés na largura do quadril, cerca de 50 cm à frente dela.",
+        "Deslize as costas pela parede até as coxas ficarem paralelas ao chão e os joelhos a cerca de 90 graus, acima dos tornozelos.",
+        "Mantenha a posição pelo tempo definido, respirando normalmente."
+      ],
+      "erroComum": "Pés perto demais da parede, deixando os joelhos à frente dos pés, ou joelhos caindo para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "ponte-isometrica",
+      "nome": "Ponte isométrica",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [],
+      "musculos": [
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas com os joelhos dobrados e os pés apoiados no chão.",
+        "Eleve o quadril até o corpo alinhar dos ombros aos joelhos e contraia os glúteos.",
+        "Mantenha a posição pelo tempo definido, respirando normalmente."
+      ],
+      "erroComum": "Arquear demais a lombar no alto.",
+      "imagem": null
+    },
+    {
+      "id": "isometria-flexao-parede",
+      "nome": "Isometria de flexão na parede",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "peitoral",
+        "tríceps",
+        "ombros"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Apoie as mãos na parede, na altura dos ombros, com o corpo em linha reta.",
+        "Dobre os cotovelos até a metade do movimento da flexão na parede e pare.",
+        "Mantenha a posição pelo tempo definido, respirando normalmente."
+      ],
+      "erroComum": "Quadril caindo ou cotovelos abrindo para os lados.",
+      "imagem": null
+    },
+    {
+      "id": "abdominal-supra",
+      "nome": "Abdominal supra",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [],
+      "musculos": [
+        "abdômen (reto abdominal)"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas com os joelhos dobrados e os pés apoiados no chão.",
+        "Com os braços cruzados sobre o peito ou as mãos ao lado da cabeça, contraia o abdômen e tire a cabeça e as escápulas do chão.",
+        "Desça devagar até as escápulas tocarem o chão, sem relaxar o abdômen."
+      ],
+      "erroComum": "Puxar a cabeça com as mãos, forçando o pescoço, em vez de contrair o abdômen.",
+      "imagem": null
+    },
+    {
+      "id": "abdominal-infra",
+      "nome": "Abdominal infra",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [],
+      "musculos": [
+        "abdômen inferior",
+        "flexores do quadril"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas com as mãos ao lado do corpo e as coxas elevadas, joelhos dobrados a 90 graus.",
+        "Contraia o abdômen e tire o quadril do chão, levando os joelhos em direção ao peito.",
+        "Desça o quadril devagar até apoiá-lo no chão, mantendo as pernas elevadas."
+      ],
+      "erroComum": "Impulsionar com as pernas e balançar o corpo em vez de usar o abdômen.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-pernas-estendidas",
+      "nome": "Elevação de pernas estendidas",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [],
+      "musculos": [
+        "abdômen inferior",
+        "flexores do quadril"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Deite-se de costas com as mãos ao lado do corpo e as pernas estendidas.",
+        "Contraia o abdômen e eleve as pernas até formarem cerca de 90 graus com o chão.",
+        "Desça devagar, sem deixar a lombar desgrudar do chão."
+      ],
+      "erroComum": "Lombar saindo do chão e ganhando impulso com o corpo.",
+      "imagem": null
+    },
+    {
+      "id": "pike-de-ombro-isometria",
+      "nome": "Pike de ombro (isometria)",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "core"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "core"
+      ],
+      "passos": [
+        "Apoie as mãos no chão na largura dos ombros e eleve o quadril, formando um V invertido com o corpo.",
+        "Mantenha os braços estendidos e a cabeça entre os braços, olhando para o chão.",
+        "Segure pelo tempo definido, respirando normalmente."
+      ],
+      "erroComum": "Afundar a cabeça entre os ombros em vez de empurrar o chão com os braços.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-pike",
+      "nome": "Flexão pike",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "peitoral superior"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "peito"
+      ],
+      "passos": [
+        "Parta da posição de pike de ombro, com as mãos no chão na largura dos ombros.",
+        "Dobre os cotovelos e leve a cabeça em direção ao chão, um pouco à frente das mãos, formando um triângulo.",
+        "Empurre de volta até estender os braços."
+      ],
+      "erroComum": "Cotovelos abrindo para os lados em vez de ficarem apontados para trás.",
+      "imagem": null
+    },
+    {
+      "id": "apoio-pes-parede-l",
+      "nome": "Apoio com pés na parede (em L)",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "core"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "core"
+      ],
+      "passos": [
+        "Sente-se de costas para a parede com as pernas estendidas e marque no chão onde ficam seus calcanhares: ali vão as mãos.",
+        "Apoie as mãos na marca, de costas para a parede, e suba os pés pela parede até a altura do quadril, com as pernas retas e o quadril acima dos ombros.",
+        "Segure pelo tempo definido, empurrando o chão, e desça os pés pela parede."
+      ],
+      "erroComum": "Afundar a cabeça entre os ombros em vez de empurrar o chão com os braços estendidos.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-pike-pes-cadeira",
+      "nome": "Flexão pike com pés na cadeira",
+      "tipo": "corpo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "cadeira"
+      ],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "peitoral superior"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "peito"
+      ],
+      "passos": [
+        "Apoie os pés sobre uma cadeira firme encostada na parede e as mãos no chão, com o quadril alto e o tronco o mais vertical possível.",
+        "Dobre os cotovelos e leve a cabeça em direção ao chão, um pouco à frente das mãos.",
+        "Empurre de volta até estender os braços."
+      ],
+      "erroComum": "Descer rápido e bater a cabeça no chão.",
+      "imagem": null
+    },
+    {
+      "id": "caminhada-na-parede",
+      "nome": "Caminhada na parede",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "core"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "core"
+      ],
+      "passos": [
+        "Comece em prancha alta com os pés encostados na base da parede, de costas para ela.",
+        "Suba os pés pela parede, um de cada vez, enquanto anda com as mãos em direção a ela, até onde conseguir com controle.",
+        "Volte pelo mesmo caminho, andando com as mãos para longe da parede, até a prancha."
+      ],
+      "erroComum": "Arquear a lombar e deixar a barriga cair em vez de manter o corpo firme e reto.",
+      "imagem": null
+    },
+    {
+      "id": "parada-de-mao-frente-parede",
+      "nome": "Parada de mão de frente para a parede (isometria)",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "core",
+        "antebraços"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "core",
+        "antebraco"
+      ],
+      "passos": [
+        "Suba como na caminhada na parede até as mãos ficarem a cerca de um palmo da parede, com o peito virado para ela.",
+        "Mantenha os braços estendidos, o corpo reto e as pontas dos pés encostadas na parede.",
+        "Segure pelo tempo definido e desça andando com as mãos para longe da parede."
+      ],
+      "erroComum": "Arquear a lombar, encostando a barriga na parede, em vez de manter o corpo reto.",
+      "imagem": null
+    },
+    {
+      "id": "parada-de-mao-costas-parede",
+      "nome": "Parada de mão de costas para a parede (isometria)",
+      "tipo": "tempo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "parede"
+      ],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "core",
+        "antebraços"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "core",
+        "antebraco"
+      ],
+      "passos": [
+        "De frente para a parede, apoie as mãos no chão na largura dos ombros, a cerca de um palmo dela.",
+        "Com um impulso controlado de uma perna e depois da outra, suba até os calcanhares encostarem na parede, com a cabeça entre os braços.",
+        "Segure pelo tempo definido e desça uma perna de cada vez, pelo mesmo caminho."
+      ],
+      "erroComum": "Impulso forte demais, batendo os pés na parede e arqueando a lombar.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-parada-de-mao-parede",
+      "nome": "Flexão na parada de mão contra a parede",
+      "tipo": "corpo",
+      "locais": [
+        "casa",
+        "academia"
+      ],
+      "nivel": 5,
+      "equipamento": [
+        "parede",
+        "almofada ou colchonete"
+      ],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "peitoral superior",
+        "core"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "peito",
+        "core"
+      ],
+      "passos": [
+        "Faça a parada de mão de costas para a parede, com uma almofada ou colchonete dobrado no chão entre as mãos.",
+        "Dobre os cotovelos e desça devagar até a cabeça tocar de leve a almofada, um pouco à frente das mãos.",
+        "Empurre de volta até estender os braços."
+      ],
+      "erroComum": "Descer rápido e bater a cabeça, ou abrir os cotovelos para os lados.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-lateral-garrafas",
+      "nome": "Elevação lateral com garrafas",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "garrafas"
+      ],
+      "musculos": [
+        "deltoide lateral (ombros)"
+      ],
+      "grupos": [
+        "ombros"
+      ],
+      "passos": [
+        "Fique em pé com uma garrafa em cada mão, braços ao lado do corpo e cotovelos levemente dobrados.",
+        "Eleve os braços para os lados até a altura dos ombros, sem balançar o tronco.",
+        "Desça devagar até os braços voltarem ao lado do corpo."
+      ],
+      "erroComum": "Usar impulso do tronco para subir a garrafa.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-biceps-mochila",
+      "nome": "Rosca bíceps com mochila",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "mochila com livros"
+      ],
+      "musculos": [
+        "bíceps",
+        "antebraços"
+      ],
+      "grupos": [
+        "biceps",
+        "antebraco"
+      ],
+      "passos": [
+        "Fique em pé segurando as duas alças de ombro da mochila, uma em cada mão, com as palmas voltadas para frente e os braços estendidos.",
+        "Dobre os cotovelos levando a mochila em direção aos ombros, mantendo os cotovelos junto ao corpo.",
+        "Desça devagar até os braços quase estenderem."
+      ],
+      "erroComum": "Balançar o corpo para trás para subir a mochila.",
+      "imagem": null
+    },
+    {
+      "id": "desenvolvimento-garrafas",
+      "nome": "Desenvolvimento com garrafas",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "garrafas"
+      ],
+      "musculos": [
+        "ombros",
+        "tríceps",
+        "trapézio"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps",
+        "costas"
+      ],
+      "passos": [
+        "Segure uma garrafa em cada mão na altura dos ombros, com as palmas voltadas para frente.",
+        "Empurre as garrafas para cima até os braços quase estenderem, sem arquear a lombar.",
+        "Desça devagar até a altura dos ombros."
+      ],
+      "erroComum": "Arquear a lombar para empurrar o peso para cima.",
+      "imagem": null
+    },
+    {
+      "id": "remada-curvada-mochila",
+      "nome": "Remada curvada com mochila",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "mochila com livros"
+      ],
+      "musculos": [
+        "costas (dorsais e romboides)",
+        "bíceps",
+        "posterior de ombro"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "ombros"
+      ],
+      "passos": [
+        "Segure as duas alças de ombro da mochila com os braços estendidos e incline o tronco para frente, com a coluna reta e os joelhos levemente dobrados.",
+        "Puxe a mochila em direção à parte de baixo do peito, aproximando as escápulas.",
+        "Desça devagar até os braços estenderem."
+      ],
+      "erroComum": "Coluna arredondada durante o movimento.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-mochila-peito",
+      "nome": "Agachamento com mochila no peito",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "mochila com livros"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa",
+        "core"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior",
+        "core"
+      ],
+      "passos": [
+        "Segure a mochila junto ao peito com as duas mãos, pés na largura dos ombros.",
+        "Desça dobrando quadril e joelhos, mantendo o peito erguido e os calcanhares no chão.",
+        "Suba empurrando o chão com os pés."
+      ],
+      "erroComum": "Inclinar o tronco demais para frente ou joelhos caindo para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "flexao-mochila-costas",
+      "nome": "Flexão com mochila nas costas",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "mochila com livros"
+      ],
+      "musculos": [
+        "peitoral",
+        "tríceps",
+        "ombros",
+        "core"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros",
+        "core"
+      ],
+      "passos": [
+        "Coloque a mochila sobre as costas, presa pelas alças, e faça a flexão no chão com as mãos na largura dos ombros.",
+        "Mantenha o corpo em linha reta da cabeça aos calcanhares.",
+        "Dobre os cotovelos até o peito quase tocar o chão e empurre de volta."
+      ],
+      "erroComum": "Quadril caindo ou mochila escorregando para o lado.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-punho-garrafa",
+      "nome": "Rosca de punho com garrafa",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "garrafa com água ou areia"
+      ],
+      "musculos": [
+        "flexores do punho (antebraço)"
+      ],
+      "grupos": [
+        "antebraco"
+      ],
+      "passos": [
+        "Sentado, apoie o antebraço na coxa com a palma para cima e o punho para fora do joelho, segurando a garrafa.",
+        "Flexione o punho levando a garrafa para cima, sem tirar o antebraço da coxa.",
+        "Desça devagar até estender o punho e troque de lado ao final da série."
+      ],
+      "erroComum": "Tirar o antebraço da coxa e usar o braço para subir a garrafa.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-punho-invertida-garrafa",
+      "nome": "Rosca de punho invertida com garrafa",
+      "tipo": "carga",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "garrafa com água ou areia"
+      ],
+      "musculos": [
+        "extensores do punho (antebraço)"
+      ],
+      "grupos": [
+        "antebraco"
+      ],
+      "passos": [
+        "Sentado, apoie o antebraço na coxa com a palma para baixo e o punho para fora do joelho, segurando a garrafa.",
+        "Estenda o punho levando a garrafa para cima, sem tirar o antebraço da coxa.",
+        "Desça devagar e troque de lado ao final da série."
+      ],
+      "erroComum": "Usar carga pesada demais e balançar o braço; os extensores são mais fracos que os flexores.",
+      "imagem": null
+    },
+    {
+      "id": "sustentacao-mochila",
+      "nome": "Sustentação de mochila",
+      "tipo": "tempo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "mochila com livros"
+      ],
+      "musculos": [
+        "antebraços (pegada)",
+        "trapézio",
+        "core"
+      ],
+      "grupos": [
+        "antebraco",
+        "costas",
+        "core"
+      ],
+      "passos": [
+        "Fique em pé e segure uma mochila pesada pela alça de mão, com o braço estendido ao lado do corpo.",
+        "Mantenha o tronco reto, sem inclinar para o lado da mochila, e os ombros para baixo.",
+        "Segure pelo tempo definido e troque de mão."
+      ],
+      "erroComum": "Inclinar o tronco para o lado da carga ou encolher o ombro.",
+      "imagem": null
+    },
+    {
+      "id": "caminhada-fazendeiro-mochilas",
+      "nome": "Caminhada do fazendeiro com mochilas",
+      "tipo": "tempo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "2 mochilas com livros (ou sacolas firmes com garrafas)"
+      ],
+      "musculos": [
+        "antebraços (pegada)",
+        "trapézio",
+        "core",
+        "panturrilha"
+      ],
+      "grupos": [
+        "antebraco",
+        "costas",
+        "core",
+        "panturrilha"
+      ],
+      "passos": [
+        "Segure uma mochila em cada mão pela alça de mão, braços estendidos ao lado do corpo.",
+        "Caminhe com passos curtos e firmes, tronco ereto e ombros para baixo, em um espaço livre de obstáculos.",
+        "Siga pelo tempo definido e pouse as mochilas no chão dobrando os joelhos, com as costas retas."
+      ],
+      "erroComum": "Curvar as costas para pegar ou largar a carga no chão.",
+      "imagem": null
+    },
+    {
+      "id": "sustentacao-mochila-toalha",
+      "nome": "Sustentação de mochila com toalha",
+      "tipo": "tempo",
+      "locais": [
+        "casa"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "mochila com livros",
+        "toalha"
+      ],
+      "musculos": [
+        "antebraços (pegada)",
+        "flexores dos dedos"
+      ],
+      "grupos": [
+        "antebraco"
+      ],
+      "passos": [
+        "Passe uma toalha pela alça de mão da mochila e junte as duas pontas da toalha em uma mão.",
+        "Fique em pé com o braço estendido ao lado do corpo, segurando a mochila pela toalha, com o tronco reto.",
+        "Segure pelo tempo definido e troque de mão."
+      ],
+      "erroComum": "Começar com a mochila pesada demais; a toalha deixa a pegada bem mais difícil.",
+      "imagem": null
+    },
+    {
+      "id": "supino-reto-barra",
+      "nome": "Supino reto com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "barra",
+        "banco"
+      ],
+      "musculos": [
+        "peitoral maior",
+        "tríceps",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Deitado no banco, pés firmes no chão, pegada um pouco mais larga que os ombros.",
+        "Desça a barra até encostar no meio do peito, com cotovelos em torno de 45°.",
+        "Empurre de volta até estender os braços, sem tirar as costas do banco."
+      ],
+      "erroComum": "Quicar a barra no peito ou tirar a lombar do banco para ajudar.",
+      "imagem": null
+    },
+    {
+      "id": "supino-reto-halteres",
+      "nome": "Supino reto com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres",
+        "banco"
+      ],
+      "musculos": [
+        "peitoral maior",
+        "tríceps",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Deitado no banco, segure um halter em cada mão com os punhos alinhados aos cotovelos.",
+        "Desça os halteres pelas laterais do peito até a altura do tórax.",
+        "Empurre de volta para cima, aproximando os halteres no topo sem batê-los."
+      ],
+      "erroComum": "Descer os halteres muito abertos, forçando os ombros.",
+      "imagem": null
+    },
+    {
+      "id": "supino-inclinado-barra",
+      "nome": "Supino inclinado com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra",
+        "banco inclinado"
+      ],
+      "musculos": [
+        "peitoral maior (porção superior)",
+        "deltoide anterior",
+        "tríceps"
+      ],
+      "grupos": [
+        "peito",
+        "ombros",
+        "triceps"
+      ],
+      "passos": [
+        "Ajuste o banco inclinado (cerca de 30° a 45°) e deite com as costas apoiadas.",
+        "Desça a barra até a parte superior do peito, abaixo da clavícula.",
+        "Empurre a barra de volta até estender os braços, mantendo os pés apoiados."
+      ],
+      "erroComum": "Inclinar o banco demais, o que transfere a carga para os ombros.",
+      "imagem": null
+    },
+    {
+      "id": "supino-inclinado-halteres",
+      "nome": "Supino inclinado com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres",
+        "banco inclinado"
+      ],
+      "musculos": [
+        "peitoral maior (porção superior)",
+        "deltoide anterior",
+        "tríceps"
+      ],
+      "grupos": [
+        "peito",
+        "ombros",
+        "triceps"
+      ],
+      "passos": [
+        "Deitado no banco inclinado, segure os halteres na altura do peito.",
+        "Desça os halteres em direção às laterais superiores do peito.",
+        "Empurre para cima até os braços estenderem, aproximando os halteres no topo."
+      ],
+      "erroComum": "Deixar os cotovelos muito abertos, sobrecarregando os ombros.",
+      "imagem": null
+    },
+    {
+      "id": "supino-declinado-barra",
+      "nome": "Supino declinado com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra",
+        "banco declinado"
+      ],
+      "musculos": [
+        "peitoral maior (porção inferior)",
+        "tríceps"
+      ],
+      "grupos": [
+        "peito",
+        "triceps"
+      ],
+      "passos": [
+        "Prenda os pés no banco declinado e deite com a cabeça mais baixa.",
+        "Desça a barra até a parte inferior do peito.",
+        "Empurre de volta para cima até estender os braços."
+      ],
+      "erroComum": "Soltar a barra no peito em vez de controlar a descida.",
+      "imagem": null
+    },
+    {
+      "id": "supino-smith",
+      "nome": "Supino no smith",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "smith",
+        "banco"
+      ],
+      "musculos": [
+        "peitoral maior",
+        "tríceps",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Posicione o banco sob a barra do smith e deite com os olhos abaixo da barra.",
+        "Segure a barra com pegada levemente mais larga que os ombros e destrave-a.",
+        "Desça controlando até o peito e empurre de volta até estender os braços."
+      ],
+      "erroComum": "Deixar a barra cair no peito ou usar o movimento do smith para jogar a carga.",
+      "imagem": null
+    },
+    {
+      "id": "supino-maquina",
+      "nome": "Supino na máquina",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina"
+      ],
+      "musculos": [
+        "peitoral maior",
+        "tríceps",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Ajuste o banco para que as pegadas fiquem na altura do meio do peito.",
+        "Empurre as alças para frente até estender os braços sem travar os cotovelos.",
+        "Volte devagar até sentir o alongamento do peito."
+      ],
+      "erroComum": "Ajustar o banco alto ou baixo demais, tirando o movimento da linha do peito.",
+      "imagem": null
+    },
+    {
+      "id": "crucifixo-reto-halteres",
+      "nome": "Crucifixo reto com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres",
+        "banco"
+      ],
+      "musculos": [
+        "peitoral maior",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Deitado no banco, estenda os braços com halteres sobre o peito e cotovelos levemente flexionados.",
+        "Abra os braços em arco até sentir o alongamento no peito.",
+        "Feche os braços no mesmo arco, como se abraçasse um tronco."
+      ],
+      "erroComum": "Dobrar os cotovelos demais, transformando o exercício em supino.",
+      "imagem": null
+    },
+    {
+      "id": "crucifixo-inclinado-halteres",
+      "nome": "Crucifixo inclinado com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres",
+        "banco inclinado"
+      ],
+      "musculos": [
+        "peitoral maior (porção superior)",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Deitado no banco inclinado, estenda os braços com halteres acima do peito.",
+        "Abra os braços em arco, descendo até a altura dos ombros.",
+        "Feche o arco de volta ao centro do peito."
+      ],
+      "erroComum": "Descer os halteres abaixo da linha dos ombros, forçando a articulação.",
+      "imagem": null
+    },
+    {
+      "id": "crucifixo-maquina-peck-deck",
+      "nome": "Crucifixo na máquina (peck deck)",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina peck deck"
+      ],
+      "musculos": [
+        "peitoral maior",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Ajuste o banco para que os cotovelos fiquem na altura dos ombros.",
+        "Junte os braços à frente do peito, contraindo o peitoral.",
+        "Retorne devagar até sentir o alongamento, sem bater as placas."
+      ],
+      "erroComum": "Usar os punhos ou os antebraços para puxar em vez de contrair o peito.",
+      "imagem": null
+    },
+    {
+      "id": "crossover-polia",
+      "nome": "Crossover na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "polia alta"
+      ],
+      "musculos": [
+        "peitoral maior",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Segure as alças das polias altas, dê um passo à frente e fique com o tronco levemente inclinado.",
+        "Junte as mãos à frente do peito, num arco descendente.",
+        "Abra os braços de volta devagar, mantendo a leve flexão dos cotovelos."
+      ],
+      "erroComum": "Usar o peso do tronco para puxar a carga em vez de contrair o peito.",
+      "imagem": null
+    },
+    {
+      "id": "mergulho-assistido-graviton",
+      "nome": "Mergulho assistido no gráviton",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "máquina gráviton"
+      ],
+      "musculos": [
+        "peitoral inferior",
+        "tríceps",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Escolha o contrapeso de ajuda (quanto mais peso, mais ajuda), apoie os joelhos na plataforma e segure as pegadas paralelas com os braços estendidos.",
+        "Dobre os cotovelos com o tronco levemente inclinado à frente e desça até os cotovelos chegarem a cerca de 90 graus.",
+        "Empurre até estender os braços de novo; com o tempo, diminua o contrapeso de ajuda."
+      ],
+      "erroComum": "Descer fundo demais com os ombros encolhidos e rolando para frente.",
+      "imagem": null
+    },
+    {
+      "id": "mergulho-negativo-paralelas",
+      "nome": "Mergulho negativo nas paralelas",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barras paralelas",
+        "banco ou step"
+      ],
+      "musculos": [
+        "peitoral inferior",
+        "tríceps",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Suba num banco ou step e apoie-se nas paralelas com os braços estendidos e os ombros baixos, longe das orelhas.",
+        "Tire os pés do apoio e desça devagar, em 3 a 5 segundos, com o tronco levemente inclinado à frente, até os cotovelos chegarem a cerca de 90 graus.",
+        "Volte os pés ao apoio, suba de novo com ajuda das pernas e repita."
+      ],
+      "erroComum": "Despencar no fim da descida ou descer além do confortável, deixando os ombros rolarem para frente.",
+      "imagem": null
+    },
+    {
+      "id": "mergulho-paralelas",
+      "nome": "Mergulho nas paralelas",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "barras paralelas"
+      ],
+      "musculos": [
+        "peitoral inferior",
+        "tríceps",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "peito",
+        "triceps",
+        "ombros"
+      ],
+      "passos": [
+        "Segure as paralelas e suba até ficar apoiado com os braços estendidos, os ombros baixos e as pernas soltas.",
+        "Dobre os cotovelos com o tronco levemente inclinado à frente e desça até os cotovelos chegarem a cerca de 90 graus.",
+        "Empurre as barras até estender os braços de novo, sem balançar o corpo."
+      ],
+      "erroComum": "Descer fundo demais com os ombros encolhidos e rolando para frente.",
+      "imagem": null
+    },
+    {
+      "id": "puxada-frontal-pegada-aberta",
+      "nome": "Puxada frontal",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "polia alta",
+        "máquina"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "bíceps",
+        "romboides"
+      ],
+      "grupos": [
+        "costas",
+        "biceps"
+      ],
+      "passos": [
+        "Sente com as coxas fixadas e segure a barra com pegada aberta, mais larga que os ombros.",
+        "Puxe a barra até a altura do peito, levando os cotovelos para baixo e para trás.",
+        "Volte devagar até os braços estenderem, sem perder a postura do tronco."
+      ],
+      "erroComum": "Puxar a barra atrás da nuca ou jogar o tronco para trás para ajudar.",
+      "imagem": null
+    },
+    {
+      "id": "puxada-frontal-supinada",
+      "nome": "Puxada frontal supinada",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "polia alta",
+        "máquina"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "bíceps",
+        "romboides"
+      ],
+      "grupos": [
+        "costas",
+        "biceps"
+      ],
+      "passos": [
+        "Sente e segure a barra com pegada supinada (palmas voltadas para você), na largura dos ombros.",
+        "Puxe a barra em direção ao peito, mantendo o peito aberto.",
+        "Volte devagar até estender os braços."
+      ],
+      "erroComum": "Encolher os ombros durante a puxada em vez de descer as escápulas.",
+      "imagem": null
+    },
+    {
+      "id": "puxada-frontal-triangulo",
+      "nome": "Puxada frontal triângulo",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "polia alta",
+        "pegada triângulo"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "bíceps",
+        "romboides"
+      ],
+      "grupos": [
+        "costas",
+        "biceps"
+      ],
+      "passos": [
+        "Sente e segure a pegada triângulo com as palmas voltadas uma para a outra.",
+        "Puxe a pegada até o peito, mantendo os cotovelos próximos ao corpo.",
+        "Retorne devagar até os braços estenderem."
+      ],
+      "erroComum": "Inclinar demais o tronco para trás durante a puxada.",
+      "imagem": null
+    },
+    {
+      "id": "barra-fixa-negativa",
+      "nome": "Barra fixa negativa",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra fixa",
+        "banco ou step"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "bíceps",
+        "romboides",
+        "antebraços (pegada)"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "antebraco"
+      ],
+      "passos": [
+        "Suba num banco ou step e segure a barra com as palmas para frente, mãos um pouco mais afastadas que os ombros.",
+        "Comece com o queixo acima da barra, tire os pés do apoio e mantenha o corpo firme, com os ombros longe das orelhas.",
+        "Desça devagar, em 3 a 5 segundos, até estender os braços por completo; volte os pés ao apoio e repita."
+      ],
+      "erroComum": "Despencar na parte final da descida em vez de controlar até os braços estenderem.",
+      "imagem": null
+    },
+    {
+      "id": "barra-fixa-assistida-graviton",
+      "nome": "Barra fixa assistida no gráviton",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "máquina gráviton"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "bíceps",
+        "romboides",
+        "antebraços (pegada)"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "antebraco"
+      ],
+      "passos": [
+        "Escolha o contrapeso de ajuda (quanto mais peso, mais ajuda), apoie os joelhos ou os pés na plataforma e segure a barra com as palmas para frente.",
+        "Puxe levando os ombros para baixo e o peito em direção à barra até o queixo passar dela.",
+        "Desça controlando até estender os braços; com o tempo, diminua o contrapeso de ajuda."
+      ],
+      "erroComum": "Usar mais ajuda do que precisa e encurtar o movimento, sem estender os braços embaixo.",
+      "imagem": null
+    },
+    {
+      "id": "barra-fixa",
+      "nome": "Barra fixa",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "barra fixa"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "bíceps",
+        "romboides",
+        "antebraços (pegada)"
+      ],
+      "grupos": [
+        "costas",
+        "biceps",
+        "antebraco"
+      ],
+      "passos": [
+        "Segure a barra com as palmas para frente, mãos um pouco mais afastadas que os ombros, e fique pendurado com os braços estendidos.",
+        "Puxe levando os ombros para baixo e o peito em direção à barra até o queixo passar dela, sem balançar as pernas.",
+        "Desça controlando até estender os braços por completo antes da próxima repetição."
+      ],
+      "erroComum": "Balançar o corpo ou chutar as pernas para subir, e não estender os braços embaixo.",
+      "imagem": null
+    },
+    {
+      "id": "remada-curvada-barra",
+      "nome": "Remada curvada com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "romboides",
+        "trapézio médio",
+        "posterior de ombro"
+      ],
+      "grupos": [
+        "costas",
+        "ombros"
+      ],
+      "passos": [
+        "Em pé, incline o tronco até ficar próximo do paralelo ao chão, com joelhos levemente flexionados e costas retas.",
+        "Puxe a barra em direção ao abdômen, levando os cotovelos para trás.",
+        "Desça a barra devagar até os braços estenderem, sem perder a posição do tronco."
+      ],
+      "erroComum": "Arredondar as costas durante o movimento.",
+      "imagem": null
+    },
+    {
+      "id": "remada-baixa-triangulo",
+      "nome": "Remada baixa no triângulo",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "polia baixa",
+        "pegada triângulo"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "romboides",
+        "trapézio médio",
+        "bíceps"
+      ],
+      "grupos": [
+        "costas",
+        "biceps"
+      ],
+      "passos": [
+        "Sente com os pés apoiados na plataforma e segure a pegada triângulo com os braços estendidos.",
+        "Puxe a pegada em direção ao abdômen, mantendo o tronco firme.",
+        "Volte devagar até estender os braços, sem curvar a coluna."
+      ],
+      "erroComum": "Balançar o tronco para trás para ajudar a puxada.",
+      "imagem": null
+    },
+    {
+      "id": "remada-maquina-articulada",
+      "nome": "Remada na máquina articulada",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina articulada"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "romboides",
+        "trapézio médio",
+        "bíceps"
+      ],
+      "grupos": [
+        "costas",
+        "biceps"
+      ],
+      "passos": [
+        "Sente com o peito apoiado no suporte e segure as alças com as palmas voltadas uma para a outra.",
+        "Puxe as alças em direção ao corpo, levando os cotovelos para trás.",
+        "Volte devagar até estender os braços."
+      ],
+      "erroComum": "Tirar o peito do apoio para puxar com o tronco.",
+      "imagem": null
+    },
+    {
+      "id": "remada-serrote-halter",
+      "nome": "Remada serrote com halter",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halter",
+        "banco"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "romboides",
+        "bíceps"
+      ],
+      "grupos": [
+        "costas",
+        "biceps"
+      ],
+      "passos": [
+        "Apoie um joelho e a mão oposta no banco, com as costas paralelas ao chão.",
+        "Puxe o halter em direção ao quadril, levando o cotovelo para cima e para trás.",
+        "Desça devagar até estender o braço, sem girar o tronco."
+      ],
+      "erroComum": "Girar o tronco para subir a carga.",
+      "imagem": null
+    },
+    {
+      "id": "remada-cavalinho",
+      "nome": "Remada cavalinho",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra T (cavalinho)"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "romboides",
+        "trapézio médio",
+        "bíceps"
+      ],
+      "grupos": [
+        "costas",
+        "biceps"
+      ],
+      "passos": [
+        "Posicione-se sobre a barra com os pés apoiados e o tronco inclinado, segurando a pegada.",
+        "Puxe a carga em direção ao peito, mantendo as costas retas.",
+        "Desça devagar até os braços estenderem."
+      ],
+      "erroComum": "Arredondar a coluna para levantar mais peso.",
+      "imagem": null
+    },
+    {
+      "id": "pullover-halter",
+      "nome": "Pullover com halter",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halter",
+        "banco"
+      ],
+      "musculos": [
+        "grande dorsal",
+        "peitoral maior",
+        "serrátil"
+      ],
+      "grupos": [
+        "costas",
+        "peito",
+        "core"
+      ],
+      "passos": [
+        "Deitado transversalmente no banco, segure um halter com as duas mãos sobre o peito, braços quase estendidos.",
+        "Desça o halter em arco por trás da cabeça até sentir o alongamento das costelas.",
+        "Traga o halter de volta à posição inicial, contraindo o dorsal."
+      ],
+      "erroComum": "Dobrar muito os cotovelos e transformar o movimento em tríceps.",
+      "imagem": null
+    },
+    {
+      "id": "levantamento-terra",
+      "nome": "Levantamento terra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 4,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "lombar",
+        "glúteos",
+        "posterior de coxa",
+        "grande dorsal",
+        "trapézio"
+      ],
+      "grupos": [
+        "lombar",
+        "gluteos",
+        "posterior",
+        "costas"
+      ],
+      "passos": [
+        "Com a barra sobre o meio do pé, segure-a logo por fora das pernas, com o quadril entre joelhos e ombros e as costas retas.",
+        "Empurre o chão com as pernas e estenda o quadril e o joelho ao mesmo tempo, mantendo a barra próxima às pernas.",
+        "Desça a barra no mesmo caminho, controlando o movimento até o chão."
+      ],
+      "erroComum": "Arredondar a lombar ao levantar a barra.",
+      "imagem": null
+    },
+    {
+      "id": "hiperextensao-banco-romano",
+      "nome": "Hiperextensão no banco romano",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "banco romano"
+      ],
+      "musculos": [
+        "lombar",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "lombar",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Prenda os pés no banco romano e apoie o quadril na almofada.",
+        "Desça o tronco à frente dobrando o quadril, com as costas retas.",
+        "Suba até alinhar o tronco com as pernas, contraindo glúteos e lombar, sem passar dessa linha."
+      ],
+      "erroComum": "Hiperestender a lombar no topo do movimento.",
+      "imagem": null
+    },
+    {
+      "id": "encolhimento-barra",
+      "nome": "Encolhimento com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "trapézio superior"
+      ],
+      "grupos": [
+        "costas"
+      ],
+      "passos": [
+        "Em pé, segure a barra com as mãos na frente das coxas e braços estendidos.",
+        "Eleve os ombros em direção às orelhas, sem dobrar os cotovelos.",
+        "Desça devagar até sentir o alongamento do trapézio."
+      ],
+      "erroComum": "Girar os ombros para trás ou para frente em vez de subir e descer.",
+      "imagem": null
+    },
+    {
+      "id": "encolhimento-halteres",
+      "nome": "Encolhimento com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "trapézio superior"
+      ],
+      "grupos": [
+        "costas"
+      ],
+      "passos": [
+        "Em pé, segure um halter em cada mão ao lado do corpo, com braços estendidos.",
+        "Eleve os ombros em direção às orelhas, sem dobrar os cotovelos.",
+        "Desça devagar até sentir o alongamento do trapézio."
+      ],
+      "erroComum": "Jogar o peso com balanço do tronco.",
+      "imagem": null
+    },
+    {
+      "id": "desenvolvimento-halteres",
+      "nome": "Desenvolvimento com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "deltoide anterior",
+        "deltoide lateral",
+        "tríceps"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps"
+      ],
+      "passos": [
+        "Sentado ou em pé, segure um halter em cada mão na altura dos ombros, palmas para frente.",
+        "Empurre os halteres para cima até quase estender os braços, sem travar os cotovelos.",
+        "Desça devagar até a altura dos ombros."
+      ],
+      "erroComum": "Arquear excessivamente a lombar para empurrar o peso.",
+      "imagem": null
+    },
+    {
+      "id": "desenvolvimento-barra",
+      "nome": "Desenvolvimento com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "deltoide anterior",
+        "deltoide lateral",
+        "tríceps"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps"
+      ],
+      "passos": [
+        "Em pé ou sentado, segure a barra na altura dos ombros com pegada um pouco mais larga que eles.",
+        "Empurre a barra para cima, passando rente ao rosto até ficar acima da cabeça.",
+        "Desça a barra devagar de volta à altura dos ombros."
+      ],
+      "erroComum": "Jogar o tronco para trás para subir a carga.",
+      "imagem": null
+    },
+    {
+      "id": "desenvolvimento-maquina",
+      "nome": "Desenvolvimento na máquina",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina"
+      ],
+      "musculos": [
+        "deltoide anterior",
+        "deltoide lateral",
+        "tríceps"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps"
+      ],
+      "passos": [
+        "Sente com as costas apoiadas e ajuste as alças na altura dos ombros.",
+        "Empurre as alças para cima até quase estender os braços.",
+        "Volte devagar até a altura dos ombros."
+      ],
+      "erroComum": "Ajustar o assento de forma que as alças fiquem abaixo dos ombros.",
+      "imagem": null
+    },
+    {
+      "id": "desenvolvimento-smith",
+      "nome": "Desenvolvimento no smith",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "smith",
+        "banco"
+      ],
+      "musculos": [
+        "deltoide anterior",
+        "deltoide lateral",
+        "tríceps"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps"
+      ],
+      "passos": [
+        "Sente no banco sob a barra do smith e segure-a na altura dos ombros.",
+        "Empurre a barra para cima em linha reta até quase estender os braços.",
+        "Desça controlando até a altura do queixo."
+      ],
+      "erroComum": "Tirar as costas do encosto e arquear a lombar para empurrar a carga.",
+      "imagem": null
+    },
+    {
+      "id": "desenvolvimento-arnold",
+      "nome": "Desenvolvimento Arnold",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "halteres",
+        "banco"
+      ],
+      "musculos": [
+        "deltoide anterior",
+        "deltoide lateral",
+        "tríceps"
+      ],
+      "grupos": [
+        "ombros",
+        "triceps"
+      ],
+      "passos": [
+        "Sentado, segure os halteres à frente do rosto com palmas voltadas para você.",
+        "Empurre os halteres para cima girando as palmas para frente conforme sobe.",
+        "Desça girando as palmas de volta até a posição inicial."
+      ],
+      "erroComum": "Girar os punhos antes do tempo ou usar balanço do tronco.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-lateral-halteres",
+      "nome": "Elevação lateral com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "deltoide lateral",
+        "trapézio superior"
+      ],
+      "grupos": [
+        "ombros",
+        "costas"
+      ],
+      "passos": [
+        "Em pé, segure um halter em cada mão ao lado do corpo, cotovelos levemente flexionados.",
+        "Eleve os braços para os lados até a altura dos ombros.",
+        "Desça devagar até a posição inicial."
+      ],
+      "erroComum": "Subir acima da altura dos ombros ou usar balanço do tronco.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-lateral-polia",
+      "nome": "Elevação lateral na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "polia baixa"
+      ],
+      "musculos": [
+        "deltoide lateral",
+        "trapézio superior"
+      ],
+      "grupos": [
+        "ombros",
+        "costas"
+      ],
+      "passos": [
+        "Fique de lado para a polia baixa e segure a alça com a mão do lado oposto.",
+        "Eleve o braço para o lado até a altura do ombro, mantendo o cotovelo levemente flexionado.",
+        "Desça devagar até a posição inicial."
+      ],
+      "erroComum": "Inclinar o tronco para o lado para ajudar o movimento.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-lateral-maquina",
+      "nome": "Elevação lateral na máquina",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina"
+      ],
+      "musculos": [
+        "deltoide lateral",
+        "trapézio superior"
+      ],
+      "grupos": [
+        "ombros",
+        "costas"
+      ],
+      "passos": [
+        "Sente-se na máquina com os braços apoiados nos suportes e os cotovelos alinhados aos ombros.",
+        "Eleve os braços para os lados até a altura dos ombros.",
+        "Volte devagar à posição inicial."
+      ],
+      "erroComum": "Subir os ombros junto com o movimento.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-frontal-halteres",
+      "nome": "Elevação frontal com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "deltoide anterior",
+        "peitoral maior (porção superior)"
+      ],
+      "grupos": [
+        "ombros",
+        "peito"
+      ],
+      "passos": [
+        "Em pé, segure os halteres à frente das coxas com palmas voltadas para o corpo.",
+        "Eleve os braços à frente até a altura dos ombros, sem subir acima dela.",
+        "Desça devagar até a posição inicial."
+      ],
+      "erroComum": "Balançar o tronco para trás para subir o peso.",
+      "imagem": null
+    },
+    {
+      "id": "crucifixo-inverso-halteres",
+      "nome": "Crucifixo inverso com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "deltoide posterior",
+        "romboides",
+        "trapézio médio"
+      ],
+      "grupos": [
+        "ombros",
+        "costas"
+      ],
+      "passos": [
+        "Incline o tronco à frente com costas retas e segure os halteres abaixo dos ombros.",
+        "Abra os braços para os lados em arco, levando os cotovelos à altura dos ombros.",
+        "Desça devagar até a posição inicial."
+      ],
+      "erroComum": "Levantar o tronco e usar as costas para ajudar a subida.",
+      "imagem": null
+    },
+    {
+      "id": "crucifixo-inverso-maquina",
+      "nome": "Crucifixo inverso na máquina",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina peck deck"
+      ],
+      "musculos": [
+        "deltoide posterior",
+        "romboides",
+        "trapézio médio"
+      ],
+      "grupos": [
+        "ombros",
+        "costas"
+      ],
+      "passos": [
+        "Sente de frente para a máquina com o peito apoiado e segure as alças com braços estendidos.",
+        "Abra os braços para trás em arco, até a linha dos ombros.",
+        "Volte devagar à posição inicial."
+      ],
+      "erroComum": "Usar o tronco para empurrar as alças em vez de contrair as costas.",
+      "imagem": null
+    },
+    {
+      "id": "remada-alta-barra",
+      "nome": "Remada alta com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "deltoide lateral",
+        "trapézio superior",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "ombros",
+        "costas"
+      ],
+      "passos": [
+        "Em pé, segure a barra com pegada na largura dos ombros, braços estendidos à frente das coxas.",
+        "Puxe a barra junto ao corpo até a altura do peito, levando os cotovelos para os lados e acima das mãos.",
+        "Desça devagar até a posição inicial."
+      ],
+      "erroComum": "Usar pegada muito fechada ou subir os cotovelos acima da linha dos ombros, o que pode irritar o ombro.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-direta-barra",
+      "nome": "Rosca direta com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "bíceps braquial",
+        "braquial"
+      ],
+      "grupos": [
+        "biceps"
+      ],
+      "passos": [
+        "Em pé, segure a barra com pegada na largura dos ombros, palmas para frente.",
+        "Flexione os cotovelos e leve a barra até a altura dos ombros, mantendo os cotovelos junto ao tronco.",
+        "Desça devagar até estender os braços."
+      ],
+      "erroComum": "Balançar o tronco para ajudar a subir a carga.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-direta-halteres",
+      "nome": "Rosca direta com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "bíceps braquial",
+        "braquial"
+      ],
+      "grupos": [
+        "biceps"
+      ],
+      "passos": [
+        "Em pé, segure um halter em cada mão ao lado do corpo, palmas para frente.",
+        "Flexione os cotovelos e suba os halteres até a altura dos ombros.",
+        "Desça devagar até estender os braços."
+      ],
+      "erroComum": "Deixar os cotovelos se afastarem do corpo durante a subida.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-alternada-halteres",
+      "nome": "Rosca alternada com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "bíceps braquial",
+        "braquial"
+      ],
+      "grupos": [
+        "biceps"
+      ],
+      "passos": [
+        "Em pé, segure um halter em cada mão com palmas para frente.",
+        "Flexione um braço por vez, subindo o halter até a altura do ombro.",
+        "Desça devagar e alterne para o outro braço."
+      ],
+      "erroComum": "Balançar o tronco para completar as repetições.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-martelo-halteres",
+      "nome": "Rosca martelo com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "braquial",
+        "bíceps braquial",
+        "braquiorradial"
+      ],
+      "grupos": [
+        "biceps",
+        "antebraco"
+      ],
+      "passos": [
+        "Em pé, segure os halteres ao lado do corpo com as palmas voltadas uma para a outra.",
+        "Flexione os cotovelos e suba os halteres mantendo a pegada neutra.",
+        "Desça devagar até estender os braços."
+      ],
+      "erroComum": "Girar as palmas para cima durante a subida, o que vira rosca direta.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-scott-barra",
+      "nome": "Rosca Scott com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "barra W",
+        "banco Scott"
+      ],
+      "musculos": [
+        "bíceps braquial",
+        "braquial"
+      ],
+      "grupos": [
+        "biceps"
+      ],
+      "passos": [
+        "Sente no banco Scott com os braços apoiados na almofada inclinada e segure a barra com palmas para cima.",
+        "Flexione os cotovelos e suba a barra até quase os ombros.",
+        "Desça devagar até quase estender os cotovelos, controlando o final da descida."
+      ],
+      "erroComum": "Deixar a barra cair rápido no final da descida, dando um tranco no cotovelo.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-concentrada-halter",
+      "nome": "Rosca concentrada com halter",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halter",
+        "banco"
+      ],
+      "musculos": [
+        "bíceps braquial"
+      ],
+      "grupos": [
+        "biceps"
+      ],
+      "passos": [
+        "Sentado no banco, apoie a parte de trás do braço na parte interna da coxa e segure o halter.",
+        "Flexione o cotovelo e suba o halter em direção ao ombro.",
+        "Desça devagar até estender o braço."
+      ],
+      "erroComum": "Mover o ombro para frente para ajudar a subida.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-inclinada-halteres",
+      "nome": "Rosca inclinada com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres",
+        "banco inclinado"
+      ],
+      "musculos": [
+        "bíceps braquial (porção longa)",
+        "braquial"
+      ],
+      "grupos": [
+        "biceps"
+      ],
+      "passos": [
+        "Deite no banco inclinado com os braços estendidos para baixo, segurando os halteres com palmas para frente.",
+        "Flexione os cotovelos e suba os halteres sem mover os ombros.",
+        "Desça devagar até estender os braços."
+      ],
+      "erroComum": "Levantar os ombros do banco ou deixar os cotovelos irem para frente.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-polia-barra",
+      "nome": "Rosca na polia com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "polia baixa",
+        "barra reta"
+      ],
+      "musculos": [
+        "bíceps braquial",
+        "braquial"
+      ],
+      "grupos": [
+        "biceps"
+      ],
+      "passos": [
+        "Em pé de frente para a polia baixa, segure a barra com pegada na largura dos ombros.",
+        "Flexione os cotovelos e suba a barra até a altura dos ombros, mantendo os cotovelos fixos ao lado do corpo.",
+        "Desça devagar até estender os braços."
+      ],
+      "erroComum": "Inclinar o tronco à frente e usar o peso do corpo para puxar.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-corda-polia",
+      "nome": "Tríceps corda na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "polia alta",
+        "corda"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "Em pé de frente para a polia alta, segure a corda com as palmas voltadas uma para a outra.",
+        "Estenda os cotovelos empurrando a corda para baixo e separe as pontas no final.",
+        "Volte devagar até os antebraços ficarem na horizontal."
+      ],
+      "erroComum": "Afastar os cotovelos do corpo ou usar o tronco para empurrar.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-barra-reta-polia",
+      "nome": "Tríceps barra reta na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "polia alta",
+        "barra reta"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "Em pé de frente para a polia alta, segure a barra com pegada na largura dos ombros.",
+        "Estenda os cotovelos empurrando a barra para baixo, mantendo os cotovelos junto ao tronco.",
+        "Volte devagar até os antebraços ficarem na horizontal."
+      ],
+      "erroComum": "Inclinar o tronco à frente e empurrar a barra com o peso do corpo.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-testa-barra",
+      "nome": "Tríceps testa com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "barra reta ou W",
+        "banco"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "Deitado no banco, segure a barra com pegada estreita e braços estendidos sobre o peito.",
+        "Flexione os cotovelos, levando a barra em direção à testa, mantendo os cotovelos fixos.",
+        "Estenda os braços de volta à posição inicial."
+      ],
+      "erroComum": "Abrir os cotovelos para os lados ou deixar a barra cair na cabeça.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-testa-halteres",
+      "nome": "Tríceps testa com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres",
+        "banco"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "Deitado no banco, segure um halter em cada mão com braços estendidos sobre o peito.",
+        "Flexione os cotovelos e leve os halteres em direção às laterais da cabeça.",
+        "Estenda os braços de volta à posição inicial."
+      ],
+      "erroComum": "Abrir os cotovelos para os lados durante o movimento.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-frances-halter",
+      "nome": "Tríceps francês com halter",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halter"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "Em pé ou sentado, segure um halter com as duas mãos acima da cabeça, braços estendidos.",
+        "Flexione os cotovelos e baixe o halter atrás da cabeça, mantendo os cotovelos apontados para cima.",
+        "Estenda os braços de volta à posição inicial."
+      ],
+      "erroComum": "Abrir os cotovelos para os lados em vez de mantê-los alinhados à cabeça.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-coice-halter",
+      "nome": "Tríceps coice com halter",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halter"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "Incline o tronco à frente, apoiando uma mão no banco, com o braço do halter colado ao tronco e o cotovelo dobrado a 90 graus.",
+        "Sem mexer o braço, estenda o cotovelo levando o halter para trás até o braço todo ficar reto.",
+        "Volte devagar até o cotovelo dobrar a 90 graus."
+      ],
+      "erroComum": "Deixar o braço cair e balançar o halter em vez de mover só o antebraço.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-maquina",
+      "nome": "Tríceps na máquina",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "Sente-se na máquina com os cotovelos alinhados ao eixo do aparelho.",
+        "Empurre as alças para baixo até estender os cotovelos sem travá-los.",
+        "Volte devagar à posição inicial."
+      ],
+      "erroComum": "Tirar os cotovelos do eixo da máquina e jogar o peso com o corpo.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-supino-fechado",
+      "nome": "Tríceps supino fechado",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra",
+        "banco"
+      ],
+      "musculos": [
+        "tríceps braquial",
+        "peitoral maior",
+        "deltoide anterior"
+      ],
+      "grupos": [
+        "triceps",
+        "peito",
+        "ombros"
+      ],
+      "passos": [
+        "Deitado no banco, segure a barra com pegada fechada, na largura dos ombros.",
+        "Desça a barra até o baixo do peito, mantendo os cotovelos próximos ao corpo.",
+        "Empurre a barra de volta até estender os braços."
+      ],
+      "erroComum": "Pegar a barra muito fechada, o que sobrecarrega punhos e ombros.",
+      "imagem": null
+    },
+    {
+      "id": "triceps-polia-unilateral",
+      "nome": "Tríceps unilateral na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "polia alta",
+        "alça"
+      ],
+      "musculos": [
+        "tríceps braquial"
+      ],
+      "grupos": [
+        "triceps"
+      ],
+      "passos": [
+        "De frente para a polia alta, segure a alça com uma mão e mantenha o cotovelo junto ao corpo.",
+        "Estenda o cotovelo empurrando a alça para baixo.",
+        "Volte devagar até o antebraço ficar na horizontal."
+      ],
+      "erroComum": "Girar o tronco para ajudar o movimento.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-punho-barra",
+      "nome": "Rosca de punho com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "barra",
+        "banco"
+      ],
+      "musculos": [
+        "flexores do punho",
+        "antebraço"
+      ],
+      "grupos": [
+        "antebraco"
+      ],
+      "passos": [
+        "Sentado, apoie os antebraços nas coxas com as mãos para fora dos joelhos, palmas para cima.",
+        "Flexione os punhos levando a barra para cima.",
+        "Desça devagar até estender os punhos."
+      ],
+      "erroComum": "Usar os braços ou o tronco para levantar a barra.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-punho-invertida",
+      "nome": "Rosca de punho invertida",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "barra",
+        "banco"
+      ],
+      "musculos": [
+        "extensores do punho",
+        "antebraço"
+      ],
+      "grupos": [
+        "antebraco"
+      ],
+      "passos": [
+        "Sentado, apoie os antebraços nas coxas com as palmas voltadas para baixo.",
+        "Estenda os punhos levando a barra para cima.",
+        "Desça devagar até flexionar os punhos."
+      ],
+      "erroComum": "Usar o movimento dos cotovelos para subir a carga.",
+      "imagem": null
+    },
+    {
+      "id": "rosca-inversa-barra",
+      "nome": "Rosca inversa com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "braquiorradial",
+        "braquial",
+        "extensores do punho"
+      ],
+      "grupos": [
+        "antebraco",
+        "biceps"
+      ],
+      "passos": [
+        "Em pé, segure a barra com pegada pronada (palmas para baixo), na largura dos ombros.",
+        "Flexione os cotovelos e suba a barra até a altura dos ombros, mantendo os cotovelos junto ao tronco.",
+        "Desça devagar até estender os braços."
+      ],
+      "erroComum": "Balançar o tronco para completar a subida.",
+      "imagem": null
+    },
+    {
+      "id": "caminhada-fazendeiro-halteres",
+      "nome": "Caminhada do fazendeiro com halteres",
+      "tipo": "tempo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "antebraços (pegada)",
+        "trapézio",
+        "core"
+      ],
+      "grupos": [
+        "antebraco",
+        "costas",
+        "core"
+      ],
+      "passos": [
+        "Pegue um halter pesado em cada mão, agachando com as costas retas, e fique em pé com os braços estendidos ao lado do corpo.",
+        "Caminhe com passos curtos e firmes, tronco ereto e ombros para baixo.",
+        "Siga pelo tempo definido e pouse os halteres agachando, com as costas retas."
+      ],
+      "erroComum": "Curvar as costas para pegar ou largar os halteres no chão.",
+      "imagem": null
+    },
+    {
+      "id": "suspensao-barra-fixa",
+      "nome": "Suspensão na barra fixa",
+      "tipo": "tempo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "barra fixa"
+      ],
+      "musculos": [
+        "antebraços (pegada)",
+        "grande dorsal",
+        "ombros"
+      ],
+      "grupos": [
+        "antebraco",
+        "costas",
+        "ombros"
+      ],
+      "passos": [
+        "Segure a barra com as palmas para frente, mãos na largura dos ombros, subindo num banco ou step se precisar.",
+        "Tire os pés do apoio e fique pendurado com os braços estendidos e o corpo parado.",
+        "Segure pelo tempo definido e volte os pés ao apoio antes de soltar a barra."
+      ],
+      "erroComum": "Soltar a barra de repente, caindo no chão, em vez de apoiar os pés primeiro.",
+      "imagem": null
+    },
+    {
+      "id": "pinca-anilhas",
+      "nome": "Pinça com anilhas",
+      "tipo": "tempo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "2 anilhas lisas"
+      ],
+      "musculos": [
+        "flexores dos dedos",
+        "antebraços"
+      ],
+      "grupos": [
+        "antebraco"
+      ],
+      "passos": [
+        "Junte duas anilhas iguais com os lados lisos para fora e segure-as pela borda de cima, com os dedos de um lado e o polegar do outro.",
+        "Fique em pé com o braço estendido ao lado do corpo, levantando as anilhas do chão.",
+        "Segure pelo tempo definido, pouse as anilhas no chão com controle e troque de mão."
+      ],
+      "erroComum": "Usar anilhas pesadas demais e deixá-las escapar sobre o pé.",
+      "imagem": null
+    },
+    {
+      "id": "rolo-de-punho",
+      "nome": "Rolo de punho",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "rolo de punho (bastão com corda)",
+        "anilha"
+      ],
+      "musculos": [
+        "flexores e extensores do punho",
+        "antebraços"
+      ],
+      "grupos": [
+        "antebraco"
+      ],
+      "passos": [
+        "Em pé, segure o bastão com as duas mãos, palmas para baixo e braços estendidos à frente, na altura dos ombros, com a anilha pendurada na corda.",
+        "Gire o bastão com os punhos, uma mão de cada vez, enrolando a corda até a anilha chegar ao bastão.",
+        "Desenrole devagar, girando no sentido contrário, até a anilha voltar para baixo."
+      ],
+      "erroComum": "Abaixar os braços ou girar com os ombros em vez dos punhos.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-livre-barra",
+      "nome": "Agachamento livre com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra",
+        "rack"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa",
+        "lombar"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior",
+        "lombar"
+      ],
+      "passos": [
+        "Posicione a barra sobre o trapézio, pés na largura dos ombros e pontas levemente abertas.",
+        "Flexione joelhos e quadril, descendo até as coxas ficarem próximas do paralelo com o chão, com a coluna neutra.",
+        "Empurre o chão com os pés e volte à posição inicial."
+      ],
+      "erroComum": "Os joelhos caírem para dentro durante a subida.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-smith",
+      "nome": "Agachamento no smith",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "smith"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Posicione a barra do smith sobre o trapézio e pés ligeiramente à frente da barra.",
+        "Flexione joelhos e quadril, descendo de forma controlada.",
+        "Suba empurrando o chão até estender as pernas."
+      ],
+      "erroComum": "Tirar os calcanhares do chão ou deixar os joelhos caírem para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-goblet",
+      "nome": "Agachamento goblet",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halter ou kettlebell"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "passos": [
+        "Segure um halter na vertical junto ao peito, com os pés na largura dos ombros.",
+        "Agache flexionando joelhos e quadril, mantendo o tronco ereto.",
+        "Suba empurrando o chão até ficar em pé."
+      ],
+      "erroComum": "Inclinar o tronco demais para frente e tirar os calcanhares do chão.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-hack",
+      "nome": "Agachamento no hack",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "máquina hack"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos"
+      ],
+      "passos": [
+        "Posicione os ombros sob as almofadas e os pés na plataforma na largura dos ombros.",
+        "Flexione os joelhos descendo com controle até a profundidade confortável.",
+        "Empurre a plataforma para subir até estender as pernas, sem travar os joelhos."
+      ],
+      "erroComum": "Tirar os calcanhares da plataforma durante a descida.",
+      "imagem": null
+    },
+    {
+      "id": "leg-press-45",
+      "nome": "Leg press 45°",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina leg press 45°"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Sente-se no aparelho com as costas apoiadas e os pés na plataforma na largura dos ombros.",
+        "Desça a plataforma flexionando os joelhos até a profundidade confortável, sem tirar a lombar do encosto.",
+        "Empurre a plataforma de volta sem travar os joelhos no topo."
+      ],
+      "erroComum": "Descer tanto que a lombar descola do encosto.",
+      "imagem": null
+    },
+    {
+      "id": "leg-press-horizontal",
+      "nome": "Leg press horizontal",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina leg press horizontal"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Sente-se no aparelho com as costas apoiadas e os pés na plataforma na largura dos ombros.",
+        "Flexione os joelhos trazendo a plataforma em direção ao corpo, até a profundidade confortável.",
+        "Empurre a plataforma de volta sem travar os joelhos."
+      ],
+      "erroComum": "Tirar o quadril do encosto para ajudar a empurrar.",
+      "imagem": null
+    },
+    {
+      "id": "cadeira-extensora",
+      "nome": "Cadeira extensora",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina cadeira extensora"
+      ],
+      "musculos": [
+        "quadríceps"
+      ],
+      "grupos": [
+        "quadriceps"
+      ],
+      "passos": [
+        "Sente-se com as costas apoiadas e o rolo acima dos tornozelos.",
+        "Estenda os joelhos até as pernas ficarem quase retas, contraindo o quadríceps.",
+        "Volte devagar até a posição inicial."
+      ],
+      "erroComum": "Levantar o quadril do assento ou usar impulso para completar as repetições.",
+      "imagem": null
+    },
+    {
+      "id": "afundo-halteres",
+      "nome": "Afundo com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Em pé, segure um halter em cada mão ao lado do corpo e dê um passo largo à frente.",
+        "Flexione os dois joelhos até o joelho de trás quase tocar o chão.",
+        "Empurre com a perna da frente para voltar à posição inicial."
+      ],
+      "erroComum": "Dar um passo curto demais ou deixar o joelho da frente cair para dentro.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-bulgaro-halteres",
+      "nome": "Agachamento búlgaro com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "halteres",
+        "banco"
+      ],
+      "musculos": [
+        "quadríceps",
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "quadriceps",
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Apoie o peito do pé de trás num banco e fique com o outro pé à frente, segurando halteres.",
+        "Flexione o joelho da frente descendo o quadril em linha reta.",
+        "Empurre com a perna da frente para subir."
+      ],
+      "erroComum": "Colocar o pé da frente muito perto do banco, o que tira o equilíbrio e joga o joelho muito à frente.",
+      "imagem": null
+    },
+    {
+      "id": "mesa-flexora",
+      "nome": "Mesa flexora",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina mesa flexora"
+      ],
+      "musculos": [
+        "posterior de coxa (isquiotibiais)",
+        "glúteos"
+      ],
+      "grupos": [
+        "posterior",
+        "gluteos"
+      ],
+      "passos": [
+        "Deite de bruços no aparelho com o rolo logo acima dos tornozelos.",
+        "Flexione os joelhos trazendo o rolo em direção aos glúteos.",
+        "Volte devagar até estender as pernas."
+      ],
+      "erroComum": "Levantar o quadril do banco para ajudar a puxada.",
+      "imagem": null
+    },
+    {
+      "id": "cadeira-flexora",
+      "nome": "Cadeira flexora",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina cadeira flexora"
+      ],
+      "musculos": [
+        "posterior de coxa (isquiotibiais)"
+      ],
+      "grupos": [
+        "posterior"
+      ],
+      "passos": [
+        "Sente-se com as costas apoiadas, o rolo de baixo atrás das pernas logo acima dos calcanhares e o apoio de cima travando as coxas.",
+        "Flexione os joelhos puxando o rolo para baixo e para trás, contraindo o posterior.",
+        "Volte devagar até as pernas quase estenderem."
+      ],
+      "erroComum": "Usar o tronco para empurrar o rolo.",
+      "imagem": null
+    },
+    {
+      "id": "stiff-barra",
+      "nome": "Stiff com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "posterior de coxa",
+        "glúteos",
+        "lombar"
+      ],
+      "grupos": [
+        "posterior",
+        "gluteos",
+        "lombar"
+      ],
+      "passos": [
+        "Em pé, segure a barra com pegada pronada na largura dos quadris, joelhos levemente flexionados.",
+        "Desça a barra deslizando junto às coxas, empurrando o quadril para trás, até sentir o alongamento do posterior.",
+        "Suba estendendo o quadril e mantendo a coluna neutra."
+      ],
+      "erroComum": "Arredondar as costas ou dobrar muito os joelhos, transformando em agachamento.",
+      "imagem": null
+    },
+    {
+      "id": "stiff-halteres",
+      "nome": "Stiff com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halteres"
+      ],
+      "musculos": [
+        "posterior de coxa",
+        "glúteos",
+        "lombar"
+      ],
+      "grupos": [
+        "posterior",
+        "gluteos",
+        "lombar"
+      ],
+      "passos": [
+        "Em pé, segure um halter em cada mão ao lado das coxas, joelhos levemente flexionados.",
+        "Desça os halteres rentes às pernas, empurrando o quadril para trás, até sentir o alongamento.",
+        "Suba estendendo o quadril e mantendo a coluna reta."
+      ],
+      "erroComum": "Arredondar a coluna durante a descida.",
+      "imagem": null
+    },
+    {
+      "id": "flexora-em-pe-unilateral",
+      "nome": "Flexora em pé unilateral",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "máquina flexora em pé"
+      ],
+      "musculos": [
+        "posterior de coxa (isquiotibiais)",
+        "glúteos"
+      ],
+      "grupos": [
+        "posterior",
+        "gluteos"
+      ],
+      "passos": [
+        "Fique em pé na máquina, segure o apoio e posicione o rolo acima do tornozelo de uma perna.",
+        "Flexione o joelho trazendo o rolo em direção ao glúteo.",
+        "Volte devagar até estender a perna e troque de lado."
+      ],
+      "erroComum": "Inclinar o tronco à frente para ajudar a puxada.",
+      "imagem": null
+    },
+    {
+      "id": "good-morning",
+      "nome": "Good morning",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra"
+      ],
+      "musculos": [
+        "posterior de coxa",
+        "glúteos",
+        "lombar"
+      ],
+      "grupos": [
+        "posterior",
+        "gluteos",
+        "lombar"
+      ],
+      "passos": [
+        "Posicione a barra sobre o trapézio, pés na largura dos ombros e joelhos levemente flexionados.",
+        "Incline o tronco à frente empurrando o quadril para trás, com coluna neutra.",
+        "Volte à posição inicial estendendo o quadril."
+      ],
+      "erroComum": "Arredondar as costas durante a descida do tronco.",
+      "imagem": null
+    },
+    {
+      "id": "hip-thrust-barra",
+      "nome": "Hip thrust com barra",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "barra",
+        "banco"
+      ],
+      "musculos": [
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Sente com as costas apoiadas no banco e a barra sobre o quadril, com almofada.",
+        "Empurre o quadril para cima até o tronco ficar paralelo ao chão, contraindo os glúteos.",
+        "Desça devagar até o quadril quase tocar o chão."
+      ],
+      "erroComum": "Hiperestender a lombar no topo em vez de contrair os glúteos.",
+      "imagem": null
+    },
+    {
+      "id": "coice-polia",
+      "nome": "Coice na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "polia baixa",
+        "caneleira"
+      ],
+      "musculos": [
+        "glúteos",
+        "posterior de coxa"
+      ],
+      "grupos": [
+        "gluteos",
+        "posterior"
+      ],
+      "passos": [
+        "Prenda a caneleira no tornozelo na polia baixa e segure o apoio à frente.",
+        "Estenda o quadril levando a perna para trás, mantendo o joelho levemente flexionado.",
+        "Volte devagar até a posição inicial."
+      ],
+      "erroComum": "Arquear a lombar para subir a perna mais alto.",
+      "imagem": null
+    },
+    {
+      "id": "cadeira-abdutora",
+      "nome": "Cadeira abdutora",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina cadeira abdutora"
+      ],
+      "musculos": [
+        "glúteo médio",
+        "glúteo mínimo"
+      ],
+      "grupos": [
+        "gluteos"
+      ],
+      "passos": [
+        "Sente-se com as costas apoiadas e as almofadas na parte externa das coxas.",
+        "Afaste as pernas contra a resistência até a amplitude máxima confortável.",
+        "Volte devagar até a posição inicial."
+      ],
+      "erroComum": "Usar impulso do tronco para abrir as pernas.",
+      "imagem": null
+    },
+    {
+      "id": "agachamento-sumo",
+      "nome": "Agachamento sumô",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halter ou barra"
+      ],
+      "musculos": [
+        "glúteos",
+        "quadríceps",
+        "adutores"
+      ],
+      "grupos": [
+        "gluteos",
+        "quadriceps",
+        "adutores"
+      ],
+      "passos": [
+        "Fique com os pés bem abertos e as pontas voltadas para fora, segurando um halter entre as pernas.",
+        "Flexione joelhos e quadril, descendo com o tronco ereto e os joelhos alinhados aos pés.",
+        "Suba empurrando o chão até ficar em pé."
+      ],
+      "erroComum": "Deixar os joelhos caírem para dentro durante a descida.",
+      "imagem": null
+    },
+    {
+      "id": "cadeira-adutora",
+      "nome": "Cadeira adutora",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina cadeira adutora"
+      ],
+      "musculos": [
+        "adutores da coxa"
+      ],
+      "grupos": [
+        "adutores"
+      ],
+      "passos": [
+        "Sente-se com as costas apoiadas e as almofadas na parte interna das coxas, ajustando a abertura inicial a uma amplitude confortável.",
+        "Feche as pernas contra a resistência até as almofadas se aproximarem.",
+        "Volte devagar até a abertura inicial, sem deixar as placas baterem."
+      ],
+      "erroComum": "Começar com as pernas abertas além do confortável, forçando a virilha.",
+      "imagem": null
+    },
+    {
+      "id": "aducao-quadril-polia",
+      "nome": "Adução de quadril na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "polia baixa",
+        "caneleira"
+      ],
+      "musculos": [
+        "adutores da coxa"
+      ],
+      "grupos": [
+        "adutores"
+      ],
+      "passos": [
+        "Prenda a caneleira na polia baixa e no tornozelo mais próximo dela e fique de lado para a polia, segurando um apoio.",
+        "Com a perna estendida, puxe-a para dentro, cruzando um pouco à frente da perna de apoio.",
+        "Volte devagar até a posição inicial e troque de lado ao final da série."
+      ],
+      "erroComum": "Inclinar o tronco ou girar o quadril para ajudar a puxar a perna.",
+      "imagem": null
+    },
+    {
+      "id": "prancha-copenhague-joelho",
+      "nome": "Prancha de Copenhague com joelho apoiado",
+      "tipo": "tempo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "banco"
+      ],
+      "musculos": [
+        "adutores da coxa",
+        "oblíquos",
+        "core"
+      ],
+      "grupos": [
+        "adutores",
+        "core"
+      ],
+      "passos": [
+        "Deite-se de lado junto ao banco, com o antebraço no chão sob o ombro e a parte interna do joelho de cima apoiada no banco.",
+        "Eleve o quadril até o corpo ficar em linha reta, com a perna de baixo solta embaixo do banco.",
+        "Segure pelo tempo definido e troque de lado."
+      ],
+      "erroComum": "Deixar o quadril cair ou girar para frente.",
+      "imagem": null
+    },
+    {
+      "id": "panturrilha-em-pe-maquina",
+      "nome": "Panturrilha em pé na máquina",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina panturrilha em pé"
+      ],
+      "musculos": [
+        "gastrocnêmio"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Posicione os ombros sob as almofadas e apoie a ponta dos pés na plataforma.",
+        "Suba na ponta dos pés o máximo possível, contraindo a panturrilha.",
+        "Desça devagar até alongar a panturrilha."
+      ],
+      "erroComum": "Dobrar os joelhos durante a subida.",
+      "imagem": null
+    },
+    {
+      "id": "panturrilha-sentado",
+      "nome": "Panturrilha sentado",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina panturrilha sentado"
+      ],
+      "musculos": [
+        "sóleo"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Sente-se com os joelhos sob o apoio e a ponta dos pés na plataforma.",
+        "Suba na ponta dos pés contraindo a panturrilha.",
+        "Desça devagar até alongar bem."
+      ],
+      "erroComum": "Fazer só metade do movimento, sem descer o calcanhar até alongar nem subir tudo.",
+      "imagem": null
+    },
+    {
+      "id": "panturrilha-smith",
+      "nome": "Panturrilha no smith",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "smith"
+      ],
+      "musculos": [
+        "gastrocnêmio"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Posicione a barra do smith sobre os ombros e apoie a ponta dos pés numa anilha ou plataforma.",
+        "Suba na ponta dos pés, contraindo a panturrilha.",
+        "Desça devagar até alongar a panturrilha."
+      ],
+      "erroComum": "Dobrar os joelhos para ajudar a subir a carga.",
+      "imagem": null
+    },
+    {
+      "id": "panturrilha-leg-press",
+      "nome": "Panturrilha no leg press",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina leg press"
+      ],
+      "musculos": [
+        "gastrocnêmio",
+        "sóleo"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Sente-se no leg press e apoie apenas a ponta dos pés na borda inferior da plataforma.",
+        "Empurre a plataforma com a ponta dos pés, estendendo os tornozelos.",
+        "Volte devagar até alongar a panturrilha."
+      ],
+      "erroComum": "Manter os joelhos dobrados demais, o que tira o foco da panturrilha.",
+      "imagem": null
+    },
+    {
+      "id": "panturrilha-em-pe-halter",
+      "nome": "Panturrilha em pé com halter",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halter"
+      ],
+      "musculos": [
+        "gastrocnêmio"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Em pé, segure um halter na mão com o braço ao lado do corpo, apoiando-se numa parede se precisar.",
+        "Suba na ponta dos pés, contraindo a panturrilha.",
+        "Desça devagar até alongar bem."
+      ],
+      "erroComum": "Perder o equilíbrio e balançar o corpo para completar a subida.",
+      "imagem": null
+    },
+    {
+      "id": "panturrilha-unilateral-degrau-halter",
+      "nome": "Panturrilha unilateral no degrau com halter",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "halter",
+        "degrau ou step"
+      ],
+      "musculos": [
+        "gastrocnêmio",
+        "sóleo"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Apoie a ponta de um pé na borda do degrau, com o calcanhar para fora, segurando o halter do mesmo lado e a outra mão num apoio.",
+        "Suba na ponta do pé o máximo possível, contraindo a panturrilha.",
+        "Desça devagar até o calcanhar ficar abaixo do degrau e troque de lado ao final da série."
+      ],
+      "erroComum": "Quicar no fundo do movimento em vez de descer e subir com controle.",
+      "imagem": null
+    },
+    {
+      "id": "panturrilha-sentado-halteres",
+      "nome": "Panturrilha sentado com halteres",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "halteres",
+        "banco"
+      ],
+      "musculos": [
+        "sóleo",
+        "gastrocnêmio"
+      ],
+      "grupos": [
+        "panturrilha"
+      ],
+      "passos": [
+        "Sente-se no banco com os joelhos dobrados a 90 graus, a ponta dos pés numa anilha ou degrau e um halter sobre cada coxa, perto dos joelhos.",
+        "Suba os calcanhares o máximo possível.",
+        "Desça devagar até alongar a panturrilha."
+      ],
+      "erroComum": "Fazer movimentos curtos e rápidos, sem amplitude completa.",
+      "imagem": null
+    },
+    {
+      "id": "abdominal-polia-alta",
+      "nome": "Abdominal na polia",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "polia alta",
+        "corda"
+      ],
+      "musculos": [
+        "reto abdominal"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Ajoelhe-se de frente para a polia alta e segure a corda com as mãos ao lado da cabeça.",
+        "Flexione o tronco para baixo, aproximando os cotovelos das coxas.",
+        "Volte devagar até a posição inicial, mantendo os quadris parados."
+      ],
+      "erroComum": "Flexionar o quadril em vez de curvar o tronco.",
+      "imagem": null
+    },
+    {
+      "id": "abdominal-maquina",
+      "nome": "Abdominal na máquina",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 1,
+      "equipamento": [
+        "máquina abdominal"
+      ],
+      "musculos": [
+        "reto abdominal"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Sente-se na máquina, segure as alças e apoie as costas no encosto.",
+        "Flexione o tronco para frente, contraindo o abdômen.",
+        "Volte devagar até a posição inicial."
+      ],
+      "erroComum": "Puxar com os braços em vez de usar o abdômen.",
+      "imagem": null
+    },
+    {
+      "id": "abdominal-declinado",
+      "nome": "Abdominal declinado",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "banco declinado"
+      ],
+      "musculos": [
+        "reto abdominal"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Deite no banco declinado, prenda os pés e cruze os braços sobre o peito ou segure atrás da cabeça.",
+        "Suba o tronco contraindo o abdômen, sem puxar o pescoço.",
+        "Desça devagar até a posição inicial."
+      ],
+      "erroComum": "Puxar a cabeça com as mãos em vez de usar o abdômen.",
+      "imagem": null
+    },
+    {
+      "id": "elevacao-pernas-barra",
+      "nome": "Elevação de pernas na barra fixa",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "barra fixa ou apoio de antebraço"
+      ],
+      "musculos": [
+        "reto abdominal",
+        "flexores do quadril"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Pendure-se na barra fixa com os braços estendidos e os pés soltos.",
+        "Eleve as pernas, flexionando o quadril, até a altura do quadril ou acima.",
+        "Desça devagar sem balançar o corpo."
+      ],
+      "erroComum": "Balançar o corpo para ganhar impulso.",
+      "imagem": null
+    },
+    {
+      "id": "abdominal-roda",
+      "nome": "Abdominal na roda",
+      "tipo": "corpo",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 3,
+      "equipamento": [
+        "roda abdominal"
+      ],
+      "musculos": [
+        "reto abdominal",
+        "oblíquos",
+        "ombros"
+      ],
+      "grupos": [
+        "core",
+        "ombros"
+      ],
+      "passos": [
+        "Ajoelhe-se e segure a roda com as duas mãos sob os ombros.",
+        "Role a roda à frente, estendendo o corpo, sem deixar a lombar cair.",
+        "Volte contraindo o abdômen até a posição inicial."
+      ],
+      "erroComum": "Deixar a lombar afundar e a roda ir longe demais.",
+      "imagem": null
+    },
+    {
+      "id": "rotacao-russa-anilha",
+      "nome": "Rotação russa com anilha",
+      "tipo": "carga",
+      "locais": [
+        "academia"
+      ],
+      "nivel": 2,
+      "equipamento": [
+        "anilha"
+      ],
+      "musculos": [
+        "oblíquos",
+        "reto abdominal"
+      ],
+      "grupos": [
+        "core"
+      ],
+      "passos": [
+        "Sente-se com os joelhos flexionados e o tronco inclinado para trás, segurando a anilha à frente do peito.",
+        "Gire o tronco para um lado e depois para o outro, levando a anilha junto.",
+        "Mantenha os pés apoiados e o movimento controlado."
+      ],
+      "erroComum": "Girar só os braços em vez de girar o tronco.",
+      "imagem": null
+    }
+  ]
+}

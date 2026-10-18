@@ -1,3 +1,5 @@
+Arquivo histórico. A fonte oficial dos dados é a pasta dados/.
+
 # Exercícios de academia
 
 Lista de exercícios de academia (pesos livres, máquinas e cabos/polia), organizada pelo grupo muscular principal, com os nomes mais usados nas academias do Brasil.

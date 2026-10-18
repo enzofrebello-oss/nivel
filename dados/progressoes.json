@@ -1,0 +1,578 @@
+{
+  "versaoDados": 1,
+  "trilhas": [
+    {
+      "id": "flexoes",
+      "nome": "Flexões",
+      "niveis": [
+        {
+          "exercicio": "flexao-na-parede",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "flexao-inclinada-mesa",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "flexao-no-chao",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "flexao-pes-elevados-cadeira",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "flexao-diamante",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "flexao-arqueiro",
+          "meta": {
+            "series": 3,
+            "reps": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "costas-casa",
+      "nome": "Costas em casa (remada e puxada)",
+      "niveis": [
+        {
+          "exercicio": "puxada-toalha-isometria",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        },
+        {
+          "exercicio": "superman",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "remada-serrote-mochila",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "remada-invertida-mesa-joelhos-dobrados",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "remada-invertida-mesa-pernas-estendidas",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        },
+        {
+          "exercicio": "remada-invertida-pes-elevados-cadeira",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "mergulho-triceps-cadeira",
+      "nome": "Mergulho e tríceps na cadeira",
+      "niveis": [
+        {
+          "exercicio": "mergulho-cadeira-joelhos-dobrados",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "mergulho-cadeira-pernas-estendidas",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "mergulho-pes-elevados-cadeira",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "agachamento-pistol",
+      "nome": "Agachamento até pistol",
+      "niveis": [
+        {
+          "exercicio": "agachamento-ate-cadeira",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "agachamento-livre",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "agachamento-com-pausa",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "pistol-ate-cadeira",
+          "meta": {
+            "series": 3,
+            "reps": 8
+          }
+        },
+        {
+          "exercicio": "pistol-assistido",
+          "meta": {
+            "series": 3,
+            "reps": 8
+          }
+        },
+        {
+          "exercicio": "pistol",
+          "meta": {
+            "series": 3,
+            "reps": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "afundo-passada",
+      "nome": "Afundo e passada",
+      "niveis": [
+        {
+          "exercicio": "afundo-estatico",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "afundo-reverso",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "passada-caminhando",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "agachamento-bulgaro",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "ponte-elevacao-quadril",
+      "nome": "Ponte e elevação de quadril",
+      "niveis": [
+        {
+          "exercicio": "ponte-de-gluteo",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "ponte-pes-na-cadeira",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "ponte-unilateral",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "panturrilha",
+      "nome": "Panturrilha",
+      "niveis": [
+        {
+          "exercicio": "elevacao-panturrilha-em-pe",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "elevacao-panturrilha-sentado-mochila",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "elevacao-panturrilha-degrau",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "elevacao-panturrilha-unilateral",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "elevacao-panturrilha-unilateral-degrau",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "elevacao-panturrilha-unilateral-degrau-mochila",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "core-prancha",
+      "nome": "Core e prancha",
+      "niveis": [
+        {
+          "exercicio": "prancha-antebracos",
+          "meta": {
+            "series": 3,
+            "segundos": 60
+          }
+        },
+        {
+          "exercicio": "prancha-alta",
+          "meta": {
+            "series": 3,
+            "segundos": 45
+          }
+        },
+        {
+          "exercicio": "prancha-lateral",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        }
+      ]
+    },
+    {
+      "id": "isometrias",
+      "nome": "Isometrias",
+      "niveis": [
+        {
+          "exercicio": "cadeirinha-na-parede",
+          "meta": {
+            "series": 3,
+            "segundos": 60
+          }
+        },
+        {
+          "exercicio": "ponte-isometrica",
+          "meta": {
+            "series": 3,
+            "segundos": 45
+          }
+        },
+        {
+          "exercicio": "isometria-flexao-parede",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        }
+      ]
+    },
+    {
+      "id": "abdominal-elevacao-pernas",
+      "nome": "Abdominal e elevação de pernas",
+      "niveis": [
+        {
+          "exercicio": "abdominal-supra",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "abdominal-infra",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "elevacao-pernas-estendidas",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "ombro-parada-mao",
+      "nome": "Ombro e parada de mão",
+      "niveis": [
+        {
+          "exercicio": "pike-de-ombro-isometria",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        },
+        {
+          "exercicio": "flexao-pike",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        },
+        {
+          "exercicio": "apoio-pes-parede-l",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        },
+        {
+          "exercicio": "flexao-pike-pes-cadeira",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        },
+        {
+          "exercicio": "caminhada-na-parede",
+          "meta": {
+            "series": 3,
+            "reps": 5
+          }
+        },
+        {
+          "exercicio": "parada-de-mao-frente-parede",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        },
+        {
+          "exercicio": "parada-de-mao-costas-parede",
+          "meta": {
+            "series": 3,
+            "segundos": 45
+          }
+        },
+        {
+          "exercicio": "flexao-parada-de-mao-parede",
+          "meta": {
+            "series": 3,
+            "reps": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "carga-mochila-garrafas",
+      "nome": "Carga com mochila e garrafas",
+      "niveis": [
+        {
+          "exercicio": "elevacao-lateral-garrafas",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "rosca-biceps-mochila",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "desenvolvimento-garrafas",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "remada-curvada-mochila",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "agachamento-mochila-peito",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "flexao-mochila-costas",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        }
+      ]
+    },
+    {
+      "id": "antebraco-pegada-casa",
+      "nome": "Antebraço e pegada em casa",
+      "niveis": [
+        {
+          "exercicio": "rosca-punho-garrafa",
+          "meta": {
+            "series": 3,
+            "reps": 20
+          }
+        },
+        {
+          "exercicio": "rosca-punho-invertida-garrafa",
+          "meta": {
+            "series": 3,
+            "reps": 15
+          }
+        },
+        {
+          "exercicio": "sustentacao-mochila",
+          "meta": {
+            "series": 3,
+            "segundos": 45
+          }
+        },
+        {
+          "exercicio": "caminhada-fazendeiro-mochilas",
+          "meta": {
+            "series": 3,
+            "segundos": 45
+          }
+        },
+        {
+          "exercicio": "sustentacao-mochila-toalha",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        }
+      ]
+    },
+    {
+      "id": "barra-fixa",
+      "nome": "Barra fixa",
+      "niveis": [
+        {
+          "exercicio": "suspensao-barra-fixa",
+          "meta": {
+            "series": 3,
+            "segundos": 30
+          }
+        },
+        {
+          "exercicio": "barra-fixa-assistida-graviton",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        },
+        {
+          "exercicio": "barra-fixa-negativa",
+          "meta": {
+            "series": 3,
+            "reps": 5
+          }
+        },
+        {
+          "exercicio": "barra-fixa",
+          "meta": {
+            "series": 3,
+            "reps": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "paralelas",
+      "nome": "Paralelas",
+      "niveis": [
+        {
+          "exercicio": "mergulho-assistido-graviton",
+          "meta": {
+            "series": 3,
+            "reps": 12
+          }
+        },
+        {
+          "exercicio": "mergulho-negativo-paralelas",
+          "meta": {
+            "series": 3,
+            "reps": 5
+          }
+        },
+        {
+          "exercicio": "mergulho-paralelas",
+          "meta": {
+            "series": 3,
+            "reps": 10
+          }
+        }
+      ]
+    }
+  ]
+}

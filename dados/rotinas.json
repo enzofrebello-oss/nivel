@@ -1,0 +1,1546 @@
+{
+  "versaoDados": 1,
+  "objetivos": [
+    {
+      "id": "massa",
+      "nome": "Ganhar massa"
+    },
+    {
+      "id": "forca",
+      "nome": "Força e habilidades"
+    },
+    {
+      "id": "condicionamento",
+      "nome": "Condicionamento geral"
+    }
+  ],
+  "rotinas": [
+    {
+      "id": "massa-3-casa",
+      "objetivo": "massa",
+      "diasPorSemana": 3,
+      "local": "casa",
+      "descanso": 90,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Empurrar",
+          "itens": [
+            {
+              "trilha": "flexoes",
+              "series": 4
+            },
+            {
+              "trilha": "mergulho-triceps-cadeira",
+              "series": 4
+            },
+            {
+              "exercicio": "desenvolvimento-garrafas",
+              "series": 3,
+              "alvo": "10-15"
+            },
+            {
+              "exercicio": "elevacao-lateral-garrafas",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Puxar",
+          "itens": [
+            {
+              "trilha": "costas-casa",
+              "series": 4
+            },
+            {
+              "exercicio": "remada-curvada-mochila",
+              "series": 4,
+              "alvo": "10-15"
+            },
+            {
+              "exercicio": "rosca-biceps-mochila",
+              "series": 3,
+              "alvo": "10-15"
+            },
+            {
+              "trilha": "antebraco-pegada-casa",
+              "descanso": 60
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Pernas",
+          "itens": [
+            {
+              "trilha": "agachamento-pistol",
+              "series": 4
+            },
+            {
+              "exercicio": "agachamento-mochila-peito",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "afundo-passada"
+            },
+            {
+              "trilha": "ponte-elevacao-quadril"
+            },
+            {
+              "trilha": "panturrilha",
+              "series": 4,
+              "descanso": 60
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            },
+            {
+              "exercicio": "aducao-deitado-de-lado",
+              "series": 3,
+              "alvo": "15-20",
+              "descanso": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "massa-3-academia",
+      "objetivo": "massa",
+      "diasPorSemana": 3,
+      "local": "academia",
+      "descanso": 90,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Empurrar",
+          "itens": [
+            {
+              "exercicio": "supino-reto-barra",
+              "series": 4,
+              "alvo": "6-10",
+              "descanso": 120
+            },
+            {
+              "exercicio": "supino-inclinado-halteres",
+              "series": 3,
+              "alvo": "8-12"
+            },
+            {
+              "trilha": "paralelas"
+            },
+            {
+              "exercicio": "desenvolvimento-halteres",
+              "series": 3,
+              "alvo": "8-12"
+            },
+            {
+              "exercicio": "elevacao-lateral-halteres",
+              "series": 3,
+              "alvo": "12-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "triceps-corda-polia",
+              "series": 3,
+              "alvo": "10-15",
+              "descanso": 60
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Puxar",
+          "itens": [
+            {
+              "trilha": "barra-fixa"
+            },
+            {
+              "exercicio": "puxada-frontal-pegada-aberta",
+              "series": 3,
+              "alvo": "8-12"
+            },
+            {
+              "exercicio": "remada-curvada-barra",
+              "series": 4,
+              "alvo": "6-10",
+              "descanso": 120
+            },
+            {
+              "exercicio": "remada-baixa-triangulo",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "crucifixo-inverso-maquina",
+              "series": 3,
+              "alvo": "12-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "rosca-direta-barra",
+              "series": 3,
+              "alvo": "8-12",
+              "descanso": 60
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Pernas",
+          "itens": [
+            {
+              "exercicio": "agachamento-livre-barra",
+              "series": 4,
+              "alvo": "6-10",
+              "descanso": 120
+            },
+            {
+              "exercicio": "leg-press-45",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "stiff-barra",
+              "series": 3,
+              "alvo": "8-10"
+            },
+            {
+              "exercicio": "cadeira-flexora",
+              "series": 3,
+              "alvo": "10-12",
+              "descanso": 60
+            },
+            {
+              "exercicio": "cadeira-adutora",
+              "series": 3,
+              "alvo": "12-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "panturrilha-em-pe-maquina",
+              "series": 4,
+              "alvo": "10-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "abdominal-polia-alta",
+              "series": 3,
+              "alvo": "10-15",
+              "descanso": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "massa-4-casa",
+      "objetivo": "massa",
+      "diasPorSemana": 4,
+      "local": "casa",
+      "descanso": 90,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Superior 1",
+          "itens": [
+            {
+              "trilha": "flexoes",
+              "series": 4
+            },
+            {
+              "trilha": "costas-casa",
+              "series": 4
+            },
+            {
+              "exercicio": "desenvolvimento-garrafas",
+              "series": 3,
+              "alvo": "10-15"
+            },
+            {
+              "exercicio": "rosca-biceps-mochila",
+              "series": 3,
+              "alvo": "10-15"
+            },
+            {
+              "trilha": "mergulho-triceps-cadeira"
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Inferior 1",
+          "itens": [
+            {
+              "trilha": "agachamento-pistol",
+              "series": 4
+            },
+            {
+              "trilha": "afundo-passada"
+            },
+            {
+              "trilha": "ponte-elevacao-quadril",
+              "series": 4
+            },
+            {
+              "trilha": "panturrilha",
+              "series": 4,
+              "descanso": 60
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 45
+            },
+            {
+              "exercicio": "aducao-deitado-de-lado",
+              "series": 3,
+              "alvo": "15-20",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Superior 2",
+          "itens": [
+            {
+              "trilha": "ombro-parada-mao"
+            },
+            {
+              "exercicio": "remada-curvada-mochila",
+              "series": 4,
+              "alvo": "10-15"
+            },
+            {
+              "exercicio": "flexao-mochila-costas",
+              "series": 3,
+              "alvo": "8-12"
+            },
+            {
+              "exercicio": "elevacao-lateral-garrafas",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "rosca-biceps-mochila",
+              "series": 3,
+              "alvo": "10-15"
+            },
+            {
+              "trilha": "antebraco-pegada-casa",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "nome": "D · Inferior 2",
+          "itens": [
+            {
+              "exercicio": "agachamento-mochila-peito",
+              "series": 4,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "afundo-reverso",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "trilha": "isometrias",
+              "descanso": 60
+            },
+            {
+              "exercicio": "elevacao-panturrilha-sentado-mochila",
+              "series": 4,
+              "alvo": "15-20",
+              "descanso": 60
+            },
+            {
+              "exercicio": "superman",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            },
+            {
+              "exercicio": "isometria-adutores-almofada",
+              "series": 3,
+              "alvo": "30-45",
+              "descanso": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "massa-4-academia",
+      "objetivo": "massa",
+      "diasPorSemana": 4,
+      "local": "academia",
+      "descanso": 90,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Superior 1",
+          "itens": [
+            {
+              "exercicio": "supino-reto-barra",
+              "series": 4,
+              "alvo": "6-10",
+              "descanso": 120
+            },
+            {
+              "exercicio": "remada-curvada-barra",
+              "series": 4,
+              "alvo": "6-10",
+              "descanso": 120
+            },
+            {
+              "exercicio": "desenvolvimento-halteres",
+              "series": 3,
+              "alvo": "8-12"
+            },
+            {
+              "trilha": "barra-fixa"
+            },
+            {
+              "exercicio": "rosca-direta-barra",
+              "series": 3,
+              "alvo": "8-12",
+              "descanso": 60
+            },
+            {
+              "exercicio": "triceps-testa-barra",
+              "series": 3,
+              "alvo": "8-12",
+              "descanso": 60
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Inferior 1",
+          "itens": [
+            {
+              "exercicio": "agachamento-livre-barra",
+              "series": 4,
+              "alvo": "6-10",
+              "descanso": 120
+            },
+            {
+              "exercicio": "stiff-barra",
+              "series": 3,
+              "alvo": "8-10"
+            },
+            {
+              "exercicio": "leg-press-45",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "cadeira-flexora",
+              "series": 3,
+              "alvo": "10-12",
+              "descanso": 60
+            },
+            {
+              "exercicio": "panturrilha-em-pe-maquina",
+              "series": 4,
+              "alvo": "10-15",
+              "descanso": 60
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Superior 2",
+          "itens": [
+            {
+              "exercicio": "supino-inclinado-halteres",
+              "series": 4,
+              "alvo": "8-12"
+            },
+            {
+              "exercicio": "puxada-frontal-supinada",
+              "series": 4,
+              "alvo": "8-12"
+            },
+            {
+              "exercicio": "remada-serrote-halter",
+              "series": 3,
+              "alvo": "8-12"
+            },
+            {
+              "trilha": "paralelas"
+            },
+            {
+              "exercicio": "elevacao-lateral-halteres",
+              "series": 3,
+              "alvo": "12-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "crucifixo-inverso-maquina",
+              "series": 3,
+              "alvo": "12-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "rosca-martelo-halteres",
+              "series": 3,
+              "alvo": "10-12",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "nome": "D · Inferior 2",
+          "itens": [
+            {
+              "exercicio": "hip-thrust-barra",
+              "series": 4,
+              "alvo": "8-12"
+            },
+            {
+              "exercicio": "agachamento-bulgaro-halteres",
+              "series": 3,
+              "alvo": "8-12"
+            },
+            {
+              "exercicio": "cadeira-extensora",
+              "series": 3,
+              "alvo": "10-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "mesa-flexora",
+              "series": 3,
+              "alvo": "10-12",
+              "descanso": 60
+            },
+            {
+              "exercicio": "cadeira-adutora",
+              "series": 3,
+              "alvo": "12-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "panturrilha-sentado",
+              "series": 4,
+              "alvo": "12-15",
+              "descanso": 60
+            },
+            {
+              "exercicio": "elevacao-pernas-barra",
+              "series": 3,
+              "alvo": "10-15",
+              "descanso": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forca-3-casa",
+      "objetivo": "forca",
+      "diasPorSemana": 3,
+      "local": "casa",
+      "descanso": 120,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Empurrar e parada de mão",
+          "itens": [
+            {
+              "trilha": "ombro-parada-mao",
+              "series": 4
+            },
+            {
+              "trilha": "flexoes",
+              "series": 4
+            },
+            {
+              "trilha": "mergulho-triceps-cadeira"
+            },
+            {
+              "exercicio": "flexao-mochila-costas",
+              "series": 4,
+              "alvo": "6-8"
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Puxar e pegada",
+          "itens": [
+            {
+              "trilha": "costas-casa",
+              "series": 4
+            },
+            {
+              "exercicio": "remada-curvada-mochila",
+              "series": 4,
+              "alvo": "6-8"
+            },
+            {
+              "exercicio": "rosca-biceps-mochila",
+              "series": 3,
+              "alvo": "6-8"
+            },
+            {
+              "trilha": "antebraco-pegada-casa",
+              "descanso": 90
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Pernas",
+          "itens": [
+            {
+              "trilha": "agachamento-pistol",
+              "series": 4
+            },
+            {
+              "trilha": "afundo-passada"
+            },
+            {
+              "trilha": "ponte-elevacao-quadril"
+            },
+            {
+              "trilha": "panturrilha",
+              "descanso": 60
+            },
+            {
+              "trilha": "isometrias",
+              "descanso": 60
+            },
+            {
+              "exercicio": "isometria-adutores-almofada",
+              "series": 3,
+              "alvo": "30-45",
+              "descanso": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forca-3-academia",
+      "objetivo": "forca",
+      "diasPorSemana": 3,
+      "local": "academia",
+      "descanso": 180,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Agachamento e supino",
+          "itens": [
+            {
+              "exercicio": "agachamento-livre-barra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "supino-reto-barra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "remada-curvada-barra",
+              "series": 4,
+              "alvo": "5-6",
+              "descanso": 150
+            },
+            {
+              "trilha": "barra-fixa"
+            },
+            {
+              "exercicio": "panturrilha-em-pe-maquina",
+              "series": 4,
+              "alvo": "8-10",
+              "descanso": 90
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Terra e desenvolvimento",
+          "itens": [
+            {
+              "exercicio": "levantamento-terra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "desenvolvimento-barra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "puxada-frontal-supinada",
+              "series": 4,
+              "alvo": "5-6",
+              "descanso": 150
+            },
+            {
+              "exercicio": "rosca-direta-barra",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 60
+            },
+            {
+              "trilha": "isometrias",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Agachamento e supino inclinado",
+          "itens": [
+            {
+              "exercicio": "agachamento-livre-barra",
+              "series": 4,
+              "alvo": "5-6"
+            },
+            {
+              "exercicio": "supino-inclinado-barra",
+              "series": 4,
+              "alvo": "5-6"
+            },
+            {
+              "exercicio": "remada-cavalinho",
+              "series": 4,
+              "alvo": "5-6",
+              "descanso": 150
+            },
+            {
+              "trilha": "paralelas"
+            },
+            {
+              "exercicio": "hip-thrust-barra",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "exercicio": "elevacao-pernas-barra",
+              "series": 3,
+              "alvo": "8-12",
+              "descanso": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forca-4-casa",
+      "objetivo": "forca",
+      "diasPorSemana": 4,
+      "local": "casa",
+      "descanso": 120,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Parada de mão e empurrar",
+          "itens": [
+            {
+              "trilha": "ombro-parada-mao",
+              "series": 4
+            },
+            {
+              "trilha": "flexoes",
+              "series": 4
+            },
+            {
+              "trilha": "mergulho-triceps-cadeira"
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Pernas (pistol)",
+          "itens": [
+            {
+              "trilha": "agachamento-pistol",
+              "series": 4
+            },
+            {
+              "trilha": "ponte-elevacao-quadril"
+            },
+            {
+              "trilha": "panturrilha",
+              "descanso": 60
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 60
+            },
+            {
+              "exercicio": "isometria-adutores-almofada",
+              "series": 3,
+              "alvo": "30-45",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Puxar e pegada",
+          "itens": [
+            {
+              "trilha": "costas-casa",
+              "series": 4
+            },
+            {
+              "exercicio": "remada-curvada-mochila",
+              "series": 4,
+              "alvo": "6-8"
+            },
+            {
+              "exercicio": "rosca-biceps-mochila",
+              "series": 3,
+              "alvo": "6-8"
+            },
+            {
+              "trilha": "antebraco-pegada-casa",
+              "descanso": 90
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "nome": "D · Pernas unilaterais e empurrar com carga",
+          "itens": [
+            {
+              "trilha": "afundo-passada",
+              "series": 4
+            },
+            {
+              "exercicio": "agachamento-mochila-peito",
+              "series": 4,
+              "alvo": "8-10"
+            },
+            {
+              "exercicio": "flexao-mochila-costas",
+              "series": 4,
+              "alvo": "6-8"
+            },
+            {
+              "trilha": "isometrias",
+              "descanso": 60
+            },
+            {
+              "exercicio": "prancha-lateral",
+              "series": 3,
+              "alvo": "30-45",
+              "descanso": 60
+            },
+            {
+              "exercicio": "aducao-deitado-de-lado",
+              "series": 3,
+              "alvo": "12-15",
+              "descanso": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forca-4-academia",
+      "objetivo": "forca",
+      "diasPorSemana": 4,
+      "local": "academia",
+      "descanso": 180,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Superior pesado",
+          "itens": [
+            {
+              "exercicio": "supino-reto-barra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "remada-curvada-barra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "desenvolvimento-halteres",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "exercicio": "puxada-frontal-supinada",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "trilha": "barra-fixa"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Inferior pesado",
+          "itens": [
+            {
+              "exercicio": "agachamento-livre-barra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "stiff-barra",
+              "series": 3,
+              "alvo": "5-6",
+              "descanso": 150
+            },
+            {
+              "exercicio": "leg-press-45",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "exercicio": "panturrilha-em-pe-maquina",
+              "series": 4,
+              "alvo": "8-10",
+              "descanso": 90
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 60
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Superior 2",
+          "itens": [
+            {
+              "exercicio": "desenvolvimento-barra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "supino-inclinado-barra",
+              "series": 4,
+              "alvo": "5-6",
+              "descanso": 150
+            },
+            {
+              "exercicio": "remada-cavalinho",
+              "series": 4,
+              "alvo": "5-6",
+              "descanso": 150
+            },
+            {
+              "trilha": "paralelas"
+            },
+            {
+              "exercicio": "rosca-direta-barra",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "exercicio": "pinca-anilhas",
+              "series": 3,
+              "alvo": "20-30",
+              "descanso": 90
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "nome": "D · Inferior 2",
+          "itens": [
+            {
+              "exercicio": "levantamento-terra",
+              "series": 5,
+              "alvo": "3-5"
+            },
+            {
+              "exercicio": "agachamento-bulgaro-halteres",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "exercicio": "hip-thrust-barra",
+              "series": 3,
+              "alvo": "6-8",
+              "descanso": 120
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 60
+            },
+            {
+              "exercicio": "prancha-copenhague-joelho",
+              "series": 3,
+              "alvo": "20-30",
+              "descanso": 60
+            },
+            {
+              "trilha": "isometrias",
+              "descanso": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "condicionamento-3-casa",
+      "objetivo": "condicionamento",
+      "diasPorSemana": 3,
+      "local": "casa",
+      "descanso": 45,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Corpo inteiro 1",
+          "itens": [
+            {
+              "exercicio": "agachamento-livre",
+              "series": 3,
+              "alvo": "15-20"
+            },
+            {
+              "trilha": "flexoes"
+            },
+            {
+              "exercicio": "remada-curvada-mochila",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "afundo-reverso",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "trilha": "core-prancha"
+            },
+            {
+              "exercicio": "caminhada-fazendeiro-mochilas",
+              "series": 3,
+              "alvo": "30-45"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Corpo inteiro 2",
+          "itens": [
+            {
+              "trilha": "ponte-elevacao-quadril"
+            },
+            {
+              "trilha": "mergulho-triceps-cadeira"
+            },
+            {
+              "trilha": "costas-casa"
+            },
+            {
+              "exercicio": "passada-caminhando",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas"
+            },
+            {
+              "exercicio": "cadeirinha-na-parede",
+              "series": 3,
+              "alvo": "30-45"
+            },
+            {
+              "exercicio": "aducao-deitado-de-lado",
+              "series": 3,
+              "alvo": "15-20"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Corpo inteiro 3",
+          "itens": [
+            {
+              "exercicio": "agachamento-mochila-peito",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "desenvolvimento-garrafas",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "remada-serrote-mochila",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "panturrilha"
+            },
+            {
+              "exercicio": "prancha-lateral",
+              "series": 3,
+              "alvo": "20-30"
+            },
+            {
+              "exercicio": "superman",
+              "series": 3,
+              "alvo": "12-15"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "condicionamento-3-academia",
+      "objetivo": "condicionamento",
+      "diasPorSemana": 3,
+      "local": "academia",
+      "descanso": 60,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Corpo inteiro 1",
+          "itens": [
+            {
+              "exercicio": "leg-press-45",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "paralelas"
+            },
+            {
+              "exercicio": "remada-baixa-triangulo",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "elevacao-lateral-halteres",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "caminhada-fazendeiro-halteres",
+              "series": 3,
+              "alvo": "30-45"
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Corpo inteiro 2",
+          "itens": [
+            {
+              "exercicio": "agachamento-goblet",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "barra-fixa"
+            },
+            {
+              "exercicio": "supino-reto-halteres",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "mesa-flexora",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "panturrilha-em-pe-maquina",
+              "series": 3,
+              "alvo": "15-20"
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Corpo inteiro 3",
+          "itens": [
+            {
+              "exercicio": "afundo-halteres",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "remada-maquina-articulada",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "desenvolvimento-maquina",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "hip-thrust-barra",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "cadeira-adutora",
+              "series": 3,
+              "alvo": "15-20"
+            },
+            {
+              "trilha": "isometrias",
+              "descanso": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "condicionamento-4-casa",
+      "objetivo": "condicionamento",
+      "diasPorSemana": 4,
+      "local": "casa",
+      "descanso": 45,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Corpo inteiro 1",
+          "itens": [
+            {
+              "exercicio": "agachamento-livre",
+              "series": 3,
+              "alvo": "15-20"
+            },
+            {
+              "trilha": "flexoes"
+            },
+            {
+              "exercicio": "remada-curvada-mochila",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "core-prancha"
+            },
+            {
+              "exercicio": "caminhada-fazendeiro-mochilas",
+              "series": 3,
+              "alvo": "30-45"
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Pernas e core",
+          "itens": [
+            {
+              "trilha": "afundo-passada"
+            },
+            {
+              "trilha": "ponte-elevacao-quadril"
+            },
+            {
+              "trilha": "panturrilha"
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas"
+            },
+            {
+              "exercicio": "cadeirinha-na-parede",
+              "series": 3,
+              "alvo": "30-45"
+            },
+            {
+              "exercicio": "isometria-adutores-almofada",
+              "series": 3,
+              "alvo": "30-45"
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Superior",
+          "itens": [
+            {
+              "trilha": "mergulho-triceps-cadeira"
+            },
+            {
+              "trilha": "costas-casa"
+            },
+            {
+              "exercicio": "desenvolvimento-garrafas",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "rosca-biceps-mochila",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "prancha-lateral",
+              "series": 3,
+              "alvo": "20-30"
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "nome": "D · Corpo inteiro 2",
+          "itens": [
+            {
+              "exercicio": "agachamento-mochila-peito",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "remada-serrote-mochila",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "elevacao-lateral-garrafas",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "passada-caminhando",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "superman",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "abdominal-supra",
+              "series": 3,
+              "alvo": "15-20"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "condicionamento-4-academia",
+      "objetivo": "condicionamento",
+      "diasPorSemana": 4,
+      "local": "academia",
+      "descanso": 60,
+      "dias": [
+        {
+          "id": "a",
+          "nome": "A · Corpo inteiro 1",
+          "itens": [
+            {
+              "exercicio": "leg-press-45",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "paralelas"
+            },
+            {
+              "exercicio": "remada-baixa-triangulo",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "cadeira-flexora",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "core-prancha",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "b",
+          "nome": "B · Corpo inteiro 2",
+          "itens": [
+            {
+              "exercicio": "agachamento-goblet",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "puxada-frontal-triangulo",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "desenvolvimento-halteres",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "panturrilha-em-pe-halter",
+              "series": 3,
+              "alvo": "15-20"
+            },
+            {
+              "exercicio": "caminhada-fazendeiro-halteres",
+              "series": 3,
+              "alvo": "30-45"
+            },
+            {
+              "trilha": "abdominal-elevacao-pernas",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "c",
+          "nome": "C · Corpo inteiro 3",
+          "itens": [
+            {
+              "exercicio": "afundo-halteres",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "supino-reto-halteres",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "remada-maquina-articulada",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "elevacao-lateral-maquina",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "cadeira-abdutora",
+              "series": 3,
+              "alvo": "15-20"
+            },
+            {
+              "trilha": "isometrias",
+              "descanso": 45
+            }
+          ]
+        },
+        {
+          "id": "d",
+          "nome": "D · Corpo inteiro 4",
+          "itens": [
+            {
+              "exercicio": "stiff-halteres",
+              "series": 3,
+              "alvo": "10-12"
+            },
+            {
+              "exercicio": "crucifixo-maquina-peck-deck",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "trilha": "barra-fixa"
+            },
+            {
+              "exercicio": "rosca-alternada-halteres",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "triceps-barra-reta-polia",
+              "series": 3,
+              "alvo": "12-15"
+            },
+            {
+              "exercicio": "cadeira-adutora",
+              "series": 3,
+              "alvo": "15-20"
+            },
+            {
+              "exercicio": "rotacao-russa-anilha",
+              "series": 3,
+              "alvo": "15-20"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

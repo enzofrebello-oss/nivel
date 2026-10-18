@@ -7,8 +7,8 @@ App pessoal de treino de musculação/calistenia. PWA instalável no celular (An
 ## 1. Visão geral
 
 **O que a v1 faz**
-- **Biblioteca de exercícios** somente leitura, vinda de `dados/` (157 exercícios de casa e de academia). Cada exercício tem "Como fazer": espaço reservado para a ilustração, 3 passos e o erro comum.
-- **Trilhas de níveis** (13 trilhas de calistenia): nível atual, meta, "seu melhor" e avanço automático ao bater a meta.
+- **Biblioteca de exercícios** somente leitura, vinda de `dados/` (165 exercícios de casa e de academia). Cada exercício tem "Como fazer": espaço reservado para a ilustração, 3 passos e o erro comum.
+- **Trilhas de níveis** (15 trilhas: 13 de calistenia e 2 de academia, barra fixa e paralelas): nível atual, meta, "seu melhor" e avanço automático ao bater a meta.
 - **Rotina e treino do dia**: o usuário escolhe uma das 12 rotinas prontas numa lista, e o Hoje mostra o treino do dia.
 - **Treino em andamento**: tabela de séries "antes / hoje / +1" e contador grande de reps. Cada série é salva na hora (fechar o app não perde nada).
 - **Cronômetro de descanso** entre as séries.
@@ -225,7 +225,7 @@ Cada exercício:
 | `id` | string | sim | campo `id` |
 | `nome` | string | sim | campo `nome` (calistenia) ou título `###` (academia) |
 | `tipo` | `"carga"` \| `"corpo"` \| `"tempo"` | sim | "peso do corpo" → `"corpo"` |
-| `locais` | array de `"casa"` / `"academia"` | sim | 1 ou 2 itens, sem repetir; "ambos" → `["casa", "academia"]` |
+| `locais` | array de `"casa"` / `"academia"` | sim | 1 ou 2 itens, sem repetir; "ambos" → `["casa", "academia"]`. Derivado de `equipamento`: nenhum (ou só parede/chão) → ambos; só objetos de casa (cadeira, mesa, mochila, toalha, garrafas, almofada, degrau etc.) → `["casa"]`; qualquer equipamento de academia (barra fixa, barras paralelas, gráviton, halteres, kettlebell, barra, anilhas, máquinas, polia, smith, banco) → `["academia"]`, mesmo se misturado com objeto de casa. Exceção decidida pelo usuário: `flexao-parada-de-mao-parede` → ambos (ver "Regra de local" na seção 9) |
 | `nivel` | inteiro 1–5 | sim | dificuldade (não é a posição na trilha) |
 | `equipamento` | array de string | sim | texto livre, separado nas vírgulas; "nenhum" → `[]` |
 | `musculos` | array de string | sim | texto da pesquisa, principal primeiro (só exibição) |
@@ -322,7 +322,7 @@ Raiz: `{ "versaoDados": 1, "objetivos": [...], "rotinas": [...] }`
 5. Trilhas: todo `exercicio` existe e não é descontinuado; cada exercício aparece em **no máximo uma** trilha, uma vez; a `meta` usa `reps` ou `segundos` conforme o tipo do exercício.
 6. Rotinas: exatamente 12, uma por combinação, com id igual à combinação; `dias.length = diasPorSemana`; cada item tem exatamente um entre `exercicio` e `trilha`, e a referência existe e não é descontinuada; item com `exercicio`: os `locais` do exercício incluem o `local` da rotina; item com `trilha`: **todos** os níveis da trilha incluem o `local` da rotina; o mesmo exercício ou trilha não se repete no mesmo dia.
 
-Onde roda: na abertura do app (`catalogo.js`; se falhar, mostra "Dados do app inválidos" e nada é gravado), em `testes/dados.test.js` e, na Fase 2b, num script temporário fora do projeto (o validador só nasce na etapa 4). A Fase 2b confere também as contagens da pesquisa: 157 exercícios (62 + 95) e 13 trilhas.
+Onde roda: na abertura do app (`catalogo.js`; se falhar, mostra "Dados do app inválidos" e nada é gravado), em `testes/dados.test.js` e, na Fase 2b, num script temporário fora do projeto (o validador só nasce na etapa 4). A Fase 2b confere também as contagens: 165 exercícios (62 + 95 da pesquisa + 2 de adutores para casa + 6 das trilhas de barra fixa e paralelas) e 15 trilhas; e que os `locais` seguem a regra do equipamento, com as exceções listadas por id.
 
 ### 4.2 Dados do usuário (IndexedDB)
 
@@ -491,14 +491,14 @@ Componentes compartilhados: modal de confirmação (não usar `confirm()`), toas
 Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já útil offline) e o **ciclo principal (Hoje → treino → resumo) usável logo depois**. O backup vem logo depois da instalação no celular (etapa 11). O **uso real começa na etapa 16**: precisa do backup pronto e de um treino completo (Hoje → registrar séries → finalizar). Cada etapa termina com algo verificável e, a partir da etapa 10, com deploy (`VERSAO` nova) e conferência no celular.
 
 ### Antes da etapa 1: Fase 2b (geração dos JSON)
-**Fase 2b. Catálogo.** Objetivo: gerar `dados/exercicios.json`, `dados/progressoes.json` e `dados/rotinas.json` a partir de `pesquisa/`, no formato da seção 4.1, propondo as metas das trilhas e o conteúdo das 12 rotinas. Pronto quando: os 3 arquivos passam em todas as regras de validação (script temporário fora do projeto), há 157 exercícios e 13 trilhas como na pesquisa, há 12 rotinas, e o usuário aprovou metas e rotinas. As etapas 1 a 3 não dependem dos JSON; da etapa 4 em diante, sim.
+**Fase 2b. Catálogo.** Objetivo: gerar `dados/exercicios.json`, `dados/progressoes.json` e `dados/rotinas.json` a partir de `pesquisa/`, no formato da seção 4.1, propondo as metas das trilhas e o conteúdo das 12 rotinas. Pronto quando: os 3 arquivos passam em todas as regras de validação (script temporário fora do projeto), há 159 exercícios (os 157 da pesquisa + 2 de adutores) e 13 trilhas, há 12 rotinas, e o usuário aprovou metas e rotinas. As etapas 1 a 3 não dependem dos JSON; da etapa 4 em diante, sim.
 
 ### v1
 1. **Esqueleto estático + tema Brasa + fontes**. Objetivo: `index.html`, `css/base.css` (cores Brasa em variáveis, `@font-face`), `css/componentes.css`, `js/app.js`, barra inferior com as 4 abas e engrenagem, `fonts/` com os 4 `.woff2` + `OFL.txt`. Pronto quando: `npx http-server -p 8080 -c-1` serve o app sem erros no console, a aba Network mostra só requisições a localhost (fontes incluídas) e o layout fica correto a 360 px no modo celular do DevTools.
 2. **Roteador hash + telas placeholder**. Objetivo: `roteador.js`, `ui/dom.js` (`h()`) e as telas da v1 com título. Pronto quando: tocar nas abas muda a URL e o conteúdo, a aba ativa fica marcada, o botão voltar funciona, `#/biblioteca/abc` recebe `id = "abc"` e uma rota inexistente cai no Hoje.
 3. **Testes no navegador + `logica/tipos.js`**. Objetivo: `testes/mini-teste.js`, `testes/index.html`, validação/parse/formatação dos 3 tipos. Pronto quando: `/testes/` mostra tudo verde, cobrindo "62,5" → 62.5, "1:30" → 90 s, reps 0 rejeitado, campo de outro tipo rejeitado.
 4. **Catálogo**. Objetivo: `logica/validar-dados.js`, `catalogo.js` (carrega, valida, congela, mapas por id), `testes/dados.test.js`. Pronto quando: os JSON reais passam; cada regra da seção 4.1 tem um caso quebrado (dados fixos no teste) que é recusado; com um JSON quebrado o app mostra "Dados do app inválidos".
-5. **Biblioteca**. Objetivo: telas Biblioteca e Detalhe do exercício, componente "Como fazer". Pronto quando: lista os 157 exercícios; a busca ignora acentos e maiúsculas; os filtros Local e Grupo combinados dão o resultado certo; o detalhe mostra 3 passos, erro comum, espaço da ilustração e a trilha com a posição quando houver.
+5. **Biblioteca**. Objetivo: telas Biblioteca e Detalhe do exercício, componente "Como fazer". Pronto quando: lista os 159 exercícios; a busca ignora acentos e maiúsculas; os filtros Local e Grupo combinados dão o resultado certo; o detalhe mostra 3 passos, erro comum, espaço da ilustração e a trilha com a posição quando houver.
 6. **Manifest + ícones**. Objetivo: `manifest.webmanifest` (cores `#0D0D0F`), ícones 192/512/maskable/apple-touch, metas no `index.html`. Pronto quando: DevTools › Application › Manifest não mostra erros e o Chrome do PC oferece "Instalar".
 7. **Service worker**. Objetivo: `sw.js` com `VERSAO`, `ARQUIVOS` (incluindo fontes e `dados/`), precache, cache-first, limpeza no `activate`. Pronto quando: com DevTools em Offline, recarregar abre o app e a Biblioteca funciona; Cache Storage mostra só `treino-v1` com todos os arquivos; mudar para `v2` apaga o `v1`.
 8. **Fluxo de atualização**. Objetivo: banner "Nova versão disponível" + `SKIP_WAITING` + recarregar no `controllerchange`. Pronto quando: alterar um arquivo e a `VERSAO` faz o app aberto mostrar o banner, e tocar atualiza.
@@ -595,12 +595,13 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** **Fase 2a**: execuções revisadas e lacunas preenchidas. Agora `pesquisa/calistenia.md` tem 62 exercícios em 13 trilhas e `pesquisa/academia.md` tem 95 exercícios.
 - **Feito:** **design aprovado** registrado (seção 8: identidade "Brasa" e 5 telas).
 - **Feito:** **replanejamento aprovado** (18/10/2026): ajustes pendentes resolvidos, escopo v1/v1.1, modelo de dados novo, formato dos 3 JSON e nova lista de etapas (backup logo depois da instalação no celular; montar treinos na v1.1). Feito com o **Opus 5.5** (o `/usage` mostrou Opus 5.5, não Fable 5.1). **Nenhuma etapa de código foi iniciada.**
-- **Próximo:** **Fase 2b**: gerar `dados/exercicios.json`, `dados/progressoes.json` e `dados/rotinas.json` (seção 4.1). **Aguardando aprovação.**
+- **Feito:** **Fase 2b**: `dados/exercicios.json` (159 exercícios: 33 casa, 31 ambos, 95 academia), `dados/progressoes.json` (13 trilhas, 62 níveis com metas) e `dados/rotinas.json` (3 objetivos, 12 rotinas), todos com `versaoDados` 1. Passaram em todas as regras de validação da seção 4.1 (script temporário fora do projeto). **Metas das trilhas e rotinas aprovadas** pelo usuário, com ajuste durante o uso real.
+- **Feito:** **ajustes da Fase 2b**: `locais` de todos os exercícios recalculados pela regra do equipamento (22 mudaram: 19 com halter/kettlebell de ambos → academia; 3 com objeto de casa de ambos → casa); 2 exercícios de adutores sem equipamento de academia (`aducao-deitado-de-lado`, ambos; `isometria-adutores-almofada`, casa); rotinas de academia usam as trilhas que servem na academia (`core-prancha`, `isometrias`, `abdominal-elevacao-pernas`; não há trilha de barra fixa); as 6 rotinas de casa têm adutores e nenhum equipamento de academia.
+- **Feito:** **ajustes finais da biblioteca (biblioteca concluída)**: 2 trilhas novas de academia em `dados/progressoes.json`: `barra-fixa` (suspensão na barra 3 × 0:30 → assistida no gráviton 3 × 10 → negativa 3 × 5 → barra fixa 3 × 8) e `paralelas` (mergulho assistido no gráviton 3 × 12 → negativo 3 × 5 → mergulho nas paralelas 3 × 10). Reutilizado `suspensao-barra-fixa`; criados `barra-fixa-negativa`, `barra-fixa-assistida-graviton`, `barra-fixa`, `mergulho-assistido-graviton`, `mergulho-negativo-paralelas`, `mergulho-paralelas`. Total: **165 exercícios (32 casa, 32 ambos, 101 academia), 15 trilhas, 12 rotinas**, `versaoDados` 1 (nada publicado ainda). As 6 rotinas de academia usam as trilhas novas: barra fixa nos dias de puxar (nos dias de superior/corpo inteiro, no lugar de uma puxada ou da suspensão fixa) e paralelas nos dias de empurrar (no lugar de um tríceps ou do supino na máquina), sem aumentar o número de itens por dia. Exceção de local registrada: `flexao-parada-de-mao-parede` passou a ambos. `pesquisa/*.md` marcados como arquivo histórico (a fonte oficial é `dados/`). Checagem automática completa (script temporário fora do projeto) passou em todas as regras.
 - **Próxima etapa de código (depois da Fase 2b):** **1. Esqueleto estático + tema Brasa + fontes.**
-- **Pendente:** verificar se o Fable 5.1 está disponível com `/model`, porque o uso mostrou só Opus e Haiku.
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
-- **Pendente:** valores das metas das trilhas e conteúdo das 12 rotinas (propostos na Fase 2b, aprovados pelo usuário).
+- **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
 
 ### Decisões tomadas
 - **Escopo da v1:** biblioteca somente leitura (`dados/`), trilhas de níveis, treino em andamento com tabela "antes / hoje / +1", cronômetro de descanso, histórico e gráfico de evolução, backup em JSON, instalável no Android. Telas: Hoje, Trilhas, Evolução, Biblioteca (abas) e Treino em andamento com Descanso.
@@ -613,6 +614,10 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Celular:** Android (testes e instalação pelo Chrome).
 - **Hospedagem:** GitHub Pages. O endereço é **fixo e não deve mudar depois**, porque os dados do IndexedDB ficam presos ao domínio (trocar de endereço = banco vazio, só recuperável por backup).
 - **Locais do exercício:** um exercício pode ser de **casa e de academia ao mesmo tempo**.
+- **Equipamento em casa:** **nenhum** além de objetos de casa (cadeira, mesa, mochila, toalha, garrafas, almofada, degrau etc.). **Sem halteres** nem kettlebell em casa.
+- **Regra de local (pelo `equipamento`):** sem equipamento (parede e chão contam como sem equipamento) → casa e academia; só objetos de casa → casa; qualquer equipamento de academia (barra fixa, barras paralelas, gráviton, halteres, kettlebell, barra, anilhas, máquinas, polia, smith, banco) → academia, mesmo misturado com objeto de casa. Uma trilha só entra numa rotina se **todos** os níveis servem naquele local.
+- **Exceções à regra de local (decididas pelo usuário, por id):** `flexao-parada-de-mao-parede` (equipamento parede + "almofada ou colchonete") → casa e academia, porque a almofada é opcional e a academia tem colchonete. A checagem automática aceita só os ids desta lista; para todos os outros exercícios a regra vale sem exceção.
+- **Metas e rotinas:** metas das 13 trilhas de calistenia e as 12 rotinas **aprovadas**; metas das trilhas `barra-fixa` e `paralelas` propostas no mesmo padrão; tudo será ajustado durante o uso real.
 - **Gráfico de carga:** mostra a **carga máxima** por padrão; o **1RM estimado** fica como opção no seletor de métrica.
 - **Biblioteca:** **somente leitura na v1** (vem de `dados/`; o usuário não cria nem edita exercícios).
 - **Montar treinos:** fica para a **v1.1** (etapa 28). Na v1 há só as 12 rotinas prontas, o treino livre e o exercício avulso.
@@ -639,7 +644,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 17. Faixas das metas e das rotinas definidas na seção 4.1; os valores são propostos na Fase 2b.
 
 ### Checklist
-- [ ] Fase 2b. Catálogo (`dados/*.json`)
+- [x] Fase 2b. Catálogo (`dados/*.json`)
 - [ ] 1. Esqueleto estático + tema Brasa + fontes
 - [ ] 2. Roteador hash + telas placeholder
 - [ ] 3. Testes no navegador + `logica/tipos.js`
