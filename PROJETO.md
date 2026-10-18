@@ -347,9 +347,14 @@ Ordem pensada para ter o **ciclo principal (exercício → treino → sessão) u
 ## 8. Estado atual
 
 - **Feito:** planejamento da v1 **aprovado** pelo usuário (este arquivo, versionado em git). **Nenhuma etapa de código foi iniciada.**
-- **Próxima etapa:** **1. Esqueleto estático.**
+- **Feito:** **Fase 1 da biblioteca de exercícios** concluída: `pesquisa/calistenia.md` (47 exercícios, 12 trilhas) e `pesquisa/academia.md` (86 exercícios).
+- **Próximo:** **Fase 2a**: o Opus 5.5 revisa as execuções e completa as lacunas: trilha de costas em casa, parada de mão começando na parede, mergulho com uma cadeira encostada na parede, adutores, panturrilha e antebraço. Depois, **Fase 2b**: JSON dos exercícios + as 12 rotinas.
+- **Próxima etapa de código:** **1. Esqueleto estático.**
+- **Pendente:** verificar se o Fable 5.1 está disponível com `/model`, porque o uso mostrou só Opus e Haiku.
 
 ### Decisões tomadas
+- **Objetivo do treino:** escolhido no app entre **ganhar massa**, **força e habilidades** e **condicionamento geral**. Pode ser trocado a qualquer hora, e trocar o objetivo troca a rotina.
+- **Rotinas prontas:** haverá **12** (3 objetivos × 3 ou 4 dias por semana × casa ou academia).
 - **Celular:** Android (testes e instalação pelo Chrome).
 - **Hospedagem:** GitHub Pages. O endereço é **fixo e não deve mudar depois**, porque os dados do IndexedDB ficam presos ao domínio (trocar de endereço = banco vazio, só recuperável por backup).
 - **Locais do exercício:** um exercício pode ser de **casa e de academia ao mesmo tempo**.
