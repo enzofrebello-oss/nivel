@@ -344,14 +344,60 @@ Ordem pensada para ter o **ciclo principal (exercício → treino → sessão) u
 
 ---
 
-## 8. Estado atual
+## 8. Design aprovado
+
+### Identidade "Brasa" (tema escuro)
+
+| Uso | Cor |
+|---|---|
+| Fundo | `#0D0D0F` |
+| Cartões | `#17171A` |
+| Bordas | `#2A2A30` |
+| Texto | `#F3F0EA` |
+| Texto secundário | `#9A979F` |
+| Destaque (laranja) | `#F2783C` |
+| Texto sobre o laranja | `#1A0E06` |
+| Fundo de aviso | `#2A1A10` |
+
+- **Fontes:** Barlow Condensed (títulos e números grandes) e Manrope (texto). Os arquivos das fontes ficam **dentro do projeto**, para funcionar offline.
+- **Botões:** cantos bem arredondados; áreas de toque de no mínimo **44 px**.
+
+### Telas aprovadas
+1. **Hoje:** calendário da semana (dias treinados em laranja), objetivo atual, card do treino do dia com botão grande **"Começar treino"**, próximo nível da trilha e recorde da semana.
+2. **Trilhas:** escolha da trilha no topo; caminho vertical com níveis concluídos, nível atual com anel de progresso, meta e "seu melhor", e níveis bloqueados.
+3. **Treino em andamento:** calendário da semana; barra de progresso dos exercícios; botão **"Como fazer"**, que abre ilustração, 3 passos e erro comum; tabela de séries com "antes", "hoje" e +1; contador grande de reps com − e +.
+4. **Descanso:** anel com cronômetro, −15 s, +15 s e **"Pular descanso"**; volta sozinho para a série quando zera.
+5. **Fim do treino:** resumo e recuperação por grupo muscular (quando cada um volta a estar pronto), com sugestão do próximo treino.
+
+### Decisões em aberto
+- Regra de horas de recuperação por grupo muscular.
+- Como fazer as ilustrações dos exercícios.
+
+### Ajustes pendentes no plano
+- Seção 2 (Fontes e ícones): o plano usa fonte do sistema; o design usa Barlow Condensed e Manrope em `.woff2` dentro do projeto.
+- Seções 2, 3 e 5: o plano prevê tema claro/escuro automático (`prefers-color-scheme`); o design aprovado é só tema escuro.
+- Seção 5: telas e abas da v1 (Início, Treinos, Exercícios, Histórico, Ajustes) não batem com as telas aprovadas (Hoje, Trilhas, Treino em andamento, Descanso, Fim do treino); o mesmo vale para `js/telas/` na seção 3 e para as etapas da seção 6.
+- Seção 4: o modelo de dados não tem trilhas, níveis, objetivo, grupo muscular nem recuperação.
+- Seção 7: timer de descanso está em "ideias futuras", mas a tela Descanso foi aprovada.
+- Seção 7: grupo muscular está em "ideias futuras", mas o Fim do treino mostra recuperação por grupo muscular.
+- Seção 7: destacar recordes está em "ideias futuras", mas a tela Hoje mostra o recorde da semana.
+- Seção 7: sugestão de aumento de carga está fora da v1; confirmar se a coluna "+1" da tabela de séries é uma sugestão de progressão.
+- Seção 3: a estrutura de arquivos não prevê as ilustrações dos exercícios (do "Como fazer").
+
+---
+
+## 9. Estado atual
 
 - **Feito:** planejamento da v1 **aprovado** pelo usuário (este arquivo, versionado em git). **Nenhuma etapa de código foi iniciada.**
 - **Feito:** **Fase 1 da biblioteca de exercícios** concluída: `pesquisa/calistenia.md` (47 exercícios, 12 trilhas) e `pesquisa/academia.md` (86 exercícios).
 - **Feito:** **Fase 2a** concluída: execuções revisadas (cerca de 30 correções) e lacunas preenchidas (costas em casa, parada de mão a partir da parede, mergulho com cadeira encostada na parede, adutores, panturrilha e antebraço). Agora `pesquisa/calistenia.md` tem 62 exercícios em 13 trilhas e `pesquisa/academia.md` tem 95 exercícios.
+- **Feito:** **design aprovado** registrado (seção 8: identidade "Brasa" e 5 telas).
 - **Próximo:** **Fase 2b**: JSON dos exercícios + as 12 rotinas. **Aguardando aprovação.**
 - **Próxima etapa de código:** **1. Esqueleto estático.**
 - **Pendente:** verificar se o Fable 5.1 está disponível com `/model`, porque o uso mostrou só Opus e Haiku.
+- **Pendente:** definir a regra de horas de recuperação por grupo muscular.
+- **Pendente:** definir como fazer as ilustrações dos exercícios.
+- **Pendente:** resolver os "Ajustes pendentes no plano" listados na seção 8.
 
 ### Decisões tomadas
 - **Objetivo do treino:** escolhido no app entre **ganhar massa**, **força e habilidades** e **condicionamento geral**. Pode ser trocado a qualquer hora, e trocar o objetivo troca a rotina.
