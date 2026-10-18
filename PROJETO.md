@@ -348,7 +348,8 @@ Ordem pensada para ter o **ciclo principal (exercício → treino → sessão) u
 
 - **Feito:** planejamento da v1 **aprovado** pelo usuário (este arquivo, versionado em git). **Nenhuma etapa de código foi iniciada.**
 - **Feito:** **Fase 1 da biblioteca de exercícios** concluída: `pesquisa/calistenia.md` (47 exercícios, 12 trilhas) e `pesquisa/academia.md` (86 exercícios).
-- **Próximo:** **Fase 2a**: o Opus 5.5 revisa as execuções e completa as lacunas: trilha de costas em casa, parada de mão começando na parede, mergulho com uma cadeira encostada na parede, adutores, panturrilha e antebraço. Depois, **Fase 2b**: JSON dos exercícios + as 12 rotinas.
+- **Feito:** **Fase 2a** concluída: execuções revisadas (cerca de 30 correções) e lacunas preenchidas (costas em casa, parada de mão a partir da parede, mergulho com cadeira encostada na parede, adutores, panturrilha e antebraço). Agora `pesquisa/calistenia.md` tem 62 exercícios em 13 trilhas e `pesquisa/academia.md` tem 95 exercícios.
+- **Próximo:** **Fase 2b**: JSON dos exercícios + as 12 rotinas. **Aguardando aprovação.**
 - **Próxima etapa de código:** **1. Esqueleto estático.**
 - **Pendente:** verificar se o Fable 5.1 está disponível com `/model`, porque o uso mostrou só Opus e Haiku.
 

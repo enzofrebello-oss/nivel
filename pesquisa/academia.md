@@ -278,7 +278,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - grupos musculares: lombar, glúteos, posterior de coxa, grande dorsal, trapézio
 - nível: 4
 - execução:
-  1. Posicione a barra sobre o meio do pé, com quadril baixo e costas retas.
+  1. Com a barra sobre o meio do pé, segure-a logo por fora das pernas, com o quadril entre joelhos e ombros e as costas retas.
   2. Empurre o chão com as pernas e estenda o quadril e o joelho ao mesmo tempo, mantendo a barra próxima às pernas.
   3. Desça a barra no mesmo caminho, controlando o movimento até o chão.
 - erro comum: arredondar a lombar ao levantar a barra.
@@ -292,8 +292,8 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - nível: 2
 - execução:
   1. Prenda os pés no banco romano e apoie o quadril na almofada.
-  2. Desça o tronco à frente até sentir o alongamento da lombar, com costas neutras.
-  3. Suba até alinhar o corpo com as pernas, contraindo glúteos e lombar.
+  2. Desça o tronco à frente dobrando o quadril, com as costas retas.
+  3. Suba até alinhar o tronco com as pernas, contraindo glúteos e lombar, sem passar dessa linha.
 - erro comum: hiperestender a lombar no topo do movimento.
 
 ### Encolhimento com barra
@@ -373,8 +373,8 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - execução:
   1. Sente no banco sob a barra do smith e segure-a na altura dos ombros.
   2. Empurre a barra para cima em linha reta até quase estender os braços.
-  3. Desça controlando até a altura dos ombros.
-- erro comum: deixar a barra cair no peito em vez de controlar a descida.
+  3. Desça controlando até a altura do queixo.
+- erro comum: tirar as costas do encosto e arquear a lombar para empurrar a carga.
 
 ### Desenvolvimento Arnold
 - id: desenvolvimento-arnold
@@ -475,10 +475,10 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - grupos musculares: deltoide lateral, trapézio superior, deltoide anterior
 - nível: 3
 - execução:
-  1. Em pé, segure a barra com pegada estreita, braços estendidos à frente das coxas.
-  2. Puxe a barra junto ao corpo até a altura do peito, com cotovelos acima das mãos.
+  1. Em pé, segure a barra com pegada na largura dos ombros, braços estendidos à frente das coxas.
+  2. Puxe a barra junto ao corpo até a altura do peito, levando os cotovelos para os lados e acima das mãos.
   3. Desça devagar até a posição inicial.
-- erro comum: elevar a barra acima da altura dos ombros, sobrecarregando o ombro.
+- erro comum: usar pegada muito fechada ou subir os cotovelos acima da linha dos ombros, o que pode irritar o ombro.
 
 ## Bíceps
 
@@ -544,8 +544,8 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - execução:
   1. Sente no banco Scott com os braços apoiados na almofada inclinada e segure a barra com palmas para cima.
   2. Flexione os cotovelos e suba a barra até quase os ombros.
-  3. Desça devagar até quase estender os braços, sem tirá-los totalmente.
-- erro comum: descer a barra até estender totalmente os cotovelos, sobrecarregando o tendão do bíceps.
+  3. Desça devagar até quase estender os cotovelos, controlando o final da descida.
+- erro comum: deixar a barra cair rápido no final da descida, dando um tranco no cotovelo.
 
 ### Rosca concentrada com halter
 - id: rosca-concentrada-halter
@@ -661,10 +661,10 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - grupos musculares: tríceps braquial
 - nível: 1
 - execução:
-  1. Incline o tronco à frente, apoiando uma mão no banco ou na coxa, com o cotovelo junto ao corpo.
-  2. Estenda o cotovelo para trás até o braço ficar paralelo ao chão.
-  3. Volte devagar à posição com o cotovelo flexionado.
-- erro comum: subir o cotovelo acima da linha do tronco durante o movimento.
+  1. Incline o tronco à frente, apoiando uma mão no banco, com o braço do halter colado ao tronco e o cotovelo dobrado a 90 graus.
+  2. Sem mexer o braço, estenda o cotovelo levando o halter para trás até o braço todo ficar reto.
+  3. Volte devagar até o cotovelo dobrar a 90 graus.
+- erro comum: deixar o braço cair e balançar o halter em vez de mover só o antebraço.
 
 ### Tríceps na máquina
 - id: triceps-maquina
@@ -700,7 +700,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - grupos musculares: tríceps braquial
 - nível: 2
 - execução:
-  1. De lado para a polia alta, segure a alça com uma mão e o cotovelo junto ao corpo.
+  1. De frente para a polia alta, segure a alça com uma mão e mantenha o cotovelo junto ao corpo.
   2. Estenda o cotovelo empurrando a alça para baixo.
   3. Volte devagar até o antebraço ficar na horizontal.
 - erro comum: girar o tronco para ajudar o movimento.
@@ -746,10 +746,62 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   3. Desça devagar até estender os braços.
 - erro comum: balançar o tronco para completar a subida.
 
+### Caminhada do fazendeiro com halteres
+- id: caminhada-fazendeiro-halteres
+- tipo: tempo
+- local: ambos
+- equipamento: halteres
+- grupos musculares: antebraços (pegada), trapézio, core
+- nível: 2
+- execução:
+  1. Pegue um halter pesado em cada mão, agachando com as costas retas, e fique em pé com os braços estendidos ao lado do corpo.
+  2. Caminhe com passos curtos e firmes, tronco ereto e ombros para baixo.
+  3. Siga pelo tempo definido e pouse os halteres agachando, com as costas retas.
+- erro comum: curvar as costas para pegar ou largar os halteres no chão.
+
+### Suspensão na barra fixa
+- id: suspensao-barra-fixa
+- tipo: tempo
+- local: academia
+- equipamento: barra fixa
+- grupos musculares: antebraços (pegada), grande dorsal, ombros
+- nível: 2
+- execução:
+  1. Segure a barra com as palmas para frente, mãos na largura dos ombros, subindo num banco ou step se precisar.
+  2. Tire os pés do apoio e fique pendurado com os braços estendidos e o corpo parado.
+  3. Segure pelo tempo definido e volte os pés ao apoio antes de soltar a barra.
+- erro comum: soltar a barra de repente, caindo no chão, em vez de apoiar os pés primeiro.
+
+### Pinça com anilhas
+- id: pinca-anilhas
+- tipo: tempo
+- local: academia
+- equipamento: 2 anilhas lisas
+- grupos musculares: flexores dos dedos, antebraços
+- nível: 2
+- execução:
+  1. Junte duas anilhas iguais com os lados lisos para fora e segure-as pela borda de cima, com os dedos de um lado e o polegar do outro.
+  2. Fique em pé com o braço estendido ao lado do corpo, levantando as anilhas do chão.
+  3. Segure pelo tempo definido, pouse as anilhas no chão com controle e troque de mão.
+- erro comum: usar anilhas pesadas demais e deixá-las escapar sobre o pé.
+
+### Rolo de punho
+- id: rolo-de-punho
+- tipo: carga
+- local: academia
+- equipamento: rolo de punho (bastão com corda), anilha
+- grupos musculares: flexores e extensores do punho, antebraços
+- nível: 2
+- execução:
+  1. Em pé, segure o bastão com as duas mãos, palmas para baixo e braços estendidos à frente, na altura dos ombros, com a anilha pendurada na corda.
+  2. Gire o bastão com os punhos, uma mão de cada vez, enrolando a corda até a anilha chegar ao bastão.
+  3. Desenrole devagar, girando no sentido contrário, até a anilha voltar para baixo.
+- erro comum: abaixar os braços ou girar com os ombros em vez dos punhos.
+
 ## Quadríceps
 
-### Agachamento livre
-- id: agachamento-livre
+### Agachamento livre com barra
+- id: agachamento-livre-barra
 - tipo: carga
 - local: academia
 - equipamento: barra, rack
@@ -772,7 +824,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   1. Posicione a barra do smith sobre o trapézio e pés ligeiramente à frente da barra.
   2. Flexione joelhos e quadril, descendo de forma controlada.
   3. Suba empurrando o chão até estender as pernas.
-- erro comum: posicionar os pés muito à frente, o que sobrecarrega os joelhos.
+- erro comum: tirar os calcanhares do chão ou deixar os joelhos caírem para dentro.
 
 ### Agachamento goblet
 - id: agachamento-goblet
@@ -821,7 +873,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - grupos musculares: quadríceps, glúteos, posterior de coxa
 - nível: 1
 - execução:
-  1. Deite no aparelho com as costas apoiadas e os pés na plataforma na largura dos ombros.
+  1. Sente-se no aparelho com as costas apoiadas e os pés na plataforma na largura dos ombros.
   2. Flexione os joelhos trazendo a plataforma em direção ao corpo, até a profundidade confortável.
   3. Empurre a plataforma de volta sem travar os joelhos.
 - erro comum: tirar o quadril do encosto para ajudar a empurrar.
@@ -850,10 +902,10 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   1. Em pé, segure um halter em cada mão ao lado do corpo e dê um passo largo à frente.
   2. Flexione os dois joelhos até o joelho de trás quase tocar o chão.
   3. Empurre com a perna da frente para voltar à posição inicial.
-- erro comum: o joelho da frente passar muito além da ponta do pé.
+- erro comum: dar um passo curto demais ou deixar o joelho da frente cair para dentro.
 
-### Agachamento búlgaro
-- id: agachamento-bulgaro
+### Agachamento búlgaro com halteres
+- id: agachamento-bulgaro-halteres
 - tipo: carga
 - local: ambos
 - equipamento: halteres, banco
@@ -863,7 +915,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   1. Apoie o peito do pé de trás num banco e fique com o outro pé à frente, segurando halteres.
   2. Flexione o joelho da frente descendo o quadril em linha reta.
   3. Empurre com a perna da frente para subir.
-- erro comum: colocar o pé da frente muito perto do banco, sobrecarregando o joelho.
+- erro comum: colocar o pé da frente muito perto do banco, o que tira o equilíbrio e joga o joelho muito à frente.
 
 ## Posterior de coxa
 
@@ -888,8 +940,8 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - grupos musculares: posterior de coxa (isquiotibiais)
 - nível: 1
 - execução:
-  1. Sente-se com as costas apoiadas e o rolo acima dos tornozelos.
-  2. Flexione os joelhos puxando o rolo para baixo, contraindo o posterior.
+  1. Sente-se com as costas apoiadas, o rolo de baixo atrás das pernas logo acima dos calcanhares e o apoio de cima travando as coxas.
+  2. Flexione os joelhos puxando o rolo para baixo e para trás, contraindo o posterior.
   3. Volte devagar até as pernas quase estenderem.
 - erro comum: usar o tronco para empurrar o rolo.
 
@@ -999,6 +1051,47 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   3. Suba empurrando o chão até ficar em pé.
 - erro comum: deixar os joelhos caírem para dentro durante a descida.
 
+## Adutores
+
+### Cadeira adutora
+- id: cadeira-adutora
+- tipo: carga
+- local: academia
+- equipamento: máquina cadeira adutora
+- grupos musculares: adutores da coxa
+- nível: 1
+- execução:
+  1. Sente-se com as costas apoiadas e as almofadas na parte interna das coxas, ajustando a abertura inicial a uma amplitude confortável.
+  2. Feche as pernas contra a resistência até as almofadas se aproximarem.
+  3. Volte devagar até a abertura inicial, sem deixar as placas baterem.
+- erro comum: começar com as pernas abertas além do confortável, forçando a virilha.
+
+### Adução de quadril na polia
+- id: aducao-quadril-polia
+- tipo: carga
+- local: academia
+- equipamento: polia baixa, caneleira
+- grupos musculares: adutores da coxa
+- nível: 2
+- execução:
+  1. Prenda a caneleira na polia baixa e no tornozelo mais próximo dela e fique de lado para a polia, segurando um apoio.
+  2. Com a perna estendida, puxe-a para dentro, cruzando um pouco à frente da perna de apoio.
+  3. Volte devagar até a posição inicial e troque de lado ao final da série.
+- erro comum: inclinar o tronco ou girar o quadril para ajudar a puxar a perna.
+
+### Prancha de Copenhague com joelho apoiado
+- id: prancha-copenhague-joelho
+- tipo: tempo
+- local: academia
+- equipamento: banco
+- grupos musculares: adutores da coxa, oblíquos, core
+- nível: 3
+- execução:
+  1. Deite-se de lado junto ao banco, com o antebraço no chão sob o ombro e a parte interna do joelho de cima apoiada no banco.
+  2. Eleve o quadril até o corpo ficar em linha reta, com a perna de baixo solta embaixo do banco.
+  3. Segure pelo tempo definido e troque de lado.
+- erro comum: deixar o quadril cair ou girar para frente.
+
 ## Panturrilha
 
 ### Panturrilha em pé na máquina
@@ -1025,7 +1118,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   1. Sente-se com os joelhos sob o apoio e a ponta dos pés na plataforma.
   2. Suba na ponta dos pés contraindo a panturrilha.
   3. Desça devagar até alongar bem.
-- erro comum: tirar os calcanhares do alinhamento e fazer só metade do movimento.
+- erro comum: fazer só metade do movimento, sem descer o calcanhar até alongar nem subir tudo.
 
 ### Panturrilha no smith
 - id: panturrilha-smith
@@ -1038,7 +1131,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   1. Posicione a barra do smith sobre os ombros e apoie a ponta dos pés numa anilha ou plataforma.
   2. Suba na ponta dos pés, contraindo a panturrilha.
   3. Desça devagar até alongar a panturrilha.
-- erro comum: usar as costas e os joelhos para empurrar a carga.
+- erro comum: dobrar os joelhos para ajudar a subir a carga.
 
 ### Panturrilha no leg press
 - id: panturrilha-leg-press
@@ -1066,6 +1159,32 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
   3. Desça devagar até alongar bem.
 - erro comum: perder o equilíbrio e balançar o corpo para completar a subida.
 
+### Panturrilha unilateral no degrau com halter
+- id: panturrilha-unilateral-degrau-halter
+- tipo: carga
+- local: ambos
+- equipamento: halter, degrau ou step
+- grupos musculares: gastrocnêmio, sóleo
+- nível: 2
+- execução:
+  1. Apoie a ponta de um pé na borda do degrau, com o calcanhar para fora, segurando o halter do mesmo lado e a outra mão num apoio.
+  2. Suba na ponta do pé o máximo possível, contraindo a panturrilha.
+  3. Desça devagar até o calcanhar ficar abaixo do degrau e troque de lado ao final da série.
+- erro comum: quicar no fundo do movimento em vez de descer e subir com controle.
+
+### Panturrilha sentado com halteres
+- id: panturrilha-sentado-halteres
+- tipo: carga
+- local: ambos
+- equipamento: halteres, banco
+- grupos musculares: sóleo, gastrocnêmio
+- nível: 1
+- execução:
+  1. Sente-se no banco com os joelhos dobrados a 90 graus, a ponta dos pés numa anilha ou degrau e um halter sobre cada coxa, perto dos joelhos.
+  2. Suba os calcanhares o máximo possível.
+  3. Desça devagar até alongar a panturrilha.
+- erro comum: fazer movimentos curtos e rápidos, sem amplitude completa.
+
 ## Abdômen e core
 
 ### Abdominal na polia
@@ -1076,7 +1195,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 - grupos musculares: reto abdominal
 - nível: 2
 - execução:
-  1. Ajoelhe-se de frente para a polia alta e segure a corda atrás da cabeça.
+  1. Ajoelhe-se de frente para a polia alta e segure a corda com as mãos ao lado da cabeça.
   2. Flexione o tronco para baixo, aproximando os cotovelos das coxas.
   3. Volte devagar até a posição inicial, mantendo os quadris parados.
 - erro comum: flexionar o quadril em vez de curvar o tronco.
@@ -1149,5 +1268,7 @@ Campos de cada exercício: id, nome, tipo (carga / peso do corpo / tempo), local
 ## Fora por dúvida
 
 - Abdominal oblíquo na polia: nome e variação de execução pouco padronizados nas academias; não foi incluído com segurança.
-- Cadeira adutora: exercício de adutores, grupo fora da lista pedida nesta pesquisa.
-- Prancha e exercícios de tipo "tempo": são exercícios de peso do corpo sem equipamento de academia; ficam para o arquivo de calistenia.
+- Prancha comum e outros exercícios de tipo "tempo" sem equipamento: ficam no arquivo de calistenia (local "ambos"); aqui entram só os que usam equipamento de academia.
+- Panturrilha burrinho: nome usado em algumas academias, mas o aparelho e a execução variam muito de academia para academia.
+- Suspensão na barra fixa com toalha: aumenta muito a exigência de pegada, mas depende da toalha aguentar o peso do corpo e de como é presa na barra; sem passos padronizados seguros.
+- Prancha de Copenhague com perna estendida (pé no banco): versão mais difícil, com mais carga sobre a parte interna do joelho; nível e segurança para iniciantes incertos.
