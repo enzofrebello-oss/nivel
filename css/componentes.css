@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapa 1: topo, ícones e barra inferior de abas. */
+/* componentes.css: componentes visuais. Etapas 1 e 2: topo, ícones, barra inferior de abas e telas placeholder. */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -53,6 +53,17 @@
 /* ---------- Conteúdo ---------- */
 #app {
   padding: 0 var(--gutter) calc(var(--altura-abas) + env(safe-area-inset-bottom) + var(--gutter));
+}
+
+/* Telas placeholder (etapa 2): título e, nas telas com parâmetro, o id recebido. */
+.tela-titulo {
+  margin-top: 8px;
+}
+
+.tela-id {
+  margin-top: 4px;
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
 }
 
 /* ---------- Barra inferior de abas ---------- */

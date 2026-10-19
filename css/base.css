@@ -95,6 +95,10 @@ a {
   text-decoration: none;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 /* ---------- Tipografia ---------- */
 body {
   min-height: 100vh;
