@@ -1,0 +1,97 @@
+/* componentes.css: componentes visuais. Etapa 1: topo, ícones e barra inferior de abas. */
+
+/* ---------- Ícones (SVG inline, traço) ---------- */
+.icone {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: calc(var(--altura-topo) + env(safe-area-inset-top));
+  padding: env(safe-area-inset-top) calc(var(--gutter) - 10px) 0 var(--gutter);
+  background: var(--cor-fundo);
+}
+
+.topo-titulo {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.botao-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--toque-min);
+  height: var(--toque-min);
+  border-radius: 50%;
+  color: var(--cor-texto-2);
+}
+
+.botao-icone:hover,
+.botao-icone:active {
+  color: var(--cor-texto);
+  background: var(--cor-cartao);
+}
+
+/* ---------- Conteúdo ---------- */
+#app {
+  padding: 0 var(--gutter) calc(var(--altura-abas) + env(safe-area-inset-bottom) + var(--gutter));
+}
+
+/* ---------- Barra inferior de abas ---------- */
+.abas {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  height: calc(var(--altura-abas) + env(safe-area-inset-bottom));
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--cor-cartao);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.aba {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+  min-height: var(--toque-min);
+  padding: 6px 2px;
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.aba-rotulo {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aba[aria-current="page"] {
+  color: var(--cor-destaque);
+}
