@@ -600,10 +600,12 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** **ajustes finais da biblioteca (biblioteca concluída)**: 2 trilhas novas de academia em `dados/progressoes.json`: `barra-fixa` (suspensão na barra 3 × 0:30 → assistida no gráviton 3 × 10 → negativa 3 × 5 → barra fixa 3 × 8) e `paralelas` (mergulho assistido no gráviton 3 × 12 → negativo 3 × 5 → mergulho nas paralelas 3 × 10). Reutilizado `suspensao-barra-fixa`; criados `barra-fixa-negativa`, `barra-fixa-assistida-graviton`, `barra-fixa`, `mergulho-assistido-graviton`, `mergulho-negativo-paralelas`, `mergulho-paralelas`. Total: **165 exercícios (32 casa, 32 ambos, 101 academia), 15 trilhas, 12 rotinas**, `versaoDados` 1 (nada publicado ainda). As 6 rotinas de academia usam as trilhas novas: barra fixa nos dias de puxar (nos dias de superior/corpo inteiro, no lugar de uma puxada ou da suspensão fixa) e paralelas nos dias de empurrar (no lugar de um tríceps ou do supino na máquina), sem aumentar o número de itens por dia. Exceção de local registrada: `flexao-parada-de-mao-parede` passou a ambos. `pesquisa/*.md` marcados como arquivo histórico (a fonte oficial é `dados/`). Checagem automática completa (script temporário fora do projeto) passou em todas as regras.
 - **Feito:** **etapa 1. Esqueleto estático + tema Brasa + fontes** (19/10/2026): `index.html`, `css/base.css`, `css/componentes.css`, `js/app.js` (vazio por enquanto), `fonts/` com os 4 `.woff2` (convertidos dos `.ttf` oficiais de github.com/google/fonts, subconjunto latin) + `OFL.txt` (Barlow Condensed) e `OFL-manrope.txt` (Manrope). Engrenagem no topo do Hoje (decisão menor 12), barra inferior com as 4 abas. Conferido pelo usuário: console sem erros, Network só com localhost, layout certo a 360 px.
 - **Feito:** **etapa 2. Roteador hash + telas placeholder** (19/10/2026): `js/roteador.js`, `js/ui/dom.js` (`h()` e `limpar()`) e 9 telas placeholder em `js/telas/` (Hoje, Trilhas, Treino, Evolução, Detalhe da sessão, Evolução do exercício, Biblioteca, Detalhe do exercício, Ajustes; Descanso é modo da tela Treino). Aba ativa segue a rota (Treino e Ajustes marcam Hoje), engrenagem só no Hoje, rota inexistente vai para `#/` com `location.replace`. Conferido pelo usuário: abas, voltar, id na URL, rota inválida e engrenagem, console sem erros.
-- **Próxima etapa de código:** **3. Testes no navegador + `logica/tipos.js`.**
+- **Feito:** **etapa 3. Testes no navegador + `logica/tipos.js`** (19/10/2026): `js/logica/tipos.js` (parse, validação e formatação dos 3 tipos, com os limites da seção 4), `testes/mini-teste.js`, `testes/tipos.test.js` (96 testes com nomes em português, incluindo casos de borda) e `testes/index.html`. Decisões: tempo sem dois-pontos ("90") = segundos; em m:ss os segundos têm 2 dígitos (00 a 59); campo de outro tipo é recusado mesmo valendo 0; "1 rep" no singular; tempo sempre formatado em m:ss (3600 → "60:00"). Conferido pelo usuário: 96 de 96 testes passando em `/testes/`, console sem erros.
+- **Próxima etapa de código:** **4. Catálogo.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
+- **Pendente:** no teclado numérico do Android pode não existir a tecla ":". Na tela de registrar série, o tempo talvez precise de botões − e + ou de campos separados de minutos e segundos.
 
 ### Decisões tomadas
 - **Escopo da v1:** biblioteca somente leitura (`dados/`), trilhas de níveis, treino em andamento com tabela "antes / hoje / +1", cronômetro de descanso, histórico e gráfico de evolução, backup em JSON, instalável no Android. Telas: Hoje, Trilhas, Evolução, Biblioteca (abas) e Treino em andamento com Descanso.
@@ -649,7 +651,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] Fase 2b. Catálogo (`dados/*.json`)
 - [x] 1. Esqueleto estático + tema Brasa + fontes
 - [x] 2. Roteador hash + telas placeholder
-- [ ] 3. Testes no navegador + `logica/tipos.js`
+- [x] 3. Testes no navegador + `logica/tipos.js`
 - [ ] 4. Catálogo
 - [ ] 5. Biblioteca
 - [ ] 6. Manifest + ícones
