@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapas 1, 2, 4 e 5: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca e "Como fazer". */
+/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5 e 8: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer" e banner de atualização. */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -470,4 +470,49 @@
   min-height: var(--toque-min);
   color: var(--cor-destaque);
   font-weight: 700;
+}
+
+/* ---------- Banner de atualização (etapa 8) ---------- */
+/* Fixo logo acima da barra de abas; some só com o recarregar depois do toque em "Atualizar". */
+.banner-atualizacao {
+  position: fixed;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: calc(var(--altura-abas) + env(safe-area-inset-bottom) + 12px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid var(--cor-destaque);
+  border-radius: var(--raio);
+  background: var(--cor-aviso-fundo);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Na tela de erro fatal as abas ficam escondidas: o banner desce para o pé da tela. */
+.abas[hidden] ~ .banner-atualizacao {
+  bottom: calc(env(safe-area-inset-bottom) + 12px);
+}
+
+.banner-atualizacao-texto {
+  min-width: 0;
+  font-weight: 700;
+}
+
+.banner-atualizacao-botao {
+  flex: none;
+  min-height: var(--toque-min);
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  font-weight: 700;
+}
+
+.banner-atualizacao-botao:disabled {
+  opacity: 0.6;
+  cursor: default;
 }

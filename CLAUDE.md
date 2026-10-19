@@ -6,4 +6,4 @@ Fable 5.1 exige créditos pagos neste plano. Usar Opus 5.5 para arquitetura, rev
 
 Só abrir o HISTORICO.md quando eu pedir ou quando precisar de um detalhe de etapa antiga. Ao fim de cada etapa, registrar o detalhe no HISTORICO.md e só uma linha no Estado atual.
 
-Toda etapa que criar ou remover um arquivo usado pelo app deve atualizar a lista do sw.js e subir a versão do cache.
+Toda etapa que criar, alterar ou remover qualquer arquivo usado pelo app deve atualizar a lista do sw.js (se for o caso) e subir a versão do cache.

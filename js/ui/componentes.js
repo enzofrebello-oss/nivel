@@ -1,5 +1,6 @@
 // componentes.js: componentes compartilhados (PROJETO.md, seção 5).
 // Etapa 5: "Como fazer" (espaço da ilustração, 3 passos, erro comum) e selos de tipo e dificuldade.
+// Etapa 8: banner de atualização ("Nova versão disponível · Atualizar").
 // Os outros componentes (modal, toast, stepper, contador, seletor) entram nas etapas que os usam.
 
 import { h } from './dom.js';
@@ -19,6 +20,25 @@ export function seloTipo(tipo) {
 // a palavra "Nível" fica reservada à posição na trilha ("Nível X de Y").
 export function seloDificuldade(nivel) {
   return h('span', { class: 'selo selo-dificuldade' }, `Dificuldade ${nivel}/5`);
+}
+
+// Banner de atualização: fica fixo acima das abas até o usuário tocar em "Atualizar".
+// aoAtualizar() é chamada no toque; o botão fica desativado para não mandar o pedido duas vezes.
+export function bannerAtualizacao(aoAtualizar) {
+  const botao = h('button', {
+    type: 'button',
+    class: 'banner-atualizacao-botao',
+    onclick: () => {
+      botao.disabled = true;
+      botao.textContent = 'Atualizando…';
+      aoAtualizar();
+    },
+  }, 'Atualizar');
+
+  return h('div', { class: 'banner-atualizacao', role: 'status' },
+    h('span', { class: 'banner-atualizacao-texto' }, 'Nova versão disponível'),
+    botao,
+  );
 }
 
 // "Como fazer": ilustração (ou o espaço reservado para ela), os 3 passos e o erro comum.

@@ -2,9 +2,11 @@
 // Etapa 7: precache de todos os arquivos do app no cache nivel-${VERSAO}, cache-first
 // para GET do próprio domínio e limpeza dos caches antigos (nivel-* e treino-*) no activate.
 // Regra de ouro: todo deploy incrementa VERSAO, e todo arquivo novo entra em ARQUIVOS.
-// pesquisa/ e testes/ ficam fora. O banner de atualização (SKIP_WAITING) é a etapa 8.
+// pesquisa/ e testes/ ficam fora.
+// Etapa 8: sem skipWaiting automático. O SW novo fica em "waiting" até o app mandar
+// postMessage('SKIP_WAITING') (toque em "Atualizar" no banner "Nova versão disponível").
 
-const VERSAO = 'v1';
+const VERSAO = 'v4';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -69,6 +71,12 @@ self.addEventListener('activate', (evento) => {
         .map((nome) => caches.delete(nome)),
     )),
   );
+});
+
+// message: a única forma de o SW novo assumir. Só o toque em "Atualizar" manda SKIP_WAITING;
+// o app recarrega no controllerchange (js/app.js).
+self.addEventListener('message', (evento) => {
+  if (evento.data === 'SKIP_WAITING') self.skipWaiting();
 });
 
 // fetch: cache-first só para GET do próprio domínio; o resto segue direto para a rede.
