@@ -597,7 +597,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 3. Testes no navegador e `logica/tipos.js`.
 - **Feito:** etapa 4. Catálogo.
 - **Feito:** etapa 5. Biblioteca.
-- **Próxima etapa de código:** **6. Manifest + ícones.**
+- **Feito:** etapa 6. Manifest + ícones (app "Nível"). **Próxima etapa de código:** **7. Service worker.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -651,7 +651,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 3. Testes no navegador + `logica/tipos.js`
 - [x] 4. Catálogo
 - [x] 5. Biblioteca
-- [ ] 6. Manifest + ícones
+- [x] 6. Manifest + ícones
 - [ ] 7. Service worker
 - [ ] 8. Fluxo de atualização
 - [ ] 9. IndexedDB + migração 1

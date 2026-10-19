@@ -20,9 +20,9 @@ try {
 
 // Tela de erro fatal: sem abas nem engrenagem, porque nenhuma tela funciona sem o catálogo.
 function mostrarDadosInvalidos(erro) {
-  document.title = 'Dados do app inválidos · Treino';
+  document.title = 'Dados do app inválidos · Nível';
   const titulo = document.querySelector('.topo-titulo');
-  if (titulo) titulo.textContent = 'Treino';
+  if (titulo) titulo.textContent = 'Nível';
   const engrenagem = document.querySelector('.topo a[href="#/ajustes"]');
   if (engrenagem) engrenagem.hidden = true;
   const abas = document.querySelector('.abas');

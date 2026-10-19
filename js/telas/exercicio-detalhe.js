@@ -15,7 +15,7 @@ export async function render(container, params) {
   const exercicio = catalogo.exercicioPorId.get(params.id);
 
   if (!exercicio) {
-    document.title = 'Exercício não encontrado · Treino';
+    document.title = 'Exercício não encontrado · Nível';
     container.append(
       h('section', { class: 'cartao nao-encontrado', role: 'alert' },
         h('h2', null, 'Exercício não encontrado'),
@@ -25,7 +25,7 @@ export async function render(container, params) {
     return;
   }
 
-  document.title = `${exercicio.nome} · Treino`;
+  document.title = `${exercicio.nome} · Nível`;
 
   const naTrilha = catalogo.trilhaDoExercicio.get(exercicio.id);
   const nomeGrupo = new Map(catalogo.grupos.map((g) => [g.id, g.nome]));

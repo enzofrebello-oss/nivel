@@ -120,7 +120,7 @@ function atualizarCasca(rota) {
     titulo.textContent = rota.titulo || '';
     titulo.hidden = !rota.titulo;
   }
-  document.title = !rota.titulo || rota.titulo === 'Hoje' ? 'Treino' : `${rota.titulo} · Treino`;
+  document.title = !rota.titulo || rota.titulo === 'Hoje' ? 'Nível' : `${rota.titulo} · Nível`;
 
   const engrenagem = document.querySelector('.topo a[href="#/ajustes"]');
   if (engrenagem) engrenagem.hidden = !rota.engrenagem;
