@@ -16,6 +16,7 @@ import * as ajustes from './telas/ajustes.js';
 
 // aba: href da aba que fica marcada. Treino e Ajustes saem do Hoje, então marcam o Hoje.
 // engrenagem: a engrenagem de Ajustes só aparece no topo do Hoje (seção 5).
+// titulo: null = topo sem título; a própria tela mostra o título no conteúdo e define document.title.
 const ROTAS = [
   { padrao: '/', tela: hoje, titulo: 'Hoje', aba: '#/', engrenagem: true },
   { padrao: '/trilhas', tela: trilhas, titulo: 'Trilhas', aba: '#/trilhas' },
@@ -25,7 +26,7 @@ const ROTAS = [
   { padrao: '/evolucao/treino/:id', tela: sessaoDetalhe, titulo: 'Detalhe da sessão', aba: '#/evolucao' },
   { padrao: '/evolucao/exercicio/:id', tela: exercicioEvolucao, titulo: 'Evolução do exercício', aba: '#/evolucao' },
   { padrao: '/biblioteca', tela: biblioteca, titulo: 'Biblioteca', aba: '#/biblioteca' },
-  { padrao: '/biblioteca/:id', tela: exercicioDetalhe, titulo: 'Detalhe do exercício', aba: '#/biblioteca' },
+  { padrao: '/biblioteca/:id', tela: exercicioDetalhe, titulo: null, aba: '#/biblioteca' },
   { padrao: '/ajustes', tela: ajustes, titulo: 'Ajustes', aba: '#/' },
 ];
 
@@ -115,11 +116,19 @@ async function navegar() {
 // Topo (título e engrenagem) e aba ativa, conforme a rota.
 function atualizarCasca(rota) {
   const titulo = document.querySelector('.topo-titulo');
-  if (titulo) titulo.textContent = rota.titulo;
-  document.title = rota.titulo === 'Hoje' ? 'Treino' : `${rota.titulo} · Treino`;
+  if (titulo) {
+    titulo.textContent = rota.titulo || '';
+    titulo.hidden = !rota.titulo;
+  }
+  document.title = !rota.titulo || rota.titulo === 'Hoje' ? 'Treino' : `${rota.titulo} · Treino`;
 
   const engrenagem = document.querySelector('.topo a[href="#/ajustes"]');
   if (engrenagem) engrenagem.hidden = !rota.engrenagem;
+
+  // Sem título e sem engrenagem, o topo inteiro some (não ocupa espaço);
+  // o conteúdo assume a área segura do topo (componentes.css, .topo[hidden] + #app).
+  const topo = document.querySelector('.topo');
+  if (topo) topo.hidden = !rota.titulo && !rota.engrenagem;
 
   for (const aba of document.querySelectorAll('.abas .aba')) {
     if (aba.getAttribute('href') === rota.aba) {

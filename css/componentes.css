@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapas 1, 2 e 4: topo, ícones, barra inferior de abas, telas placeholder e aviso de erro. */
+/* componentes.css: componentes visuais. Etapas 1, 2, 4 e 5: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca e "Como fazer". */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -53,6 +53,11 @@
 /* ---------- Conteúdo ---------- */
 #app {
   padding: 0 var(--gutter) calc(var(--altura-abas) + env(safe-area-inset-bottom) + var(--gutter));
+}
+
+/* Telas sem topo (o roteador esconde o .topo): o conteúdo cuida da área segura do topo. */
+.topo[hidden] + #app {
+  padding-top: env(safe-area-inset-top);
 }
 
 /* Telas placeholder (etapa 2): título e, nas telas com parâmetro, o id recebido. */
@@ -129,4 +134,340 @@
   color: var(--cor-texto-2);
   font-size: 0.875rem;
   overflow-wrap: anywhere;
+}
+
+/* ---------- Cartões, chips e selos (etapa 5) ---------- */
+.cartao {
+  display: block;
+  padding: 16px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-cartao);
+}
+
+.cartao-titulo {
+  margin-bottom: 12px;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Uma linha só, rolando para o lado; as bordas encostam na tela (gutter compensado). */
+.chips-rolaveis {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 0 var(--gutter) 2px;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.chips-rolaveis::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex: none;
+  min-height: var(--toque-min);
+  padding: 0 16px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-botao);
+  background: var(--cor-cartao);
+  color: var(--cor-texto);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.chip[aria-pressed="true"] {
+  border-color: var(--cor-destaque);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.selo {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-botao);
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.selo-dificuldade {
+  border-color: transparent;
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-destaque);
+}
+
+/* ---------- Biblioteca ---------- */
+.biblioteca-filtros {
+  display: grid;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.busca {
+  position: relative;
+}
+
+.busca-icone {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  color: var(--cor-texto-2);
+  pointer-events: none;
+}
+
+.campo-busca {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 16px 0 44px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-botao);
+  background: var(--cor-cartao);
+  font-size: 1rem;
+}
+
+.campo-busca::placeholder {
+  color: var(--cor-texto-2);
+}
+
+.campo-busca:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+}
+
+.filtro {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.filtro-rotulo {
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.biblioteca-contagem {
+  margin: 16px 0 8px;
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+.lista-exercicios {
+  display: grid;
+  gap: 8px;
+}
+
+.item-exercicio {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: var(--toque-min);
+  padding: 14px 16px;
+}
+
+.item-exercicio:active {
+  border-color: var(--cor-destaque);
+}
+
+.item-exercicio-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.item-exercicio-selos,
+.detalhe-selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lista-vazia {
+  padding: 24px 16px;
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
+  color: var(--cor-texto-2);
+  text-align: center;
+}
+
+/* ---------- Detalhe do exercício ---------- */
+.link-voltar {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque-min);
+  color: var(--cor-texto-2);
+  font-weight: 700;
+}
+
+.detalhe-nome {
+  font-size: 2rem;
+  overflow-wrap: anywhere;
+}
+
+.detalhe-selos {
+  margin: 10px 0 16px;
+}
+
+.detalhe-aviso {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: var(--raio);
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-destaque);
+}
+
+#app > .cartao + .cartao {
+  margin-top: 12px;
+}
+
+.cartao-trilha {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2px 12px;
+  border-color: var(--cor-destaque);
+}
+
+.cartao-trilha-rotulo {
+  grid-column: 1 / -1;
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cartao-trilha-nome {
+  min-width: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.cartao-trilha-posicao {
+  color: var(--cor-destaque);
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.como-fazer-imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.como-fazer-imagem-vazia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+.como-fazer-passos {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.como-fazer-passos li {
+  display: flex;
+  gap: 12px;
+}
+
+.como-fazer-numero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+}
+
+.como-fazer-erro {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--cor-aviso-fundo);
+}
+
+.como-fazer-erro strong {
+  color: var(--cor-destaque);
+  font-size: 0.875rem;
+}
+
+.como-fazer-erro p {
+  margin-top: 2px;
+}
+
+.ficha {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.ficha-linha {
+  display: grid;
+  gap: 2px;
+}
+
+.ficha dt {
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ficha dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.nao-encontrado {
+  margin-top: 16px;
+}
+
+.nao-encontrado p {
+  margin: 8px 0 4px;
+  color: var(--cor-texto-2);
+}
+
+.link-destaque {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque-min);
+  color: var(--cor-destaque);
+  font-weight: 700;
 }

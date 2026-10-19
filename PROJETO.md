@@ -596,7 +596,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 2. Roteador hash e telas placeholder.
 - **Feito:** etapa 3. Testes no navegador e `logica/tipos.js`.
 - **Feito:** etapa 4. Catálogo.
-- **Próxima etapa de código:** **5. Biblioteca.**
+- **Feito:** etapa 5. Biblioteca.
+- **Próxima etapa de código:** **6. Manifest + ícones.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -649,7 +650,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 2. Roteador hash + telas placeholder
 - [x] 3. Testes no navegador + `logica/tipos.js`
 - [x] 4. Catálogo
-- [ ] 5. Biblioteca
+- [x] 5. Biblioteca
 - [ ] 6. Manifest + ícones
 - [ ] 7. Service worker
 - [ ] 8. Fluxo de atualização
