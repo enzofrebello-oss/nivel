@@ -601,7 +601,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** **etapa 1. Esqueleto estático + tema Brasa + fontes** (19/10/2026): `index.html`, `css/base.css`, `css/componentes.css`, `js/app.js` (vazio por enquanto), `fonts/` com os 4 `.woff2` (convertidos dos `.ttf` oficiais de github.com/google/fonts, subconjunto latin) + `OFL.txt` (Barlow Condensed) e `OFL-manrope.txt` (Manrope). Engrenagem no topo do Hoje (decisão menor 12), barra inferior com as 4 abas. Conferido pelo usuário: console sem erros, Network só com localhost, layout certo a 360 px.
 - **Feito:** **etapa 2. Roteador hash + telas placeholder** (19/10/2026): `js/roteador.js`, `js/ui/dom.js` (`h()` e `limpar()`) e 9 telas placeholder em `js/telas/` (Hoje, Trilhas, Treino, Evolução, Detalhe da sessão, Evolução do exercício, Biblioteca, Detalhe do exercício, Ajustes; Descanso é modo da tela Treino). Aba ativa segue a rota (Treino e Ajustes marcam Hoje), engrenagem só no Hoje, rota inexistente vai para `#/` com `location.replace`. Conferido pelo usuário: abas, voltar, id na URL, rota inválida e engrenagem, console sem erros.
 - **Feito:** **etapa 3. Testes no navegador + `logica/tipos.js`** (19/10/2026): `js/logica/tipos.js` (parse, validação e formatação dos 3 tipos, com os limites da seção 4), `testes/mini-teste.js`, `testes/tipos.test.js` (96 testes com nomes em português, incluindo casos de borda) e `testes/index.html`. Decisões: tempo sem dois-pontos ("90") = segundos; em m:ss os segundos têm 2 dígitos (00 a 59); campo de outro tipo é recusado mesmo valendo 0; "1 rep" no singular; tempo sempre formatado em m:ss (3600 → "60:00"). Conferido pelo usuário: 96 de 96 testes passando em `/testes/`, console sem erros.
-- **Próxima etapa de código:** **4. Catálogo.**
+- **Feito:** **etapa 4. Catálogo** (19/10/2026): `js/logica/validar-dados.js` (regras da seção 4.1 e da seção 9, reconstruídas a partir deste arquivo; junta todos os erros), `js/catalogo.js` (carrega, valida, congela, mapas `exercicioPorId`, `trilhaPorId`, `trilhaDoExercicio`, `rotinaPorId`), `testes/dados.test.js` (139 testes: JSON reais passam, cada regra com caso quebrado, catálogo mínimo válido), `js/app.js` mostra "Dados do app inválidos" se o catálogo falhar (inclusive arquivo que não carrega). Decisões: equipamento classificado por palavras-chave (lista da seção 9 + termos já presentes no catálogo; equipamento desconhecido é recusado, então um equipamento novo exige incluir a palavra no validador); grupos e objetivos com ids, nomes e ordem exatos; `alvo` 0 recusado; `erroComum` começa com maiúscula; mapeamento músculo → grupo e totais de exercícios/trilhas não são conferidos. Conferido pelo usuário: 235 de 235 testes em `/testes/`, app abrindo normal com os dados reais, console sem erros.
+- **Próxima etapa de código:** **5. Biblioteca.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -652,7 +653,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 1. Esqueleto estático + tema Brasa + fontes
 - [x] 2. Roteador hash + telas placeholder
 - [x] 3. Testes no navegador + `logica/tipos.js`
-- [ ] 4. Catálogo
+- [x] 4. Catálogo
 - [ ] 5. Biblioteca
 - [ ] 6. Manifest + ícones
 - [ ] 7. Service worker

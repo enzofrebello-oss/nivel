@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapas 1 e 2: topo, ícones, barra inferior de abas e telas placeholder. */
+/* componentes.css: componentes visuais. Etapas 1, 2 e 4: topo, ícones, barra inferior de abas, telas placeholder e aviso de erro. */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -105,4 +105,28 @@
 
 .aba[aria-current="page"] {
   color: var(--cor-destaque);
+}
+
+/* ---------- Aviso de erro fatal (etapa 4: "Dados do app inválidos") ---------- */
+.aviso-erro {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--cor-destaque);
+  border-radius: var(--raio);
+  background: var(--cor-aviso-fundo);
+}
+
+.aviso-erro h2 {
+  color: var(--cor-destaque);
+}
+
+.aviso-erro p {
+  margin-top: 8px;
+}
+
+.aviso-erro-detalhe {
+  margin-top: 12px;
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
 }
