@@ -2,13 +2,22 @@
 // Etapa 4: carrega o catálogo (dados/*.json, validado e congelado) e, se ele estiver certo,
 // inicia o roteador hash, que desenha as telas dentro de <main id="app">.
 // Se o catálogo falhar, mostra "Dados do app inválidos" e não abre nenhuma tela (nada é gravado).
-// Banco e service worker entram nas etapas seguintes (PROJETO.md, seção 6).
+// Etapa 7: registra o service worker (sw.js na raiz), que deixa o app inteiro offline.
+// Banco e banner de atualização entram nas etapas seguintes (PROJETO.md, seção 6).
 
 import { iniciar } from './roteador.js';
 import { iniciarCatalogo } from './catalogo.js';
 import { h, limpar } from './ui/dom.js';
 
 const app = document.getElementById('app');
+
+// Registrado antes do catálogo: mesmo com "Dados do app inválidos", um deploy corrigido chega pelo SW.
+// O caminho é relativo ao index.html, então o escopo é a pasta do app (serve numa subpasta do GitHub Pages).
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch((erro) => {
+    console.error('Service worker não registrado:', erro);
+  });
+}
 
 try {
   await iniciarCatalogo();

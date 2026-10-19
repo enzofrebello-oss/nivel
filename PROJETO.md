@@ -61,8 +61,8 @@ Alternativas descartadas: React/Vue/Svelte com Vite (exigem build e toolchain No
 
 ### Service worker e versionamento de cache
 - `sw.js` na **raiz** (escopo cobre o app inteiro), com uma constante `VERSAO = 'v1'` e uma lista `ARQUIVOS` com **todos** os arquivos do app (HTML, CSS, JS, vendor, fontes, `dados/*.json`, ícones, manifest). `pesquisa/` e `testes/` ficam fora.
-- `install`: `cache.addAll(ARQUIVOS)` no cache `treino-${VERSAO}`, com `cache: 'reload'` para não pegar cópia velha do cache HTTP.
-- `activate`: apaga caches `treino-*` diferentes do atual.
+- `install`: `cache.addAll(ARQUIVOS)` no cache `nivel-${VERSAO}`, com `cache: 'reload'` para não pegar cópia velha do cache HTTP.
+- `activate`: apaga caches `nivel-*` diferentes do atual e os `treino-*` do nome antigo (`treino-v1`).
 - `fetch`: **cache-first** para GET do próprio domínio. Navegações (`mode: 'navigate'`) recebem `index.html` do cache.
 - Atualização: o SW novo **não** usa `skipWaiting` automático. O app detecta o SW em `waiting` e mostra o banner "Nova versão disponível · Atualizar". O toque envia `postMessage('SKIP_WAITING')` e o app recarrega no `controllerchange`. Assim a página não recarrega no meio de uma série. Mesmo se recarregar, o treino está no banco.
 - **Regra de ouro:** todo deploy incrementa `VERSAO`, e todo arquivo novo entra em `ARQUIVOS`. Mudança em `dados/` também incrementa `versaoDados` (seção 4.1). A versão do app e a dos dados aparecem em Ajustes.
@@ -500,7 +500,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 4. **Catálogo**. Objetivo: `logica/validar-dados.js`, `catalogo.js` (carrega, valida, congela, mapas por id), `testes/dados.test.js`. Pronto quando: os JSON reais passam; cada regra da seção 4.1 tem um caso quebrado (dados fixos no teste) que é recusado; com um JSON quebrado o app mostra "Dados do app inválidos".
 5. **Biblioteca**. Objetivo: telas Biblioteca e Detalhe do exercício, componente "Como fazer". Pronto quando: lista os 159 exercícios; a busca ignora acentos e maiúsculas; os filtros Local e Grupo combinados dão o resultado certo; o detalhe mostra 3 passos, erro comum, espaço da ilustração e a trilha com a posição quando houver.
 6. **Manifest + ícones**. Objetivo: `manifest.webmanifest` (cores `#0D0D0F`), ícones 192/512/maskable/apple-touch, metas no `index.html`. Pronto quando: DevTools › Application › Manifest não mostra erros e o Chrome do PC oferece "Instalar".
-7. **Service worker**. Objetivo: `sw.js` com `VERSAO`, `ARQUIVOS` (incluindo fontes e `dados/`), precache, cache-first, limpeza no `activate`. Pronto quando: com DevTools em Offline, recarregar abre o app e a Biblioteca funciona; Cache Storage mostra só `treino-v1` com todos os arquivos; mudar para `v2` apaga o `v1`.
+7. **Service worker**. Objetivo: `sw.js` com `VERSAO`, `ARQUIVOS` (incluindo fontes e `dados/`), precache, cache-first, limpeza no `activate`. Pronto quando: com DevTools em Offline, recarregar abre o app e a Biblioteca funciona; Cache Storage mostra só `nivel-v1` com todos os arquivos; mudar para `v2` apaga o `v1`.
 8. **Fluxo de atualização**. Objetivo: banner "Nova versão disponível" + `SKIP_WAITING` + recarregar no `controllerchange`. Pronto quando: alterar um arquivo e a `VERSAO` faz o app aberto mostrar o banner, e tocar atualiza.
 9. **IndexedDB + migração 1**. Objetivo: vendorizar `idb`, `db/conexao.js`, `db/migracoes.js`, `db/meta.js`, conciliação de `versaoDados`. Pronto quando: DevTools › Application › IndexedDB mostra `treino` v1 com as 4 stores e todos os índices, recarregar não dá erro nem duplica nada, e `versaoDadosVista` é gravada. (Vem antes da publicação porque o backup, logo depois dela, precisa do banco.)
 10. **Publicar e instalar no Android**. ⬅ **A partir desta etapa o app fica instalado no celular.** Objetivo: publicar no GitHub Pages (endereço definitivo, não muda depois), `storage.persist()` na primeira abertura, instalar pelo Chrome. Pronto quando: o ícone está na tela inicial e o app abre em **modo avião** com a Biblioteca funcionando.
@@ -597,7 +597,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 3. Testes no navegador e `logica/tipos.js`.
 - **Feito:** etapa 4. Catálogo.
 - **Feito:** etapa 5. Biblioteca.
-- **Feito:** etapa 6. Manifest + ícones (app "Nível"). **Próxima etapa de código:** **7. Service worker.**
+- **Feito:** etapa 6. Manifest + ícones (app "Nível").
+- **Feito:** etapa 7. Service worker. **Próxima etapa de código:** **8. Fluxo de atualização.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -652,7 +653,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 4. Catálogo
 - [x] 5. Biblioteca
 - [x] 6. Manifest + ícones
-- [ ] 7. Service worker
+- [x] 7. Service worker
 - [ ] 8. Fluxo de atualização
 - [ ] 9. IndexedDB + migração 1
 - [ ] 10. Publicar e instalar no Android
