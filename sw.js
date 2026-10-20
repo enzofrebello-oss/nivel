@@ -5,8 +5,12 @@
 // pesquisa/ e testes/ ficam fora.
 // Etapa 8: sem skipWaiting automático. O SW novo fica em "waiting" até o app mandar
 // postMessage('SKIP_WAITING') (toque em "Atualizar" no banner "Nova versão disponível").
+// Etapa 9: js/db/* e vendor/idb/index.js no precache (LICENSE e README.txt do vendor ficam fora,
+// como as licenças das fontes: o app não os carrega). v6: banco renomeado para 'nivel' e aviso de
+// falha do banco em js/app.js. v7: o fetch só responde pelo app (raiz/index.html e ARQUIVOS); testes/ e
+// pesquisa/ vão direto para a rede (antes /testes/ recebia o index.html do app).
 
-const VERSAO = 'v4';
+const VERSAO = 'v7';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -21,6 +25,10 @@ const ARQUIVOS = [
   'js/app.js',
   'js/roteador.js',
   'js/catalogo.js',
+  'js/db/conexao.js',
+  'js/db/migracoes.js',
+  'js/db/meta.js',
+  'js/db/trilhas.js',
   'js/logica/busca.js',
   'js/logica/tipos.js',
   'js/logica/validar-dados.js',
@@ -35,6 +43,8 @@ const ARQUIVOS = [
   'js/telas/biblioteca.js',
   'js/telas/exercicio-detalhe.js',
   'js/telas/ajustes.js',
+
+  'vendor/idb/index.js',
 
   'dados/exercicios.json',
   'dados/progressoes.json',
@@ -79,21 +89,29 @@ self.addEventListener('message', (evento) => {
   if (evento.data === 'SKIP_WAITING') self.skipWaiting();
 });
 
-// fetch: cache-first só para GET do próprio domínio; o resto segue direto para a rede.
-// Navegações (hash na URL, start_url "./") recebem sempre o index.html do cache.
+// fetch: o SW só responde pelo app. Navegação para a raiz do escopo ou index.html recebe o
+// index.html do cache (hash na URL, start_url "./"); GET de um arquivo de ARQUIVOS é cache-first.
+// Todo o resto (testes/, pesquisa/, sw.js, outros domínios, não-GET) segue direto para a rede, sem
+// respondWith. URLs montadas a partir de registration.scope: funciona também numa subpasta do GitHub Pages.
+const ESCOPO = self.registration.scope;
+const INDICE = new URL('index.html', ESCOPO).href;
+const DO_APP = new Set(ARQUIVOS.map((arquivo) => new URL(arquivo, ESCOPO).href));
+
 self.addEventListener('fetch', (evento) => {
   const pedido = evento.request;
   if (pedido.method !== 'GET') return;
-  if (new URL(pedido.url).origin !== self.location.origin) return;
+  const url = new URL(pedido.url);
+  const endereco = url.origin + url.pathname; // sem ?query e #hash
 
   if (pedido.mode === 'navigate') {
-    const indice = new URL('index.html', self.registration.scope).href;
+    if (endereco !== ESCOPO && endereco !== INDICE) return;
     evento.respondWith(
-      caches.match(indice, { cacheName: CACHE }).then((resposta) => resposta || fetch(pedido)),
+      caches.match(INDICE, { cacheName: CACHE }).then((resposta) => resposta || fetch(pedido)),
     );
     return;
   }
 
+  if (!DO_APP.has(endereco)) return;
   evento.respondWith(
     caches.match(pedido, { cacheName: CACHE }).then((resposta) => resposta || fetch(pedido)),
   );

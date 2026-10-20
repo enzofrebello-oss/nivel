@@ -63,7 +63,7 @@ Alternativas descartadas: React/Vue/Svelte com Vite (exigem build e toolchain No
 - `sw.js` na **raiz** (escopo cobre o app inteiro), com uma constante `VERSAO = 'v1'` e uma lista `ARQUIVOS` com **todos** os arquivos do app (HTML, CSS, JS, vendor, fontes, `dados/*.json`, ícones, manifest). `pesquisa/` e `testes/` ficam fora.
 - `install`: `cache.addAll(ARQUIVOS)` no cache `nivel-${VERSAO}`, com `cache: 'reload'` para não pegar cópia velha do cache HTTP.
 - `activate`: apaga caches `nivel-*` diferentes do atual e os `treino-*` do nome antigo (`treino-v1`).
-- `fetch`: **cache-first** para GET do próprio domínio. Navegações (`mode: 'navigate'`) recebem `index.html` do cache.
+- `fetch`: o SW só responde pelo app. Navegação para a raiz do escopo ou `index.html` recebe `index.html` do cache; GET de um arquivo de `ARQUIVOS` é **cache-first**. O resto (`testes/`, `pesquisa/`, outros domínios) vai direto para a rede. Caminhos montados a partir de `registration.scope` (funciona em subpasta do GitHub Pages).
 - Atualização: o SW novo **não** usa `skipWaiting` automático. O app detecta o SW em `waiting` e mostra o banner "Nova versão disponível · Atualizar". O toque envia `postMessage('SKIP_WAITING')` e o app recarrega no `controllerchange`. Assim a página não recarrega no meio de uma série. Mesmo se recarregar, o treino está no banco.
 - **Regra de ouro:** todo deploy incrementa `VERSAO`, e todo arquivo novo entra em `ARQUIVOS`. Mudança em `dados/` também incrementa `versaoDados` (seção 4.1). A versão do app e a dos dados aparecem em Ajustes.
 - Em desenvolvimento: DevTools › Application › Service workers › marcar "Update on reload" (ou "Bypass for network").
@@ -73,6 +73,7 @@ Alternativas descartadas: React/Vue/Svelte com Vite (exigem build e toolchain No
 - No `upgrade(db, versaoAntiga, versaoNova, tx)` do `idb`, roda `migracoes[v]` para cada `v` de `versaoAntiga + 1` até `versaoNova`, em ordem, na mesma transação de upgrade.
 - Migrações publicadas **nunca são editadas**, só acrescentadas. Uma mudança de dados (ex.: preencher um campo novo) é feita na migração com cursor sobre o `tx`.
 - `blocking` (outra aba/janela com versão antiga): fecha a conexão e mostra "Recarregue o app". `blocked`: mostra aviso "Feche outras abas do app".
+- Falha ao abrir o banco: erro no console e aviso "Seus treinos não estão sendo salvos neste aparelho." (mesmo visual do banner); o resto do app continua funcionando.
 - A versão do **banco** é independente da versão dos **dados** do catálogo (seção 4.2, "Versões").
 
 ### Backup (exportar/importar JSON)
@@ -145,7 +146,7 @@ treino-app/
 │   ├── roteador.js         # tabela rota → módulo de tela; extrai :id; chama limpeza da tela anterior; marca aba ativa
 │   ├── catalogo.js         # fetch dos 3 JSON, validarDados(), Object.freeze, mapas por id (exercício, trilha, trilha do exercício, rotina)
 │   ├── db/
-│   │   ├── conexao.js      # openDB('treino', DB_VERSAO) com idb; handlers blocked/blocking
+│   │   ├── conexao.js      # openDB('nivel', DB_VERSAO) com idb; handlers blocked/blocking
 │   │   ├── migracoes.js    # migrações numeradas (1 = criação das 4 stores e índices)
 │   │   ├── sessoes.js      # iniciar, em andamento, descanso, finalizar (com avanço de trilha, 1 transação), descartar/apagar (com séries)
 │   │   ├── series.js       # adicionar, editar, apagar; por sessão; por exercício; "última vez"
@@ -194,7 +195,7 @@ treino-app/
     ├── comparacao.test.js
     ├── trilhas.test.js
     ├── metricas.test.js
-    └── backup.test.js      # ida e volta exportar/importar usando um banco separado "treino-teste"
+    └── backup.test.js      # ida e volta exportar/importar usando um banco separado "nivel-teste"
 ```
 Ilustrações: na v1 não há arquivos de imagem; o campo `imagem` do catálogo é `null` e o "Como fazer" mostra um espaço reservado. Quando o método for decidido, as imagens irão para `img/exercicios/<id>.<ext>` (e entram no precache).
 
@@ -326,7 +327,7 @@ Onde roda: na abertura do app (`catalogo.js`; se falhar, mostra "Dados do app in
 
 ### 4.2 Dados do usuário (IndexedDB)
 
-Banco `treino`, versão 1. Quatro object stores, todas com `keyPath` explícito. Do catálogo, só se copia o que precisa ficar congelado no histórico (itens da sessão, tipo e grupos da série).
+Banco `nivel`, versão 1. Quatro object stores, todas com `keyPath` explícito. Do catálogo, só se copia o que precisa ficar congelado no histórico (itens da sessão, tipo e grupos da série).
 
 #### `sessoes` (keyPath `id`): um treino
 | Campo | Tipo | Regra |
@@ -502,9 +503,9 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 6. **Manifest + ícones**. Objetivo: `manifest.webmanifest` (cores `#0D0D0F`), ícones 192/512/maskable/apple-touch, metas no `index.html`. Pronto quando: DevTools › Application › Manifest não mostra erros e o Chrome do PC oferece "Instalar".
 7. **Service worker**. Objetivo: `sw.js` com `VERSAO`, `ARQUIVOS` (incluindo fontes e `dados/`), precache, cache-first, limpeza no `activate`. Pronto quando: com DevTools em Offline, recarregar abre o app e a Biblioteca funciona; Cache Storage mostra só `nivel-v1` com todos os arquivos; mudar para `v2` apaga o `v1`.
 8. **Fluxo de atualização**. Objetivo: banner "Nova versão disponível" + `SKIP_WAITING` + recarregar no `controllerchange`. Pronto quando: alterar um arquivo e a `VERSAO` faz o app aberto mostrar o banner, e tocar atualiza.
-9. **IndexedDB + migração 1**. Objetivo: vendorizar `idb`, `db/conexao.js`, `db/migracoes.js`, `db/meta.js`, conciliação de `versaoDados`. Pronto quando: DevTools › Application › IndexedDB mostra `treino` v1 com as 4 stores e todos os índices, recarregar não dá erro nem duplica nada, e `versaoDadosVista` é gravada. (Vem antes da publicação porque o backup, logo depois dela, precisa do banco.)
+9. **IndexedDB + migração 1**. Objetivo: vendorizar `idb`, `db/conexao.js`, `db/migracoes.js`, `db/meta.js`, conciliação de `versaoDados`. Pronto quando: DevTools › Application › IndexedDB mostra `nivel` v1 com as 4 stores e todos os índices, recarregar não dá erro nem duplica nada, e `versaoDadosVista` é gravada. (Vem antes da publicação porque o backup, logo depois dela, precisa do banco.)
 10. **Publicar e instalar no Android**. ⬅ **A partir desta etapa o app fica instalado no celular.** Objetivo: publicar no GitHub Pages (endereço definitivo, não muda depois), `storage.persist()` na primeira abertura, instalar pelo Chrome. Pronto quando: o ícone está na tela inicial e o app abre em **modo avião** com a Biblioteca funcionando.
-11. **Backup**. Objetivo: `db/backup.js` (exportar, validar cada registro pelas regras da seção 4.2, importar substituindo tudo), exportar/importar em Ajustes, `testes/backup.test.js`. Pronto quando: o teste de ida e volta passa com dados fixos nas 4 stores (sessões, séries dos 3 tipos, trilhas e `meta`, inclusive `rotinaAtualId`) num banco separado "treino-teste"; no celular, exportar, apagar os dados do app e importar restaura o banco; arquivo inválido, de outro app ou com id fora do catálogo é recusado com mensagem. As etapas seguintes que gravarem dados novos conferem que eles entram no backup.
+11. **Backup**. Objetivo: `db/backup.js` (exportar, validar cada registro pelas regras da seção 4.2, importar substituindo tudo), exportar/importar em Ajustes, `testes/backup.test.js`. Pronto quando: o teste de ida e volta passa com dados fixos nas 4 stores (sessões, séries dos 3 tipos, trilhas e `meta`, inclusive `rotinaAtualId`) num banco separado "nivel-teste"; no celular, exportar, apagar os dados do app e importar restaura o banco; arquivo inválido, de outro app ou com id fora do catálogo é recusado com mensagem. As etapas seguintes que gravarem dados novos conferem que eles entram no backup.
 12. **Rotina e Hoje básico**. Objetivo: `logica/rotina.js` + `testes/rotina.test.js`; Hoje com calendário da semana, rotina atual com "Trocar" e card do treino do dia com "Começar treino". Pronto quando: os testes passam (ciclo A → B → C → A, rotina sem sessões começa no A, item de trilha sem registro usa o nível 1, trilha concluída usa o último nível); trocar a rotina muda o card e persiste após recarregar.
 13. **Treino em andamento: registrar séries**. Objetivo: `db/sessoes.js`, `db/series.js`, tela Treino (barra de progresso, card do exercício, contador grande, steppers por tipo, salvar na hora, editar/apagar série), "Continuar treino" no Hoje. Pronto quando: começar pelo Hoje, registrar séries dos 3 tipos, **fechar o app e reabrir** mostra "Continuar" com tudo salvo; cada série tem `grupos` copiado; iniciar um segundo treino é impedido (oferece continuar).
 14. **Tabela antes / hoje / +1**. Objetivo: `logica/comparacao.js` + `testes/comparacao.test.js`, tabela e pré-preenchimento na tela Treino. Pronto quando: os testes passam (3 tipos, mais séries hoje que antes, sem "antes", carga e reps mudando juntas); no segundo treino com o mesmo exercício, "antes" e "+1" conferem com o primeiro.
@@ -599,11 +600,13 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 5. Biblioteca.
 - **Feito:** etapa 6. Manifest + ícones (app "Nível").
 - **Feito:** etapa 7. Service worker.
-- **Feito:** etapa 8. Fluxo de atualização. **Próxima etapa de código:** **9. IndexedDB + migração 1.**
+- **Feito:** etapa 8. Fluxo de atualização.
+- **Feito:** etapa 9. IndexedDB + migração 1. **Próxima etapa de código:** **10. Publicar e instalar no Android.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
 - **Pendente:** no teclado numérico do Android pode faltar a tecla ":"; o tempo na tela de registrar série talvez precise de botões − e + ou de campos separados de minutos e segundos.
+- **Pendente:** Conferir no navegador que o aviso de versão nova fica escondido na tela de treino.
 - Detalhes de cada etapa em HISTORICO.md
 
 ### Decisões tomadas
@@ -656,7 +659,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 6. Manifest + ícones
 - [x] 7. Service worker
 - [x] 8. Fluxo de atualização
-- [ ] 9. IndexedDB + migração 1
+- [x] 9. IndexedDB + migração 1
 - [ ] 10. Publicar e instalar no Android
 - [ ] 11. Backup
 - [ ] 12. Rotina e Hoje básico

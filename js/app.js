@@ -7,10 +7,14 @@
 // só o toque em "Atualizar" manda SKIP_WAITING, e a página recarrega uma vez no controllerchange.
 // Na rota de treino (#/treino e subrotas) o banner fica escondido; ao sair dela, volta se o SW
 // ainda estiver em waiting.
-// O banco entra nas etapas seguintes (PROJETO.md, seção 6).
+// Etapa 9: depois do catálogo, abre o banco 'nivel' (IndexedDB, js/db/conexao.js) e concilia
+// versaoDados (grava meta.versaoDadosVista). Se o banco falhar, o erro vai para o console, aparece
+// o aviso "Seus treinos não estão sendo salvos neste aparelho." e as telas abrem assim mesmo.
 
 import { iniciar } from './roteador.js';
 import { iniciarCatalogo } from './catalogo.js';
+import { iniciarBanco } from './db/conexao.js';
+import { conciliarVersaoDados } from './db/trilhas.js';
 import { h, limpar } from './ui/dom.js';
 import { bannerAtualizacao } from './ui/componentes.js';
 
@@ -22,6 +26,7 @@ let pediuAtualizacao = false;
 let recarregando = false;
 let banner = null;
 let swEsperando = null; // SW novo em waiting que ainda não foi aplicado
+let avisoBanco = null; // aviso "Feche outras abas do app" / "Recarregue o app"
 
 // Registrado antes do catálogo: mesmo com "Dados do app inválidos", um deploy corrigido chega pelo SW.
 if ('serviceWorker' in navigator) {
@@ -103,12 +108,49 @@ function recarregar() {
   window.location.reload();
 }
 
+let catalogo = null;
 try {
-  await iniciarCatalogo();
-  iniciar(app);
+  catalogo = await iniciarCatalogo();
 } catch (erro) {
   console.error('Dados do app inválidos:', erro && erro.erros ? erro.erros : erro);
   mostrarDadosInvalidos(erro);
+}
+
+if (catalogo) {
+  await prepararBanco(catalogo);
+  iniciar(app);
+}
+
+// Abre o banco e concilia versaoDados. Não lança: um erro aqui não impede as telas de abrir.
+async function prepararBanco(cat) {
+  try {
+    const db = await iniciarBanco({
+      aoBloqueado: () => mostrarAvisoBanco('Feche outras abas do app', false),
+      aoBloqueando: () => mostrarAvisoBanco('Recarregue o app', true),
+    });
+    esconderAvisoBanco(); // o "Feche outras abas" some quando a abertura termina
+    await conciliarVersaoDados(cat, db);
+  } catch (erro) {
+    console.error('Banco de dados não abriu:', erro);
+    mostrarAvisoBanco('Seus treinos não estão sendo salvos neste aparelho.', false);
+  }
+}
+
+// Aviso do banco (seção 2, "Migrações do schema"), com o mesmo visual do banner de atualização.
+function mostrarAvisoBanco(texto, comRecarregar) {
+  esconderAvisoBanco();
+  avisoBanco = h('div', { class: 'banner-atualizacao', role: 'alert' },
+    h('span', { class: 'banner-atualizacao-texto' }, texto),
+    comRecarregar
+      ? h('button', { type: 'button', class: 'banner-atualizacao-botao', onclick: recarregar }, 'Recarregar')
+      : null,
+  );
+  document.body.append(avisoBanco);
+}
+
+function esconderAvisoBanco() {
+  if (avisoBanco) avisoBanco.remove();
+  avisoBanco = null;
 }
 
 // Tela de erro fatal: sem abas nem engrenagem, porque nenhuma tela funciona sem o catálogo.
