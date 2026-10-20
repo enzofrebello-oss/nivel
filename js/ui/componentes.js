@@ -1,7 +1,8 @@
 // componentes.js: componentes compartilhados (PROJETO.md, seção 5).
 // Etapa 5: "Como fazer" (espaço da ilustração, 3 passos, erro comum) e selos de tipo e dificuldade.
 // Etapa 8: banner de atualização ("Nova versão disponível · Atualizar").
-// Os outros componentes (modal, toast, stepper, contador, seletor) entram nas etapas que os usam.
+// Etapa 12: modal (abrirModal), usado pela escolha da rotina no Hoje.
+// Os outros componentes (confirmação, toast, stepper, contador, seletor) entram nas etapas que os usam.
 
 import { h } from './dom.js';
 
@@ -60,4 +61,29 @@ export function comoFazer(exercicio) {
       h('strong', null, 'Erro comum'),
       h('p', null, exercicio.erroComum)),
   );
+}
+
+// Modal: <dialog> nativo aberto com showModal() (prende o foco, Esc fecha, fundo escurecido).
+// Toque fora do quadro ou em "Fechar" também fecha. O dialog sai do DOM ao fechar.
+// conteudo = nó (ou lista de nós) do corpo. Devolve fechar().
+export function abrirModal({ titulo, conteudo }) {
+  const idTitulo = `modal-titulo-${Date.now()}`;
+  const fechar = () => {
+    if (dialogo.open) dialogo.close();
+  };
+  const dialogo = h('dialog', { class: 'modal', 'aria-labelledby': idTitulo },
+    h('div', { class: 'modal-quadro' },
+      h('div', { class: 'modal-topo' },
+        h('h2', { class: 'modal-titulo', id: idTitulo }, titulo),
+        h('button', { type: 'button', class: 'botao', onclick: fechar }, 'Fechar')),
+      h('div', { class: 'modal-corpo' }, conteudo)),
+  );
+  // Toque no fundo: o alvo é o próprio dialog (o quadro cobre todo o conteúdo).
+  dialogo.addEventListener('click', (ev) => {
+    if (ev.target === dialogo) fechar();
+  });
+  dialogo.addEventListener('close', () => dialogo.remove());
+  document.body.append(dialogo);
+  dialogo.showModal();
+  return fechar;
 }

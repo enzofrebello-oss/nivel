@@ -1,4 +1,4 @@
-// db.test.js: testes do banco (PROJETO.md, seção 2, "Migrações do schema", seção 4.2 e etapa 9).
+// db.test.js: testes do banco (PROJETO.md, seção 2, "Migrações do schema", seção 4.2 e etapas 9 e 12).
 // Usa um banco separado, 'nivel-teste-db', apagado no começo e no fim; NUNCA o banco real 'nivel'.
 // Abre pelo mesmo abrirBanco do app (mesmas migrações), só com outro nome.
 
@@ -7,7 +7,8 @@ import { deleteDB } from '../vendor/idb/index.js';
 import { abrirBanco, NOME_BANCO } from '../js/db/conexao.js';
 import { migracoes, DB_VERSAO } from '../js/db/migracoes.js';
 import { lerMeta, gravarMeta } from '../js/db/meta.js';
-import { reposicionarTrilha, conciliarVersaoDados } from '../js/db/trilhas.js';
+import { reposicionarTrilha, conciliarVersaoDados, lerProgressoTrilhas } from '../js/db/trilhas.js';
+import { listarSessoes } from '../js/db/sessoes.js';
 
 const NOME_TESTE = 'nivel-teste-db';
 let db = null;
@@ -210,6 +211,33 @@ teste('conciliar: versão nova reposiciona a trilha cujo nível saiu e grava a n
   igual(resultado, { mudou: true, ajustadas: 1 });
   igual((await db.get('trilhas', 'flexoes')).exercicioAtualId, 'flexao-inclinada-mesa');
   igual(await lerMeta('versaoDadosVista', db), 2);
+});
+
+// ---------- Leituras do Hoje (etapa 12) ----------
+
+teste('listarSessoes: devolve as sessões do banco em ordem de início', async () => {
+  const antiga = { ...SESSAO, id: 's-0', inicio: 1760000000000, fim: 1760003600000, status: 'concluida' };
+  await db.put('sessoes', antiga);
+  igual((await listarSessoes(db)).map((s) => s.id), ['s-0', 's-1']);
+  await db.delete('sessoes', 's-0');
+  igual((await listarSessoes(db)).map((s) => s.id), ['s-1']);
+});
+
+teste('listarSessoes: banco sem sessões devolve lista vazia', async () => {
+  const vazio = await abrirBanco({ nome: `${NOME_TESTE}-vazio` });
+  try {
+    igual(await listarSessoes(vazio), []);
+    igual((await lerProgressoTrilhas(vazio)).size, 0, 'sem registros de trilhas');
+  } finally {
+    vazio.close();
+    await deleteDB(`${NOME_TESTE}-vazio`);
+  }
+});
+
+teste('lerProgressoTrilhas: Map trilhaId → registro da store trilhas', async () => {
+  const progresso = await lerProgressoTrilhas(db);
+  igual([...progresso.keys()], ['flexoes']);
+  igual(progresso.get('flexoes'), await db.get('trilhas', 'flexoes'));
 });
 
 // ---------- Limpeza ----------

@@ -1,7 +1,16 @@
 // trilhas.js: progresso das trilhas no banco (PROJETO.md, seção 4.2, "trilhas" e "Versões e migração").
-// Etapa 9: só a conciliação com versaoDados. Ler progresso, avançar e definir nível entram na etapa 18.
+// Etapa 9: conciliação com versaoDados. Etapa 12: lerProgressoTrilhas (o Hoje resolve os itens de trilha
+// do treino do dia). Avançar e definir nível entram na etapa 18.
 
 import { obterBanco } from './conexao.js';
+
+// Progresso de todas as trilhas: Map trilhaId → registro da store trilhas.
+// Trilha sem registro não aparece (= nível 1 é o atual, seção 4.2).
+export async function lerProgressoTrilhas(db) {
+  const banco = db || await obterBanco();
+  const registros = await banco.getAll('trilhas');
+  return new Map(registros.map((r) => [r.trilhaId, r]));
+}
 
 // Regra da conciliação para um registro de trilhas (função pura, não grava nada).
 // Se exercicioAtualId saiu da trilha do catálogo, passa ao primeiro nível não concluído

@@ -603,11 +603,13 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 8. Fluxo de atualização.
 - **Feito:** etapa 9. IndexedDB + migração 1.
 - **Feito:** etapa 10. Publicado no GitHub Pages (https://enzofrebello-oss.github.io/nivel/) e instalado no Android.
-- **Feito:** etapa 11. Backup (exportar/importar em Ajustes). **Próxima etapa de código:** **12. Rotina e Hoje básico.**
+- **Feito:** etapa 11. Backup (exportar/importar em Ajustes).
+- **Feito:** etapa 12. Rotina e Hoje básico (calendário da semana, rotina com "Trocar" e treino do dia). **Próxima etapa de código:** **13. Treino em andamento: registrar séries.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
 - **Pendente:** no teclado numérico do Android pode faltar a tecla ":"; o tempo na tela de registrar série talvez precise de botões − e + ou de campos separados de minutos e segundos.
+- **Pendente:** Escolher o nível inicial de cada trilha (ex.: começar a trilha de flexões direto no nível 3). Sem isso, todo mundo começa no nível 1. Encaixar antes da etapa 16 (uso real).
 - Detalhes de cada etapa em HISTORICO.md
 
 ### Decisões tomadas
@@ -663,7 +665,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 9. IndexedDB + migração 1
 - [x] 10. Publicar e instalar no Android
 - [x] 11. Backup
-- [ ] 12. Rotina e Hoje básico
+- [x] 12. Rotina e Hoje básico
 - [ ] 13. Treino em andamento: registrar séries
 - [ ] 14. Tabela antes / hoje / +1
 - [ ] 15. Descanso

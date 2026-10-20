@@ -10,8 +10,10 @@
 // falha do banco em js/app.js. v7: o fetch só responde pelo app (raiz/index.html e ARQUIVOS); testes/ e
 // pesquisa/ vão direto para a rede (antes /testes/ recebia o index.html do app).
 // Etapa 11 (v8 a v10): js/db/backup.js no precache; ajustes.js, backup.js e componentes.css alterados (backup em Ajustes).
+// Etapa 12 (v11): js/db/sessoes.js, js/logica/datas.js, js/logica/rotina.js e js/ui/semana.js no precache;
+// hoje.js, db/trilhas.js, ui/componentes.js e componentes.css alterados (Hoje básico).
 
-const VERSAO = 'v10';
+const VERSAO = 'v11';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -31,11 +33,15 @@ const ARQUIVOS = [
   'js/db/meta.js',
   'js/db/trilhas.js',
   'js/db/backup.js',
+  'js/db/sessoes.js',
   'js/logica/busca.js',
+  'js/logica/datas.js',
+  'js/logica/rotina.js',
   'js/logica/tipos.js',
   'js/logica/validar-dados.js',
   'js/ui/dom.js',
   'js/ui/componentes.js',
+  'js/ui/semana.js',
   'js/telas/hoje.js',
   'js/telas/trilhas.js',
   'js/telas/treino.js',
