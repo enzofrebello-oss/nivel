@@ -6,6 +6,7 @@ import {
   parseCarga, parseReps, parseTempo, parseSerie,
   validarSerie,
   formatarCarga, formatarTempo, formatarSerie,
+  PASSOS, aplicarPasso, parseCampo, formatarCampo,
 } from '../js/logica/tipos.js';
 
 // O parse aceitou e devolveu exatamente este valor.
@@ -173,4 +174,42 @@ teste("formatar série tempo: { segundos: 50 } vira '0:50'", () => {
 teste('ida e volta: formatar e ler de novo devolve o mesmo valor (carga e tempo)', () => {
   for (const kg of [0.5, 2.5, 60, 62.5, 62.25, 1000]) aceita(parseCarga(formatarCarga(kg)), kg);
   for (const s of [1, 45, 90, 125, 3600, 7200]) aceita(parseTempo(formatarTempo(s)), s);
+});
+
+// ---------- Botões − e + e digitação no número grande (etapa 13) ----------
+teste('passos: reps de 1 em 1, tempo de 5 em 5 s, carga de 1 em 1 kg', () => {
+  igual(PASSOS, { carga: 1, reps: 1, segundos: 5 });
+  igual(aplicarPasso('reps', 10, +1, 'corpo'), 11);
+  igual(aplicarPasso('reps', 10, -1, 'carga'), 9);
+  igual(aplicarPasso('segundos', 45, +1, 'tempo'), 50);
+  igual(aplicarPasso('segundos', 45, -1, 'tempo'), 40);
+  igual(aplicarPasso('carga', 60, +1, 'carga'), 61);
+  igual(aplicarPasso('carga', 62.5, -1, 'carga'), 61.5);
+  igual(aplicarPasso('carga', 0.1, +1, 'carga'), 1.1, 'sem erro de ponto flutuante');
+});
+
+teste('passos: nada abaixo do mínimo válido nem acima do máximo', () => {
+  igual(aplicarPasso('reps', 1, -1, 'corpo'), null);
+  igual(aplicarPasso('segundos', 5, -1, 'tempo'), null, '5 − 5 = 0 não vale');
+  igual(aplicarPasso('segundos', 3, -1, 'tempo'), null);
+  igual(aplicarPasso('carga', 1, -1, 'carga'), null, '0 kg não vale');
+  igual(aplicarPasso('carga', 0.5, -1, 'carga'), null);
+  igual(aplicarPasso('reps', 100, +1, 'carga'), null, 'reps em carga vão até 100');
+  igual(aplicarPasso('reps', 100, +1, 'corpo'), 101, 'reps em corpo vão até 500');
+  igual(aplicarPasso('reps', 500, +1, 'corpo'), null);
+  igual(aplicarPasso('segundos', 7200, +1, 'tempo'), null);
+  igual(aplicarPasso('carga', 1000, +1, 'carga'), null);
+});
+
+teste('digitação: tempo em segundos (90 → 1:30), m:ss também vale; carga aceita vírgula', () => {
+  aceita(parseCampo('segundos', '90', 'tempo'), 90);
+  igual(formatarCampo('segundos', 90), '1:30');
+  aceita(parseCampo('segundos', '1:30', 'tempo'), 90);
+  recusa(parseCampo('segundos', '0', 'tempo'));
+  aceita(parseCampo('carga', '62,5', 'carga'), 62.5);
+  igual(formatarCampo('carga', 62.5), '62,5');
+  aceita(parseCampo('reps', '12', 'corpo'), 12);
+  recusa(parseCampo('reps', '0', 'corpo'));
+  recusa(parseCampo('reps', '8,5', 'carga'));
+  recusa(parseCampo('outro', '1', 'corpo'));
 });

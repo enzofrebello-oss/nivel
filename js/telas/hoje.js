@@ -3,16 +3,19 @@
 //   Sem sessões, nenhum dia fica marcado.
 // - Rotina atual (meta.rotinaAtualId) com "Trocar": modal com as 12 rotinas, primeiro as de casa,
 //   depois as de academia, agrupadas por objetivo. A escolha é gravada no banco e persiste ao recarregar.
-// - Card do treino do dia (js/logica/rotina.js) com o botão grande "Começar treino". Até a etapa 13 ele só
-//   abre a tela Treino provisória (não cria sessão).
+// - Card do treino do dia (js/logica/rotina.js) com o botão grande "Começar treino", que cria a sessão
+//   (db/sessoes.js, iniciarSessao) e abre a tela Treino.
+// Etapa 13: com um treino em andamento, o card mostra esse treino e o botão vira "Continuar treino".
+// Começar um segundo treino é impedido: se outra aba já começou um, o modal oferece continuar.
 // O título "Hoje" fica só no topo (roteador). Próximo nível, recorde da semana, aviso de backup e
-// Treino livre entram nas etapas 16 e 23; "Continuar treino", na etapa 13.
+// Treino livre entram nas etapas 16 e 23.
 import { h, limpar } from '../ui/dom.js';
 import { abrirModal } from '../ui/componentes.js';
 import { calendarioSemana } from '../ui/semana.js';
 import { obterCatalogo } from '../catalogo.js';
 import { lerMeta, gravarMeta } from '../db/meta.js';
-import { listarSessoes } from '../db/sessoes.js';
+import { listarSessoes, iniciarSessao } from '../db/sessoes.js';
+import { listarSeriesDaSessao } from '../db/series.js';
 import { lerProgressoTrilhas } from '../db/trilhas.js';
 import { diasTreinadosNaSemana } from '../logica/datas.js';
 import { nomeRotina, rotinasParaEscolha, treinoDoDia, textoAlvo } from '../logica/rotina.js';
@@ -39,6 +42,45 @@ export async function render(container) {
       bancoOk = false;
     }
     const rotina = rotinaId ? catalogo.rotinaPorId.get(rotinaId) : undefined;
+    const emAndamento = sessoes
+      .filter((s) => s.status === 'andamento')
+      .reduce((a, b) => (!a || b.inicio > a.inicio ? b : a), null);
+    let seriesFeitas = 0;
+    if (emAndamento) {
+      try {
+        seriesFeitas = (await listarSeriesDaSessao(emAndamento.id)).length;
+      } catch (erro) {
+        console.error('Hoje: não foi possível contar as séries:', erro);
+      }
+    }
+
+    // "Começar treino": cria a sessão com os itens do treino do dia. Se já existe uma em andamento
+    // (ex.: começada em outra aba), não cria outra e oferece continuar.
+    const comecar = async (botao, treino, erroEl) => {
+      botao.disabled = true;
+      erroEl.textContent = '';
+      try {
+        const { sessao, jaExistia } = await iniciarSessao({
+          rotinaId: rotina.id,
+          diaId: treino.dia.id,
+          nome: treino.dia.nome,
+          local: rotina.local,
+          itens: treino.itens,
+          versaoDados: catalogo.versaoDados,
+        });
+        if (jaExistia) {
+          botao.disabled = false;
+          fecharModal = abrirModal({ titulo: 'Treino em andamento', conteudo: avisoJaExiste(sessao) });
+          await desenhar();
+          return;
+        }
+        location.hash = `#/treino/${encodeURIComponent(sessao.id)}`;
+      } catch (erro) {
+        console.error('Hoje: não foi possível começar o treino:', erro);
+        erroEl.textContent = 'Não foi possível começar o treino (banco indisponível).';
+        botao.disabled = false;
+      }
+    };
 
     const escolher = () => {
       fecharModal = abrirModal({
@@ -61,7 +103,8 @@ export async function render(container) {
       calendarioSemana(diasTreinadosNaSemana(sessoes)),
       cartaoRotina(catalogo, rotina, bancoOk, escolher),
     );
-    if (rotina) tela.append(cartaoTreinoDoDia(catalogo, treinoDoDia(rotina, sessoes, catalogo, progresso)));
+    if (emAndamento) tela.append(cartaoEmAndamento(catalogo, emAndamento, seriesFeitas));
+    else if (rotina) tela.append(cartaoTreinoDoDia(catalogo, treinoDoDia(rotina, sessoes, catalogo, progresso), comecar));
   }
 
   await desenhar();
@@ -90,23 +133,53 @@ function cartaoRotina(catalogo, rotina, bancoOk, aoEscolher) {
     h('button', { type: 'button', class: 'botao', 'aria-label': 'Trocar rotina', onclick: aoEscolher }, 'Trocar'));
 }
 
+// Lista de exercícios do card (nome, trilha, séries × alvo).
+function listaDeItens(catalogo, itens) {
+  return h('ol', { class: 'hoje-itens' },
+    itens.map((item) => {
+      const exercicio = catalogo.exercicioPorId.get(item.exercicioId);
+      const trilha = item.trilhaId ? catalogo.trilhaPorId.get(item.trilhaId) : null;
+      return h('li', { class: 'hoje-item' },
+        h('span', { class: 'hoje-item-texto' },
+          h('span', { class: 'hoje-item-nome' }, exercicio ? exercicio.nome : item.exercicioId),
+          trilha ? h('span', { class: 'hoje-item-trilha' }, `Trilha ${trilha.nome}`) : null),
+        h('span', { class: 'hoje-item-alvo' }, textoAlvo(item, exercicio ? exercicio.tipo : null)));
+    }));
+}
+
+// Card do treino em andamento: o que foi começado (mesmo que a rotina tenha mudado) e "Continuar treino".
+function cartaoEmAndamento(catalogo, sessao, seriesFeitas) {
+  return h('section', { class: 'cartao hoje-treino', 'aria-labelledby': 'hoje-treino-titulo' },
+    h('p', { class: 'hoje-rotulo' }, 'Treino em andamento'),
+    h('h2', { class: 'hoje-treino-nome', id: 'hoje-treino-titulo' }, sessao.nome),
+    h('p', { class: 'hoje-aviso' }, `${seriesFeitas} ${seriesFeitas === 1 ? 'série registrada' : 'séries registradas'}. Termine este treino antes de começar outro.`),
+    listaDeItens(catalogo, sessao.itens),
+    h('a', { class: 'botao botao-destaque botao-grande', href: `#/treino/${encodeURIComponent(sessao.id)}` }, 'Continuar treino'));
+}
+
+// Conteúdo do modal quando já existe um treino em andamento.
+function avisoJaExiste(sessao) {
+  return [
+    h('p', { class: 'hoje-aviso' }, `Já existe um treino em andamento (${sessao.nome}). Só dá para ter um por vez: continue esse treino.`),
+    h('a', { class: 'botao botao-destaque botao-grande', href: `#/treino/${encodeURIComponent(sessao.id)}` }, 'Continuar treino'),
+  ];
+}
+
 // Card do treino do dia: nome do dia, exercícios com séries × alvo e o botão grande "Começar treino".
-function cartaoTreinoDoDia(catalogo, { dia, itens }) {
+function cartaoTreinoDoDia(catalogo, treino, aoComecar) {
+  const { dia, itens } = treino;
+  const erroEl = h('p', { class: 'hoje-aviso hoje-erro', role: 'alert' });
+  const botao = h('button', {
+    type: 'button',
+    class: 'botao botao-destaque botao-grande',
+    onclick: () => aoComecar(botao, treino, erroEl),
+  }, 'Começar treino');
   return h('section', { class: 'cartao hoje-treino', 'aria-labelledby': 'hoje-treino-titulo' },
     h('p', { class: 'hoje-rotulo' }, 'Treino do dia'),
     h('h2', { class: 'hoje-treino-nome', id: 'hoje-treino-titulo' }, dia.nome),
-    h('ol', { class: 'hoje-itens' },
-      itens.map((item) => {
-        const exercicio = catalogo.exercicioPorId.get(item.exercicioId);
-        const trilha = item.trilhaId ? catalogo.trilhaPorId.get(item.trilhaId) : null;
-        return h('li', { class: 'hoje-item' },
-          h('span', { class: 'hoje-item-texto' },
-            h('span', { class: 'hoje-item-nome' }, exercicio ? exercicio.nome : item.exercicioId),
-            trilha ? h('span', { class: 'hoje-item-trilha' }, `Trilha ${trilha.nome}`) : null),
-          h('span', { class: 'hoje-item-alvo' }, textoAlvo(item, exercicio ? exercicio.tipo : null)));
-      })),
-    // Etapa 12: só abre a tela Treino provisória; a etapa 13 cria a sessão aqui.
-    h('a', { class: 'botao botao-destaque botao-grande', href: '#/treino/novo' }, 'Começar treino'),
+    listaDeItens(catalogo, itens),
+    botao,
+    erroEl,
   );
 }
 

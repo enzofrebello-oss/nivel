@@ -2,6 +2,8 @@
 // carga (carga + reps), corpo (reps), tempo (segundos): campos, validação, parse e formatação.
 // Funções puras: sem DOM, sem banco. Entradas de texto aceitam vírgula decimal e tempo em ss ou m:ss.
 //
+// Etapa 13: passos dos botões − e + (aplicarPasso) e parse/formatação por campo (número grande da tela Treino).
+//
 // Parse devolve { ok: true, valor } ou { ok: false, erro } (erro em pt-BR, pronto para a interface).
 
 export const TIPOS = ['carga', 'corpo', 'tempo'];
@@ -194,4 +196,44 @@ export function formatarSerie(serie) {
     default:
       return '';
   }
+}
+
+// ---------- Botões − e + (etapa 13) ----------
+
+// Passo de cada campo nos botões − e +: reps de 1 em 1, tempo de 5 em 5 s, carga de 1 em 1 kg.
+export const PASSOS = Object.freeze({ carga: 1, reps: 1, segundos: 5 });
+
+// Valida um campo de medida já convertido (tipo define o limite das reps).
+export function validarCampo(campo, valor, tipo) {
+  if (campo === 'carga') return validarCarga(valor);
+  if (campo === 'reps') return validarReps(valor, tipo);
+  if (campo === 'segundos') return validarSegundos(valor);
+  return falha(`Campo desconhecido: ${campo}.`);
+}
+
+// Novo valor depois de tocar em − (direcao -1) ou + (direcao +1). Devolve null quando o
+// resultado sairia da faixa válida (nada abaixo do mínimo nem acima do máximo): o botão fica parado.
+// Carga é arredondada a 2 casas (62,5 + 1 = 63,5 sem erro de ponto flutuante).
+export function aplicarPasso(campo, valor, direcao, tipo) {
+  const passo = PASSOS[campo];
+  if (!passo || typeof valor !== 'number' || !Number.isFinite(valor)) return null;
+  let novo = valor + direcao * passo;
+  if (campo === 'carga') novo = Math.round(novo * 100) / 100;
+  return validarCampo(campo, novo, tipo).ok ? novo : null;
+}
+
+// Converte o texto digitado direto no número grande. Tempo: só dígitos = segundos ("90" → 90,
+// exibido 1:30); m:ss também é aceito. Carga aceita vírgula. Devolve { ok, valor } ou { ok: false, erro }.
+export function parseCampo(campo, texto, tipo) {
+  if (campo === 'carga') return parseCarga(texto);
+  if (campo === 'reps') return parseReps(texto, tipo);
+  if (campo === 'segundos') return parseTempo(texto);
+  return falha(`Campo desconhecido: ${campo}.`);
+}
+
+// Texto do número grande: carga "62,5", reps "10", tempo "1:30".
+export function formatarCampo(campo, valor) {
+  if (campo === 'carga') return formatarCarga(valor);
+  if (campo === 'segundos') return formatarTempo(valor);
+  return String(valor);
 }

@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. */
+/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. Etapa 13: contador e tela Treino. */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -832,4 +832,298 @@
 .escolha-rotina:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.hoje-erro:empty {
+  display: none;
+}
+
+.hoje-erro {
+  margin: 12px 0 0;
+  color: var(--cor-destaque);
+}
+
+/* ---------- Contador (etapa 13) ---------- */
+/* Número grande entre − e +; o número é um campo de texto (tocar abre o teclado numérico). */
+.contador {
+  display: grid;
+  gap: 4px;
+}
+
+.contador-rotulo {
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.contador-linha {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: 8px;
+}
+
+.contador-botao {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.contador-botao:active:not(:disabled) {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+}
+
+.contador-botao:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.contador-numero {
+  width: 100%;
+  min-width: 0;
+  min-height: 56px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.contador-numero:focus {
+  border-color: var(--cor-destaque);
+  outline: none;
+  background: var(--cor-fundo);
+}
+
+.contador-grande .contador-linha {
+  grid-template-columns: 64px minmax(0, 1fr) 64px;
+}
+
+.contador-grande .contador-botao {
+  width: 64px;
+  height: 64px;
+  font-size: 2.25rem;
+}
+
+.contador-grande .contador-numero {
+  min-height: 88px;
+  font-size: 4.5rem;
+}
+
+.contador-dica {
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.contador-erro:empty {
+  display: none;
+}
+
+.contador-erro {
+  color: var(--cor-destaque);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ---------- Treino em andamento (etapa 13) ---------- */
+.treino {
+  display: grid;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.treino-nome {
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+.treino-inicio,
+.treino-progresso-texto {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+.treino-progresso {
+  display: grid;
+  gap: 6px;
+}
+
+/* Um trecho por exercício; a área de toque (44 px) é maior que a barra desenhada. */
+.treino-progresso-barra {
+  display: flex;
+  gap: 4px;
+}
+
+.treino-progresso-barra li {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.treino-progresso-trecho {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.treino-progresso-trecho::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 10px;
+  transform: translateY(-50%);
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  background: var(--cor-cartao);
+}
+
+.treino-progresso-trecho.feito::before {
+  border-color: var(--cor-destaque);
+  background: var(--cor-destaque);
+}
+
+.treino-progresso-trecho.atual::before {
+  height: 14px;
+  border: 2px solid var(--cor-texto);
+}
+
+.treino-exercicio {
+  display: grid;
+  gap: 16px;
+  border-color: var(--cor-destaque);
+}
+
+.treino-exercicio-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.treino-exercicio-texto {
+  min-width: 0;
+}
+
+.treino-exercicio-nome {
+  font-size: 1.5rem;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.treino-exercicio-alvo {
+  color: var(--cor-destaque);
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.treino-exercicio-trilha,
+.treino-series-vazio {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+.treino-exercicio-topo .botao {
+  flex: none;
+}
+
+.treino-series {
+  display: grid;
+  gap: 6px;
+}
+
+.treino-series-lista {
+  display: grid;
+  gap: 6px;
+}
+
+.treino-serie {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: 8px 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  text-align: left;
+}
+
+.treino-serie-numero {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+.treino-serie-valor {
+  flex: 1;
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.treino-serie-editar {
+  color: var(--cor-destaque);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.treino-contadores {
+  display: grid;
+  gap: 16px;
+}
+
+.treino-status:empty {
+  display: none;
+}
+
+.treino-status {
+  margin-top: -8px;
+  color: var(--cor-texto-2);
+  text-align: center;
+}
+
+.treino-navegacao {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Modal de editar/apagar série */
+.editar-serie {
+  display: grid;
+  gap: 16px;
+}
+
+.editar-serie-atual {
+  color: var(--cor-texto-2);
+}
+
+.editar-serie-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }

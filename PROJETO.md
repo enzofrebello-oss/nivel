@@ -413,7 +413,7 @@ Chave-valor, ex. `{ "chave": "rotinaAtualId", "valor": "massa-3-casa" }`.
 | `corpo` | `reps` | inteiro 1–500 | `15 reps` |
 | `tempo` | `segundos` | inteiro 1–7200; entrada em `ss` ou `m:ss` | `0:50` / `1:30` |
 
-Campos de outro tipo ficam **ausentes** (não `0`). Stepper: carga ±2,5 kg, reps ±1 (contador grande), tempo ±5 s. Exercício unilateral: registra o valor por lado; a série inclui os dois lados.
+Campos de outro tipo ficam **ausentes** (não `0`). Botões − e + (etapa 13): carga ±1 kg, reps ±1 (contador grande), tempo ±5 s, sem passar do mínimo nem do máximo válidos; tocar no número abre o teclado numérico para digitar (tempo digitado em segundos: 90 aparece como 1:30). Exercício unilateral: registra o valor por lado; a série inclui os dois lados.
 
 #### Comparação "antes / hoje / +1" (`js/logica/comparacao.js`)
 - **antes**: séries da última sessão concluída com o mesmo exercício, pareadas por posição (1ª com 1ª, 2ª com 2ª…).
@@ -508,9 +508,18 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 11. **Backup**. Objetivo: `db/backup.js` (exportar, validar cada registro pelas regras da seção 4.2, importar substituindo tudo), exportar/importar em Ajustes, `testes/backup.test.js`. Pronto quando: o teste de ida e volta passa com dados fixos nas 4 stores (sessões, séries dos 3 tipos, trilhas e `meta`, inclusive `rotinaAtualId`) num banco separado "nivel-teste"; no celular, exportar, apagar os dados do app e importar restaura o banco; arquivo inválido, de outro app ou com id fora do catálogo é recusado com mensagem. As etapas seguintes que gravarem dados novos conferem que eles entram no backup.
 12. **Rotina e Hoje básico**. Objetivo: `logica/rotina.js` + `testes/rotina.test.js`; Hoje com calendário da semana, rotina atual com "Trocar" e card do treino do dia com "Começar treino". Pronto quando: os testes passam (ciclo A → B → C → A, rotina sem sessões começa no A, item de trilha sem registro usa o nível 1, trilha concluída usa o último nível); trocar a rotina muda o card e persiste após recarregar.
 13. **Treino em andamento: registrar séries**. Objetivo: `db/sessoes.js`, `db/series.js`, tela Treino (barra de progresso, card do exercício, contador grande, steppers por tipo, salvar na hora, editar/apagar série), "Continuar treino" no Hoje. Pronto quando: começar pelo Hoje, registrar séries dos 3 tipos, **fechar o app e reabrir** mostra "Continuar" com tudo salvo; cada série tem `grupos` copiado; iniciar um segundo treino é impedido (oferece continuar).
+13b. **Fluxo do treino**. Objetivo:
+    - Ao registrar a última série pedida de um exercício, avançar sozinho para o próximo, com um aviso curto "Próximo: <nome>".
+    - A lista de séries registradas vira uma linha compacta de bolinhas (ex.: 20 · 22 · 20). Tocar numa bolinha abre editar/apagar.
+    - Exercícios de tempo: botão de play embaixo do número grande. A contagem é regressiva, a tela fica acesa durante a contagem e, ao zerar, o celular vibra e a série é registrada sozinha.
+    - No último exercício concluído, mostrar só os botões "Anterior" e "Sair".
+    - Esconder a barra de abas na tela de treino (como no design aprovado).
 14. **Tabela antes / hoje / +1**. Objetivo: `logica/comparacao.js` + `testes/comparacao.test.js`, tabela e pré-preenchimento na tela Treino. Pronto quando: os testes passam (3 tipos, mais séries hoje que antes, sem "antes", carga e reps mudando juntas); no segundo treino com o mesmo exercício, "antes" e "+1" conferem com o primeiro.
 15. **Descanso**. Objetivo: `ui/anel.js`, modo Descanso, `sessao.descanso` no banco. Pronto quando: concluir uma série abre o descanso com o tempo do item; −15 s e +15 s funcionam; ao zerar, vibra e volta sozinho para a série; recarregar no meio continua com o tempo certo.
 16. **Finalizar, descartar, avulso e treino livre**. Objetivo: Finalizar/Descartar com confirmação, "+ Exercício" (seletor), Treino livre, resumo = Detalhe da sessão em modo leitura. Pronto quando: um treino inteiro vai do Hoje ao resumo; descartar apaga as séries; depois de finalizar, o Hoje mostra o dia seguinte da rotina; um backup exportado depois de um treino e importado restaura a sessão e as séries. **A partir daqui, uso real** (o que foi registrado antes é teste e pode ser apagado). O avanço automático de nível só chega na etapa 18; até lá, as séries já contam para o progresso das trilhas, e o nível pode ser ajustado à mão.
+    - Hoje com a data grande no topo (ex.: "Terça, 20 de outubro") e o card do treino do dia.
+    - Abaixo, "Treino para amanhã · <dia da semana, data>". Ao tocar, perguntar "Tem certeza que quer fazer esse treino hoje?", com "Não" em laranja (destaque) e "Sim" em preto.
+    - Treino concluído: o card encolhe e mostra "Concluído · Parabéns, campeão", uma frase motivacional curta em cinza, um ícone de foguinho e, à direita, o botão ↻ para refazer o mesmo treino do zero. Isso conta como um segundo treino no dia, mas o calendário marca o dia uma vez só.
 17. **Trilhas: lógica**. Objetivo: `logica/trilhas.js` + `testes/trilhas.test.js`. Pronto quando: os casos da seção 4.3 passam.
 18. **Tela Trilhas + avanço**. Objetivo: `db/trilhas.js`, tela Trilhas, avanço ao finalizar (mesma transação), "Definir como nível atual", "Novo nível" no resumo. Pronto quando: bater a meta num treino avança o nível e o treino seguinte já usa o novo exercício; a escolha manual persiste; anel e "seu melhor" conferem com um cálculo manual.
 19. **Histórico**. Objetivo: aba Evolução (Treinos) e Detalhe da sessão com edição (editar/apagar série, adicionar série esquecida, apagar sessão). Pronto quando: as sessões aparecem agrupadas por mês, e as edições persistem e aparecem na coluna "antes" do treino seguinte.
@@ -604,11 +613,11 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 9. IndexedDB + migração 1.
 - **Feito:** etapa 10. Publicado no GitHub Pages (https://enzofrebello-oss.github.io/nivel/) e instalado no Android.
 - **Feito:** etapa 11. Backup (exportar/importar em Ajustes).
-- **Feito:** etapa 12. Rotina e Hoje básico (calendário da semana, rotina com "Trocar" e treino do dia). **Próxima etapa de código:** **13. Treino em andamento: registrar séries.**
+- **Feito:** etapa 12. Rotina e Hoje básico (calendário da semana, rotina com "Trocar" e treino do dia).
+- **Feito:** etapa 13. Treino em andamento: registrar séries (contadores com − e + e digitação, salvar na hora, editar/apagar, "Continuar treino" no Hoje), conferida no celular. **Próxima etapa de código:** **13b. Fluxo do treino.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
-- **Pendente:** no teclado numérico do Android pode faltar a tecla ":"; o tempo na tela de registrar série talvez precise de botões − e + ou de campos separados de minutos e segundos.
 - **Pendente:** Escolher o nível inicial de cada trilha (ex.: começar a trilha de flexões direto no nível 3). Sem isso, todo mundo começa no nível 1. Encaixar antes da etapa 16 (uso real).
 - Detalhes de cada etapa em HISTORICO.md
 
@@ -666,7 +675,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 10. Publicar e instalar no Android
 - [x] 11. Backup
 - [x] 12. Rotina e Hoje básico
-- [ ] 13. Treino em andamento: registrar séries
+- [x] 13. Treino em andamento: registrar séries
+- [ ] 13b. Fluxo do treino
 - [ ] 14. Tabela antes / hoje / +1
 - [ ] 15. Descanso
 - [ ] 16. Finalizar, descartar, avulso e treino livre (início do uso real)

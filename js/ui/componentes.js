@@ -2,9 +2,11 @@
 // Etapa 5: "Como fazer" (espaço da ilustração, 3 passos, erro comum) e selos de tipo e dificuldade.
 // Etapa 8: banner de atualização ("Nova versão disponível · Atualizar").
 // Etapa 12: modal (abrirModal), usado pela escolha da rotina no Hoje.
-// Os outros componentes (confirmação, toast, stepper, contador, seletor) entram nas etapas que os usam.
+// Etapa 13: contador (número grande com − e +, que vira campo de digitação ao tocar), usado na tela Treino.
+// Os outros componentes (confirmação, toast, seletor) entram nas etapas que os usam.
 
 import { h } from './dom.js';
+import { aplicarPasso, parseCampo, formatarCampo } from '../logica/tipos.js';
 
 // Nome exibido de cada tipo de exercício (seção 4.1: "peso do corpo" → "corpo").
 export const NOME_TIPO = {
@@ -86,4 +88,99 @@ export function abrirModal({ titulo, conteudo }) {
   document.body.append(dialogo);
   dialogo.showModal();
   return fechar;
+}
+
+// ---------- Contador (etapa 13) ----------
+
+const NOMES_CAMPO = { carga: 'Carga', reps: 'Repetições', segundos: 'Tempo' };
+const UNIDADE_CAMPO = { carga: 'kg', reps: 'reps', segundos: 'm:ss' };
+const PASSO_TEXTO = { carga: '1 kg', reps: '1 rep', segundos: '5 segundos' };
+
+// Número grande com − e +. campo = 'carga' | 'reps' | 'segundos'; tipo = tipo do exercício (limite das reps).
+// Os botões andam PASSOS[campo] e param no mínimo/máximo válido (logica/tipos.js, aplicarPasso).
+// Tocar no número abre o teclado numérico: é um <input type="text"> com inputmode numeric (decimal na
+// carga, que aceita vírgula). No tempo, o que se digita é em segundos ("90" aparece como 1:30).
+// grande = número do contador principal (maior). Devolve { elemento, valor(), confirmar() }:
+// confirmar() aplica o texto ainda em digitação e diz se o valor é válido.
+export function contador({ campo, tipo, valor, grande = false, aoMudar }) {
+  let atual = valor;
+  const idCampo = `contador-${campo}-${Math.random().toString(36).slice(2, 8)}`;
+
+  const erro = h('p', { class: 'contador-erro', 'aria-live': 'polite' });
+  const entrada = h('input', {
+    id: idCampo,
+    class: 'contador-numero',
+    type: 'text',
+    inputmode: campo === 'carga' ? 'decimal' : 'numeric',
+    autocomplete: 'off',
+    enterkeyhint: 'done',
+    'aria-describedby': `${idCampo}-dica`,
+  });
+  const menos = h('button', { type: 'button', class: 'contador-botao', 'aria-label': `Diminuir ${PASSO_TEXTO[campo]}` }, '−');
+  const mais = h('button', { type: 'button', class: 'contador-botao', 'aria-label': `Aumentar ${PASSO_TEXTO[campo]}` }, '+');
+
+  function mostrar() {
+    entrada.value = formatarCampo(campo, atual);
+    menos.disabled = aplicarPasso(campo, atual, -1, tipo) === null;
+    mais.disabled = aplicarPasso(campo, atual, +1, tipo) === null;
+  }
+
+  function definir(novo) {
+    atual = novo;
+    erro.textContent = '';
+    mostrar();
+    if (aoMudar) aoMudar(atual);
+  }
+
+  // Aplica o texto que está no campo (não depende do foco: vale também se o blur não veio).
+  // Vazio ou igual ao que estava = mantém. Inválido = mostra o erro e volta ao valor anterior.
+  function confirmar() {
+    const texto = entrada.value.trim();
+    if (texto === '' || texto === formatarCampo(campo, atual) || texto === String(atual)) {
+      mostrar();
+      return true;
+    }
+    const r = parseCampo(campo, texto, tipo);
+    if (!r.ok) {
+      mostrar();
+      erro.textContent = r.erro;
+      return false;
+    }
+    definir(r.valor);
+    return true;
+  }
+
+  entrada.addEventListener('focus', () => {
+    erro.textContent = '';
+    // No tempo, a digitação é em segundos: mostra 90 (e não 1:30) para editar.
+    entrada.value = campo === 'segundos' ? String(atual) : formatarCampo(campo, atual);
+    entrada.select();
+  });
+  entrada.addEventListener('blur', confirmar);
+  entrada.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter') {
+      ev.preventDefault();
+      entrada.blur();
+    }
+  });
+  const passo = (direcao) => {
+    confirmar();
+    const novo = aplicarPasso(campo, atual, direcao, tipo);
+    if (novo !== null) definir(novo);
+  };
+  menos.addEventListener('click', () => passo(-1));
+  mais.addEventListener('click', () => passo(+1));
+
+  mostrar();
+
+  const dica = campo === 'segundos'
+    ? 'Toque no número para digitar em segundos (90 = 1:30)'
+    : `Toque no número para digitar · ${UNIDADE_CAMPO[campo]}`;
+  const elemento = h('div', { class: `contador${grande ? ' contador-grande' : ''}` },
+    h('label', { class: 'contador-rotulo', for: idCampo }, NOMES_CAMPO[campo]),
+    h('div', { class: 'contador-linha' }, menos, entrada, mais),
+    h('p', { class: 'contador-dica', id: `${idCampo}-dica` }, dica),
+    erro);
+
+  return { elemento, valor: () => atual, confirmar };
 }

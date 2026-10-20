@@ -12,8 +12,10 @@
 // Etapa 11 (v8 a v10): js/db/backup.js no precache; ajustes.js, backup.js e componentes.css alterados (backup em Ajustes).
 // Etapa 12 (v11): js/db/sessoes.js, js/logica/datas.js, js/logica/rotina.js e js/ui/semana.js no precache;
 // hoje.js, db/trilhas.js, ui/componentes.js e componentes.css alterados (Hoje básico).
+// Etapa 13 (v12): js/db/series.js no precache; treino.js, hoje.js, db/sessoes.js, logica/tipos.js,
+// ui/componentes.js e componentes.css alterados (registrar séries).
 
-const VERSAO = 'v11';
+const VERSAO = 'v12';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -34,6 +36,7 @@ const ARQUIVOS = [
   'js/db/trilhas.js',
   'js/db/backup.js',
   'js/db/sessoes.js',
+  'js/db/series.js',
   'js/logica/busca.js',
   'js/logica/datas.js',
   'js/logica/rotina.js',
