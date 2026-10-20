@@ -416,9 +416,9 @@ Chave-valor, ex. `{ "chave": "rotinaAtualId", "valor": "massa-3-casa" }`.
 Campos de outro tipo ficam **ausentes** (não `0`). Botões − e + (etapa 13): carga ±1 kg, reps ±1 (contador grande), tempo ±5 s, sem passar do mínimo nem do máximo válidos; tocar no número abre o teclado numérico para digitar (tempo digitado em segundos: 90 aparece como 1:30). Exercício unilateral: registra o valor por lado; a série inclui os dois lados.
 
 #### Comparação "antes / hoje / +1" (`js/logica/comparacao.js`)
-- **antes**: séries da última sessão concluída com o mesmo exercício, pareadas por posição (1ª com 1ª, 2ª com 2ª…).
-- **hoje**: séries já feitas. A linha seguinte vem pré-preenchida: última série desta sessão; senão, a série correspondente de "antes"; senão, o mínimo do alvo.
-- **+1**: diferença hoje − antes em cada campo que mudou (`+1`, `−2`, `+2,5 kg`, `+5 s`); `=` se igual; vazio se não há "antes". Diferença positiva em laranja. **Só compara com a última vez: não sugere carga.**
+- **antes**: séries da última sessão concluída (maior `inicio`, nunca a atual nem uma em andamento) com o mesmo exercício, pareadas por posição (1ª com 1ª, 2ª com 2ª…). Na tela de bolinhas (etapa 13b), aparece como uma linha pequena e cinza em cima delas: "ANTES 20 · 20 · 18".
+- **hoje**: séries já feitas (as bolinhas). O contador da série seguinte vem pré-preenchido com a série de mesma posição de "antes"; senão, com a meta da rotina (mínimo do alvo). A carga, que não tem meta: última carga de hoje, senão a última de "antes"; sem nenhuma das duas, o campo de carga começa vazio com o texto "Digite a carga (kg)" e "Registrar série" fica desabilitado até a carga ser preenchida com um valor válido (não há carga padrão; etapa 14).
+- **+1**: embaixo de cada bolinha, diferença hoje − antes em cada campo que mudou (`+1`, `−2`, `+2,5 kg`, `+5 s`); `=` se igual; vazio se não há "antes". Em laranja só quando é ganho: nenhum campo piorou e pelo menos um melhorou. Na carga, mais carga com menos reps (ou menos carga com mais reps) não é ganho e fica cinza com os dois campos (`+5 kg −2`). **Só compara com a última vez: não sugere carga.**
 
 #### Regras de exclusão
 - Sessão: apagar ou descartar remove suas séries na **mesma transação**.
@@ -622,7 +622,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 11. Backup (exportar/importar em Ajustes).
 - **Feito:** etapa 12. Rotina e Hoje básico (calendário da semana, rotina com "Trocar" e treino do dia).
 - **Feito:** etapa 13. Treino em andamento: registrar séries (contadores com − e + e digitação, salvar na hora, editar/apagar, "Continuar treino" no Hoje), conferida no PC.
-- **Feito:** etapa 13b. Fluxo do treino (avanço automático com "Próximo: <nome>", séries em bolinhas, cronômetro regressivo no tempo com tela acesa e vibração, "Anterior"/"Sair" no fim, sem abas no treino); falta a conferência do usuário. **Próxima etapa de código:** **14. Tabela antes / hoje / +1.**
+- **Feito:** etapa 13b. Fluxo do treino (avanço automático com "Próximo: <nome>", séries em bolinhas, cronômetro regressivo no tempo com tela acesa e vibração, "Anterior"/"Sair" no fim, sem abas no treino), conferida no PC.
+- **Feito:** etapa 14. Tabela antes / hoje / +1 (linha "ANTES" em cima das bolinhas, +1 por série com ganho em laranja, carga só é "+" sem piorar nenhum campo, contador começa na mesma série da última vez); conferência visual fica para depois da etapa 16. **Próxima etapa de código:** **15. Descanso.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -686,7 +687,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 12. Rotina e Hoje básico
 - [x] 13. Treino em andamento: registrar séries
 - [x] 13b. Fluxo do treino
-- [ ] 14. Tabela antes / hoje / +1
+- [x] 14. Tabela antes / hoje / +1
 - [ ] 15. Descanso
 - [ ] 16. Finalizar, descartar, avulso e treino livre (início do uso real)
 - [ ] 17. Trilhas: lógica

@@ -7,9 +7,8 @@
 // - Contadores por tipo (ui/componentes.js, contador): carga = carga + reps; corpo = reps; tempo = segundos.
 //   Passos: reps 1, tempo 5 s, carga 1 kg; nada abaixo do mínimo válido. Tocar no número abre o teclado.
 // - Cada série é gravada no banco na hora (db/series.js); a tela relê o banco a cada mudança.
-// Valor inicial do contador: o último usado neste exercício nesta tela; senão a última série dele nesta
-// sessão; senão o mínimo do alvo (carga: 10 kg). A tabela antes / hoje / +1 e o pré-preenchimento pela
-// última vez entram na etapa 14; o Descanso, na 15; Finalizar/Descartar e "+ Exercício", na 16.
+// Valor inicial do contador: etapa 14 (abaixo). O Descanso entra na 15; Finalizar/Descartar e
+// "+ Exercício", na 16.
 // Etapa 13b (fluxo do treino; regras puras em logica/fluxo-treino.js e logica/cronometro.js):
 // - Registrar a última série pedida avança sozinho para o próximo exercício pendente, com o toast
 //   "Próximo: <nome>". Séries extras (voltando com Anterior) não avançam.
@@ -19,24 +18,36 @@
 //   continuar e parar (parar volta ao número). Trocar de exercício ou sair da tela cancela a contagem.
 // - No último exercício concluído: só "Anterior" e "Sair" (volta ao Hoje; o treino segue em andamento).
 // - A barra de abas some nesta rota (roteador.js, semAbas).
+// Etapa 14 (antes / hoje / +1; regras puras em logica/comparacao.js):
+// - "Antes" = séries deste exercício no último treino CONCLUÍDO (db/series.js, seriesDaUltimaVez); nunca
+//   o treino atual nem um em andamento. Linha pequena e cinza em cima das bolinhas: "ANTES 20 · 20 · 18".
+// - Embaixo de cada bolinha de hoje, o +1 da série de mesma posição: ganho em laranja ("+2"), "=" se
+//   igual, cinza se piorou ou se a carga mudou para um lado e as reps para o outro; nada se não há antes.
+// - O contador da série n começa com o valor da série n de antes; sem ela, com a meta da rotina (mínimo
+//   do alvo; carga: última de hoje, senão última de antes). Sem nenhuma carga, o campo de carga começa
+//   vazio ("Digite a carga (kg)") e "Registrar série" fica desabilitado até a carga ser válida.
+//   Mexer no contador guarda um rascunho só daquela série (exercício + número da série), que some ao registrar.
+// - render aceita um 3º parâmetro opcional { db, catalogo } (só os testes usam: banco e catálogo de teste).
 import { h, limpar } from '../ui/dom.js';
 import { abrirModal, comoFazer, contador, toast } from '../ui/componentes.js';
 import { calendarioSemana } from '../ui/semana.js';
 import { obterCatalogo } from '../catalogo.js';
 import { obterSessao, listarSessoes } from '../db/sessoes.js';
-import { adicionarSerie, editarSerie, apagarSerie, listarSeriesDaSessao } from '../db/series.js';
+import {
+  adicionarSerie, editarSerie, apagarSerie, listarSeriesDaSessao, seriesDaUltimaVez,
+} from '../db/series.js';
 import { diasTreinadosNaSemana } from '../logica/datas.js';
 import { textoAlvo } from '../logica/rotina.js';
-import { CAMPOS, LIMITES, formatarSerie, formatarTempo } from '../logica/tipos.js';
+import { CAMPOS, formatarSerie, formatarTempo } from '../logica/tipos.js';
+import { compararSeries, textoAntes, valoresIniciais } from '../logica/comparacao.js';
 import { indiceInicial, aposRegistrar, modoFinal, textoBolinha } from '../logica/fluxo-treino.js';
 import {
   novoCronometro, rodando, segundosRestantes, zerou, iniciar, pausar,
 } from '../logica/cronometro.js';
 
-const CARGA_INICIAL = 10; // kg, quando ainda não há série do exercício nesta sessão
 const formatoHora = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
-export async function render(container, params) {
+export async function render(container, params, { db, catalogo: catalogoDeTeste } = {}) {
   const tela = h('div', { class: 'treino' });
   container.append(tela);
 
@@ -44,7 +55,8 @@ export async function render(container, params) {
   let mensagem = ''; // "Série 2 registrada: 15 reps"
   let fecharModal = null;
   let rodada = 0;
-  const rascunhos = new Map(); // exercicioId → { carga?, reps?, segundos? } (valores dos contadores)
+  const rascunhos = new Map(); // "exercicioId#n" (n = séries já feitas) → { carga?, reps?, segundos? }
+  const chaveRascunho = (exercicioId, n) => `${exercicioId}#${n}`;
   let conferirAvanco = false; // true logo depois de registrar: o próximo desenho decide se avança
   let cron = null; // { exercicio, estado } da contagem do exercício de tempo; null = sem contagem
   let intervalo = null;
@@ -135,9 +147,10 @@ export async function render(container, params) {
   // Grava a série (botão "Registrar série" ou fim da contagem) e redesenha; o desenho decide se avança.
   async function registrar(exercicio, medidas) {
     try {
-      const serie = await adicionarSerie({ sessaoId: params.id, exercicio, medidas });
-      const series = await listarSeriesDaSessao(params.id);
+      const serie = await adicionarSerie({ sessaoId: params.id, exercicio, medidas }, undefined, db);
+      const series = await listarSeriesDaSessao(params.id, db);
       const n = series.filter((s) => s.exercicioId === exercicio.id).length;
+      rascunhos.delete(chaveRascunho(exercicio.id, n - 1)); // a série n já foi feita
       mensagem = `Série ${n} registrada: ${formatarSerie(serie)}`;
       conferirAvanco = true;
     } catch (erro) {
@@ -149,15 +162,15 @@ export async function render(container, params) {
 
   async function desenhar() {
     const minha = ++rodada;
-    const catalogo = obterCatalogo();
+    const catalogo = catalogoDeTeste || obterCatalogo();
     let sessao;
     let series = [];
     let sessoes = [];
     try {
       [sessao, series, sessoes] = await Promise.all([
-        obterSessao(params.id),
-        listarSeriesDaSessao(params.id),
-        listarSessoes(),
+        obterSessao(params.id, db),
+        listarSeriesDaSessao(params.id, db),
+        listarSessoes(db),
       ]);
     } catch (erro) {
       console.error('Treino: banco indisponível:', erro);
@@ -167,13 +180,14 @@ export async function render(container, params) {
       return;
     }
     if (minha !== rodada) return;
-    limpar(tela);
 
     if (!sessao) {
+      limpar(tela);
       tela.append(aviso('Treino não encontrado.'));
       return;
     }
     if (sessao.status !== 'andamento') {
+      limpar(tela);
       tela.append(aviso('Este treino já foi finalizado.'));
       return;
     }
@@ -205,6 +219,16 @@ export async function render(container, params) {
     const item = itens[indice];
     const exercicio = catalogo.exercicioPorId.get(item.exercicioId);
     const final = modoFinal(itens, contagens, indice);
+
+    // "Antes" do exercício aberto: último treino concluído (se a leitura falhar, segue sem antes).
+    let antes = [];
+    try {
+      antes = await seriesDaUltimaVez(item.exercicioId, sessao.id, db);
+    } catch (erro) {
+      console.error('Treino: não foi possível ler a última vez:', erro);
+    }
+    if (minha !== rodada) return;
+    limpar(tela); // só agora, com tudo lido: a tela não pisca vazia entre as leituras
 
     const irPara = (i) => {
       pararCronometro(); // trocar de exercício cancela a contagem
@@ -246,7 +270,7 @@ export async function render(container, params) {
             fecharModal = abrirModal({ titulo: ex.nome, conteudo: comoFazer(ex) });
           },
         }, 'Como fazer'));
-      const bolinhas = bolinhasDeSeries(seriesFeitas, it.series, (serie, n) => editar(ex, serie, n));
+      const bolinhas = bolinhasDeSeries(seriesFeitas, antes, it.series, (serie, n) => editar(ex, serie, n));
       const secao = (...filhos) => h('section', { class: 'cartao treino-exercicio', 'aria-labelledby': 'treino-exercicio-nome' }, ...filhos);
 
       // Último exercício concluído: sem contador nem registrar (séries extras: voltar com Anterior).
@@ -273,29 +297,37 @@ export async function render(container, params) {
           status);
       }
 
-      const valores = valoresIniciais(ex, it, seriesFeitas, rascunhos.get(ex.id));
+      const chave = chaveRascunho(ex.id, seriesFeitas.length);
+      const valores = rascunhos.get(chave) || valoresIniciais(ex.tipo, it.alvo, antes, seriesFeitas);
+      let registrarBotao = null;
+      // Carga sem nenhum histórico começa vazia: "Registrar série" só libera com todos os campos válidos.
+      const liberarRegistrar = () => {
+        if (registrarBotao) registrarBotao.disabled = !contadores.every((c) => c.preenchido());
+      };
       const contadores = CAMPOS[ex.tipo].map((campo) => contador({
         campo,
         tipo: ex.tipo,
         valor: valores[campo],
         grande: campo !== 'carga',
+        placeholder: campo === 'carga' ? 'Digite a carga (kg)' : undefined,
         aoMudar: (v) => {
-          rascunhos.set(ex.id, { ...(rascunhos.get(ex.id) || valores), [campo]: v });
+          rascunhos.set(chave, { ...(rascunhos.get(chave) || valores), [campo]: v });
         },
+        aoValidar: liberarRegistrar,
       }));
 
-      const registrarBotao = h('button', {
+      registrarBotao = h('button', {
         type: 'button',
         class: 'botao botao-destaque botao-grande',
         onclick: async () => {
           if (!contadores.every((c) => c.confirmar())) return;
           const medidas = {};
           CAMPOS[ex.tipo].forEach((campo, i) => { medidas[campo] = contadores[i].valor(); });
-          rascunhos.set(ex.id, { ...medidas });
           registrarBotao.disabled = true;
           await registrar(ex, medidas);
         },
       }, `Registrar série ${seriesFeitas.length + 1}`);
+      liberarRegistrar();
 
       // Tempo: play embaixo do número; conta para baixo a partir do valor do contador.
       const play = ex.tipo === 'tempo'
@@ -306,7 +338,7 @@ export async function render(container, params) {
           onclick: () => {
             if (!contadores[0].confirmar()) return;
             const segundos = contadores[0].valor();
-            rascunhos.set(ex.id, { segundos });
+            rascunhos.set(chave, { segundos });
             comecarContagem(ex, segundos);
           },
         }, '▶ Iniciar')
@@ -344,7 +376,7 @@ export async function render(container, params) {
               CAMPOS[serie.tipo].forEach((campo, i) => { medidas[campo] = contadores[i].valor(); });
               ev.currentTarget.disabled = true;
               try {
-                const nova = await editarSerie(serie.id, medidas);
+                const nova = await editarSerie(serie.id, medidas, db);
                 mensagem = `Série ${n} alterada: ${formatarSerie(nova)}`;
                 fechar();
                 await desenhar();
@@ -371,9 +403,10 @@ export async function render(container, params) {
             onclick: async (ev) => {
               ev.currentTarget.disabled = true;
               try {
-                await apagarSerie(serie.id);
+                await apagarSerie(serie.id, db);
                 mensagem = `Série ${n} apagada.`;
-                rascunhos.delete(exercicio.id);
+                // As posições das séries mudaram: os rascunhos deste exercício deixam de valer.
+                for (const k of [...rascunhos.keys()]) if (k.startsWith(`${exercicio.id}#`)) rascunhos.delete(k);
                 fechar();
                 await desenhar();
               } catch (e) {
@@ -429,44 +462,30 @@ function barraDeProgresso(catalogo, itens, atual, feitas, irPara) {
 }
 
 // Séries deste exercício nesta sessão como bolinhas compactas (20 · 22 · 20); tocar numa abre a edição.
-// As que ainda faltam para o pedido aparecem vazias (só visual).
-function bolinhasDeSeries(series, previstas, aoTocar) {
+// As que ainda faltam para o pedido aparecem vazias (só visual). Em cima, a linha "ANTES 20 · 20 · 18"
+// (só se houver antes); embaixo de cada bolinha, o +1 da série de mesma posição (nada sem antes).
+function bolinhasDeSeries(series, antes, previstas, aoTocar) {
   const faltam = Math.max(0, previstas - series.length);
+  const comparacoes = compararSeries(antes, series);
+  const linhaAntes = antes.length
+    ? h('p', { class: 'treino-antes' },
+      h('span', { class: 'treino-antes-rotulo' }, 'Antes'), ` ${textoAntes(antes)}`)
+    : null;
   return h('section', { class: 'treino-series', 'aria-label': 'Séries registradas' },
     h('p', { class: 'hoje-rotulo' }, `Séries: ${series.length} de ${previstas}`),
+    linhaAntes,
     h('ol', { class: 'treino-bolinhas' },
-      series.map((serie, i) => h('li', null,
-        h('button', {
-          type: 'button',
-          class: 'treino-bolinha',
-          'aria-label': `Série ${i + 1}: ${formatarSerie(serie)}. Tocar para editar ou apagar`,
-          onclick: () => aoTocar(serie, i + 1),
-        }, textoBolinha(serie)))),
-      Array.from({ length: faltam }, () => h('li', { 'aria-hidden': 'true' },
+      series.map((serie, i) => {
+        const c = comparacoes[i];
+        return h('li', { class: 'treino-bolinha-item' },
+          h('button', {
+            type: 'button',
+            class: 'treino-bolinha',
+            'aria-label': `Série ${i + 1}: ${formatarSerie(serie)}${c ? ` (${c.texto} em relação a antes)` : ''}. Tocar para editar ou apagar`,
+            onclick: () => aoTocar(serie, i + 1),
+          }, textoBolinha(serie)),
+          c ? h('span', { class: `treino-mais treino-mais-${c.resultado}`, 'aria-hidden': 'true' }, c.texto) : null);
+      }),
+      Array.from({ length: faltam }, () => h('li', { class: 'treino-bolinha-item', 'aria-hidden': 'true' },
         h('span', { class: 'treino-bolinha treino-bolinha-vazia' })))));
-}
-
-// Valores iniciais dos contadores: rascunho desta tela; senão a última série; senão o mínimo do alvo.
-function valoresIniciais(exercicio, item, seriesFeitas, rascunho) {
-  if (rascunho) return { ...rascunho };
-  const ultima = seriesFeitas[seriesFeitas.length - 1];
-  const valores = {};
-  for (const campo of CAMPOS[exercicio.tipo]) {
-    if (ultima && ultima[campo] !== undefined) {
-      valores[campo] = ultima[campo];
-    } else if (campo === 'carga') {
-      valores[campo] = CARGA_INICIAL;
-    } else {
-      valores[campo] = minimoDoAlvo(item.alvo, campo, exercicio.tipo);
-    }
-  }
-  return valores;
-}
-
-// "8-12" → 8; "45" → 45. Fora da faixa válida do campo, fica no limite.
-function minimoDoAlvo(alvo, campo, tipo) {
-  const n = parseInt(String(alvo).split('-')[0], 10);
-  const limites = campo === 'segundos' ? LIMITES.segundos : tipo === 'corpo' ? LIMITES.repsCorpo : LIMITES.repsCarga;
-  if (!Number.isInteger(n)) return limites.min;
-  return Math.min(Math.max(n, limites.min), limites.max);
 }

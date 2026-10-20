@@ -16,8 +16,16 @@
 // ui/componentes.js e componentes.css alterados (registrar séries).
 // Etapa 13b (v13): js/logica/fluxo-treino.js e js/logica/cronometro.js no precache; treino.js, roteador.js,
 // ui/componentes.js e componentes.css alterados (fluxo do treino).
+// Etapa 14 (v14): js/logica/comparacao.js no precache; treino.js, db/series.js e componentes.css alterados
+// (antes / hoje / +1 e pré-preenchimento pela última vez).
+// Etapa 14, ajuste (v15): carga sem histórico começa vazia; treino.js, ui/componentes.js,
+// logica/comparacao.js e componentes.css alterados (lista do precache igual).
+// Etapa 14, ajuste do SW para os testes (v16): pedido feito a partir de uma página dentro de testes/
+// (event.clientId, ou event.resultingClientId / a própria URL na navegação) vai sempre para a rede,
+// sem ler nem gravar cache. Antes, /testes/ vinha da rede, mas os js/*.js que ela importa estão em
+// ARQUIVOS e saíam do cache da versão ativa (código velho nos testes). Lista do precache igual.
 
-const VERSAO = 'v13';
+const VERSAO = 'v16';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -40,6 +48,7 @@ const ARQUIVOS = [
   'js/db/sessoes.js',
   'js/db/series.js',
   'js/logica/busca.js',
+  'js/logica/comparacao.js',
   'js/logica/cronometro.js',
   'js/logica/datas.js',
   'js/logica/fluxo-treino.js',
@@ -107,10 +116,27 @@ self.addEventListener('message', (evento) => {
 // fetch: o SW só responde pelo app. Navegação para a raiz do escopo ou index.html recebe o
 // index.html do cache (hash na URL, start_url "./"); GET de um arquivo de ARQUIVOS é cache-first.
 // Todo o resto (testes/, pesquisa/, sw.js, outros domínios, não-GET) segue direto para a rede, sem
-// respondWith. URLs montadas a partir de registration.scope: funciona também numa subpasta do GitHub Pages.
+// respondWith. Exceção: pedido feito pela página de testes/ (mesmo de um arquivo de ARQUIVOS) vai
+// sempre para a rede (fetch direto, sem ler nem gravar cache), para os testes rodarem o código do disco
+// e não o da versão em cache. URLs montadas a partir de registration.scope: funciona também numa
+// subpasta do GitHub Pages.
 const ESCOPO = self.registration.scope;
 const INDICE = new URL('index.html', ESCOPO).href;
+const TESTES = new URL('testes/', ESCOPO).href;
 const DO_APP = new Set(ARQUIVOS.map((arquivo) => new URL(arquivo, ESCOPO).href));
+
+const dentroDeTestes = (href) => {
+  const url = new URL(href);
+  return (url.origin + url.pathname).startsWith(TESTES);
+};
+
+// De qual página veio o pedido: o client de event.clientId (subrecursos). Sem client
+// (ou já fechado), não é dos testes.
+async function doClienteDeTestes(clientId) {
+  if (!clientId) return false;
+  const cliente = await self.clients.get(clientId);
+  return Boolean(cliente) && dentroDeTestes(cliente.url);
+}
 
 self.addEventListener('fetch', (evento) => {
   const pedido = evento.request;
@@ -119,6 +145,9 @@ self.addEventListener('fetch', (evento) => {
   const endereco = url.origin + url.pathname; // sem ?query e #hash
 
   if (pedido.mode === 'navigate') {
+    // Navegação: o client de destino (resultingClientId) é a própria URL do pedido.
+    // Para testes/ (ou qualquer página fora do app), rede direta.
+    if (dentroDeTestes(pedido.url)) return;
     if (endereco !== ESCOPO && endereco !== INDICE) return;
     evento.respondWith(
       caches.match(INDICE, { cacheName: CACHE }).then((resposta) => resposta || fetch(pedido)),
@@ -127,7 +156,9 @@ self.addEventListener('fetch', (evento) => {
   }
 
   if (!DO_APP.has(endereco)) return;
-  evento.respondWith(
-    caches.match(pedido, { cacheName: CACHE }).then((resposta) => resposta || fetch(pedido)),
-  );
+  evento.respondWith((async () => {
+    if (await doClienteDeTestes(evento.clientId || evento.resultingClientId)) return fetch(pedido);
+    const resposta = await caches.match(pedido, { cacheName: CACHE });
+    return resposta || fetch(pedido);
+  })());
 });

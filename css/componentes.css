@@ -916,6 +916,14 @@ body.sem-abas #app {
   background: var(--cor-fundo);
 }
 
+/* Campo vazio (carga sem histórico, etapa 14): o texto de ajuda cabe na largura do número. */
+.contador-numero::placeholder {
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 .contador-grande .contador-linha {
   grid-template-columns: 64px minmax(0, 1fr) 64px;
 }
@@ -1087,6 +1095,42 @@ body.sem-abas #app {
   border-style: dashed;
   border-color: var(--cor-borda);
   background: transparent;
+}
+
+/* Etapa 14: linha "ANTES 20 · 20 · 18" em cima das bolinhas e o +1 embaixo de cada uma. */
+.treino-antes {
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-titulo);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.treino-antes-rotulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.treino-bolinha-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.treino-mais {
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-titulo);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.treino-mais-mais {
+  color: var(--cor-destaque);
 }
 
 .treino-contadores {

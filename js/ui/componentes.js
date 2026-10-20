@@ -101,9 +101,12 @@ const PASSO_TEXTO = { carga: '1 kg', reps: '1 rep', segundos: '5 segundos' };
 // Os botões andam PASSOS[campo] e param no mínimo/máximo válido (logica/tipos.js, aplicarPasso).
 // Tocar no número abre o teclado numérico: é um <input type="text"> com inputmode numeric (decimal na
 // carga, que aceita vírgula). No tempo, o que se digita é em segundos ("90" aparece como 1:30).
-// grande = número do contador principal (maior). Devolve { elemento, valor(), confirmar() }:
+// grande = número do contador principal (maior). Devolve { elemento, valor(), confirmar(), preenchido() }:
 // confirmar() aplica o texto ainda em digitação e diz se o valor é válido.
-export function contador({ campo, tipo, valor, grande = false, aoMudar }) {
+// valor null = campo vazio (etapa 14: carga sem histórico): mostra `placeholder`, − e + ficam desabilitados
+// e confirmar() só dá true depois de digitar um valor válido. preenchido() diz, sem mexer em nada, se o que
+// está no campo agora é válido; aoValidar(ok) é chamado a cada tecla e a cada mudança de valor.
+export function contador({ campo, tipo, valor, grande = false, aoMudar, aoValidar, placeholder }) {
   let atual = valor;
   const idCampo = `contador-${campo}-${Math.random().toString(36).slice(2, 8)}`;
 
@@ -116,12 +119,15 @@ export function contador({ campo, tipo, valor, grande = false, aoMudar }) {
     autocomplete: 'off',
     enterkeyhint: 'done',
     'aria-describedby': `${idCampo}-dica`,
+    placeholder: placeholder || null,
   });
   const menos = h('button', { type: 'button', class: 'contador-botao', 'aria-label': `Diminuir ${PASSO_TEXTO[campo]}` }, '−');
   const mais = h('button', { type: 'button', class: 'contador-botao', 'aria-label': `Aumentar ${PASSO_TEXTO[campo]}` }, '+');
 
+  const vazio = () => atual === null || atual === undefined;
+
   function mostrar() {
-    entrada.value = formatarCampo(campo, atual);
+    entrada.value = vazio() ? '' : formatarCampo(campo, atual);
     menos.disabled = aplicarPasso(campo, atual, -1, tipo) === null;
     mais.disabled = aplicarPasso(campo, atual, +1, tipo) === null;
   }
@@ -131,13 +137,26 @@ export function contador({ campo, tipo, valor, grande = false, aoMudar }) {
     erro.textContent = '';
     mostrar();
     if (aoMudar) aoMudar(atual);
+    if (aoValidar) aoValidar(true);
+  }
+
+  // O texto do campo agora é válido? Vazio vale o valor que já estava (nenhum, se o campo começou vazio).
+  function preenchido() {
+    const texto = entrada.value.trim();
+    if (texto === '') return !vazio();
+    if (!vazio() && (texto === formatarCampo(campo, atual) || texto === String(atual))) return true;
+    return parseCampo(campo, texto, tipo).ok;
   }
 
   // Aplica o texto que está no campo (não depende do foco: vale também se o blur não veio).
   // Vazio ou igual ao que estava = mantém. Inválido = mostra o erro e volta ao valor anterior.
   function confirmar() {
     const texto = entrada.value.trim();
-    if (texto === '' || texto === formatarCampo(campo, atual) || texto === String(atual)) {
+    if (texto === '') {
+      mostrar();
+      return !vazio();
+    }
+    if (!vazio() && (texto === formatarCampo(campo, atual) || texto === String(atual))) {
       mostrar();
       return true;
     }
@@ -154,8 +173,11 @@ export function contador({ campo, tipo, valor, grande = false, aoMudar }) {
   entrada.addEventListener('focus', () => {
     erro.textContent = '';
     // No tempo, a digitação é em segundos: mostra 90 (e não 1:30) para editar.
-    entrada.value = campo === 'segundos' ? String(atual) : formatarCampo(campo, atual);
+    if (!vazio()) entrada.value = campo === 'segundos' ? String(atual) : formatarCampo(campo, atual);
     entrada.select();
+  });
+  entrada.addEventListener('input', () => {
+    if (aoValidar) aoValidar(preenchido());
   });
   entrada.addEventListener('blur', confirmar);
   entrada.addEventListener('keydown', (ev) => {
@@ -183,7 +205,7 @@ export function contador({ campo, tipo, valor, grande = false, aoMudar }) {
     h('p', { class: 'contador-dica', id: `${idCampo}-dica` }, dica),
     erro);
 
-  return { elemento, valor: () => atual, confirmar };
+  return { elemento, valor: () => atual, confirmar, preenchido };
 }
 
 // ---------- Toast (etapa 13b) ----------

@@ -1,11 +1,12 @@
 // series.js: séries na store series (PROJETO.md, seção 4.2, "series").
 // Etapa 13: adicionar (salva na hora, com tipo e grupos copiados do exercício), editar, apagar e
-// listar por sessão. Por exercício e "última vez" entram na etapa 14 (comparação).
+// listar por sessão. Etapa 14: por exercício e "última vez" (comparação antes / hoje / +1).
 // Campos de medida conforme o tipo (js/logica/tipos.js): carga + reps, reps, ou segundos;
 // os de outro tipo ficam ausentes. db é opcional: sem ele usa a conexão do app.
 
 import { obterBanco } from './conexao.js';
 import { CAMPOS, validarSerie } from '../logica/tipos.js';
+import { seriesDeAntes } from '../logica/comparacao.js';
 
 // Só os campos de medida do tipo (o resto é ignorado).
 function medidasDoTipo(tipo, medidas) {
@@ -89,6 +90,25 @@ export async function editarSerie(id, medidas, db) {
 export async function apagarSerie(id, db) {
   const banco = db || await obterBanco();
   await banco.delete('series', id);
+}
+
+// Etapa 14: todas as séries de um exercício (índice por_exercicio, em ordem de feitaEm).
+export async function listarSeriesDoExercicio(exercicioId, db) {
+  const banco = db || await obterBanco();
+  return banco.getAllFromIndex('series', 'por_exercicio', IDBKeyRange.bound([exercicioId, 0], [exercicioId, Infinity]));
+}
+
+// Etapa 14: "antes" = séries do exercício no último treino CONCLUÍDO (nunca o atual nem um em andamento).
+// Regra de escolha em logica/comparacao.js (seriesDeAntes). Lê séries e sessões na mesma transação.
+export async function seriesDaUltimaVez(exercicioId, sessaoAtualId, db) {
+  const banco = db || await obterBanco();
+  const tx = banco.transaction(['series', 'sessoes']);
+  const series = await tx.objectStore('series').index('por_exercicio')
+    .getAll(IDBKeyRange.bound([exercicioId, 0], [exercicioId, Infinity]));
+  const ids = [...new Set(series.map((s) => s.sessaoId))];
+  const sessoes = (await Promise.all(ids.map((id) => tx.objectStore('sessoes').get(id)))).filter(Boolean);
+  await tx.done;
+  return seriesDeAntes(series, sessoes, sessaoAtualId);
 }
 
 // Séries de uma sessão em ordem de feitaEm (índice por_sessao).
