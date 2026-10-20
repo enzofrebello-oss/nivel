@@ -17,11 +17,12 @@ import * as ajustes from './telas/ajustes.js';
 // aba: href da aba que fica marcada. Treino e Ajustes saem do Hoje, então marcam o Hoje.
 // engrenagem: a engrenagem de Ajustes só aparece no topo do Hoje (seção 5).
 // titulo: null = topo sem título; a própria tela mostra o título no conteúdo e define document.title.
+// semAbas: a barra de abas some nessa rota (tela de treino, etapa 13b, como no design aprovado).
 const ROTAS = [
   { padrao: '/', tela: hoje, titulo: 'Hoje', aba: '#/', engrenagem: true },
   { padrao: '/trilhas', tela: trilhas, titulo: 'Trilhas', aba: '#/trilhas' },
   { padrao: '/trilhas/:id', tela: trilhas, titulo: 'Trilhas', aba: '#/trilhas' },
-  { padrao: '/treino/:id', tela: treino, titulo: 'Treino em andamento', aba: '#/' },
+  { padrao: '/treino/:id', tela: treino, titulo: 'Treino em andamento', aba: '#/', semAbas: true },
   { padrao: '/evolucao', tela: evolucao, titulo: 'Evolução', aba: '#/evolucao' },
   { padrao: '/evolucao/treino/:id', tela: sessaoDetalhe, titulo: 'Detalhe da sessão', aba: '#/evolucao' },
   { padrao: '/evolucao/exercicio/:id', tela: exercicioEvolucao, titulo: 'Evolução do exercício', aba: '#/evolucao' },
@@ -129,6 +130,11 @@ function atualizarCasca(rota) {
   // o conteúdo assume a área segura do topo (componentes.css, .topo[hidden] + #app).
   const topo = document.querySelector('.topo');
   if (topo) topo.hidden = !rota.titulo && !rota.engrenagem;
+
+  // Barra de abas: escondida nas rotas semAbas; a classe no body tira o espaço reservado para ela.
+  const abas = document.querySelector('.abas');
+  if (abas) abas.hidden = Boolean(rota.semAbas);
+  document.body.classList.toggle('sem-abas', Boolean(rota.semAbas));
 
   for (const aba of document.querySelectorAll('.abas .aba')) {
     if (aba.getAttribute('href') === rota.aba) {

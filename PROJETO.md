@@ -514,6 +514,13 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
     - Exercícios de tempo: botão de play embaixo do número grande. A contagem é regressiva, a tela fica acesa durante a contagem e, ao zerar, o celular vibra e a série é registrada sozinha.
     - No último exercício concluído, mostrar só os botões "Anterior" e "Sair".
     - Esconder a barra de abas na tela de treino (como no design aprovado).
+    Pronto quando:
+    - Registrar a última série pedida avança sozinho para o próximo exercício, com o aviso "Próximo: <nome>". Dá para registrar séries extras voltando com "Anterior".
+    - As séries aparecem como bolinhas compactas; tocar numa abre editar e apagar.
+    - Exercício de tempo: o play embaixo do número conta para baixo, a tela fica acesa durante a contagem (Wake Lock, com fallback silencioso se não houver suporte), e ao zerar o celular vibra e a série é registrada sozinha. Dá para pausar.
+    - No último exercício concluído aparecem só "Anterior" e "Sair"; "Sair" volta para o Hoje (o treino continua em andamento até a etapa 16).
+    - A barra de abas fica escondida na tela de treino.
+    - Testes na página /testes/ para a lógica de avançar e do cronômetro (`testes/fluxo-treino.test.js` e `testes/cronometro.test.js`), com a lógica separada da interface (`js/logica/fluxo-treino.js` e `js/logica/cronometro.js`).
 14. **Tabela antes / hoje / +1**. Objetivo: `logica/comparacao.js` + `testes/comparacao.test.js`, tabela e pré-preenchimento na tela Treino. Pronto quando: os testes passam (3 tipos, mais séries hoje que antes, sem "antes", carga e reps mudando juntas); no segundo treino com o mesmo exercício, "antes" e "+1" conferem com o primeiro.
 15. **Descanso**. Objetivo: `ui/anel.js`, modo Descanso, `sessao.descanso` no banco. Pronto quando: concluir uma série abre o descanso com o tempo do item; −15 s e +15 s funcionam; ao zerar, vibra e volta sozinho para a série; recarregar no meio continua com o tempo certo.
 16. **Finalizar, descartar, avulso e treino livre**. Objetivo: Finalizar/Descartar com confirmação, "+ Exercício" (seletor), Treino livre, resumo = Detalhe da sessão em modo leitura. Pronto quando: um treino inteiro vai do Hoje ao resumo; descartar apaga as séries; depois de finalizar, o Hoje mostra o dia seguinte da rotina; um backup exportado depois de um treino e importado restaura a sessão e as séries. **A partir daqui, uso real** (o que foi registrado antes é teste e pode ser apagado). O avanço automático de nível só chega na etapa 18; até lá, as séries já contam para o progresso das trilhas, e o nível pode ser ajustado à mão.
@@ -544,8 +551,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 
 **Ideias futuras:**
 - Criar exercícios próprios; a biblioteca é somente leitura na v1 e na v1.1. (Montar treinos próprios passou para a v1.1, etapa 28.)
-- Cronômetro embutido para exercícios de tempo.
-- Manter a tela ligada durante o treino (Screen Wake Lock API).
+- ~~Cronômetro embutido para exercícios de tempo.~~ Entrou na etapa 13b (cronômetro regressivo no exercício de tempo).
+- ~~Manter a tela ligada durante o treino (Screen Wake Lock API).~~ Entrou na etapa 13b (tela acesa durante a contagem do tempo).
 - Destacar recordes batidos no resumo / Fim do treino (o recorde da semana no Hoje já é v1).
 - Lastro/assistência em exercícios de peso do corpo (ex.: barra com colete).
 - Volume semanal por grupo muscular.
@@ -614,11 +621,13 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 10. Publicado no GitHub Pages (https://enzofrebello-oss.github.io/nivel/) e instalado no Android.
 - **Feito:** etapa 11. Backup (exportar/importar em Ajustes).
 - **Feito:** etapa 12. Rotina e Hoje básico (calendário da semana, rotina com "Trocar" e treino do dia).
-- **Feito:** etapa 13. Treino em andamento: registrar séries (contadores com − e + e digitação, salvar na hora, editar/apagar, "Continuar treino" no Hoje), conferida no celular. **Próxima etapa de código:** **13b. Fluxo do treino.**
+- **Feito:** etapa 13. Treino em andamento: registrar séries (contadores com − e + e digitação, salvar na hora, editar/apagar, "Continuar treino" no Hoje), conferida no PC.
+- **Feito:** etapa 13b. Fluxo do treino (avanço automático com "Próximo: <nome>", séries em bolinhas, cronômetro regressivo no tempo com tela acesa e vibração, "Anterior"/"Sair" no fim, sem abas no treino); falta a conferência do usuário. **Próxima etapa de código:** **14. Tabela antes / hoje / +1.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
 - **Pendente:** Escolher o nível inicial de cada trilha (ex.: começar a trilha de flexões direto no nível 3). Sem isso, todo mundo começa no nível 1. Encaixar antes da etapa 16 (uso real).
+- **Pendente:** Conferir no celular: vibração ao zerar, tela acesa durante a contagem e se minimizar o app no meio da contagem cancela ou mantém o tempo.
 - Detalhes de cada etapa em HISTORICO.md
 
 ### Decisões tomadas
@@ -658,7 +667,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 13. Exercícios e treinos editáveis pelo usuário saíram da v1; montar treinos passou para a v1.1 (etapa 28) e criar exercícios segue como ideia futura; treino livre e exercício avulso continuam na v1.
 14. Pesos das fontes: Barlow Condensed 600/700 e Manrope 400/700, subconjunto latin.
 15. Instalação no celular cedo (etapa 10), com a Biblioteca já útil offline; IndexedDB antes (etapa 9) e backup logo depois (etapa 11); uso real a partir da etapa 16 (backup pronto + treino completo).
-16. Exercícios de tempo continuam com digitação/stepper; cronômetro de exercício segue como ideia futura.
+16. Exercícios de tempo continuam com digitação/stepper; o cronômetro de tempo (com tela acesa via Wake Lock) entrou na etapa 13b.
 17. Faixas das metas e das rotinas definidas na seção 4.1; os valores são propostos na Fase 2b.
 
 ### Checklist
@@ -676,7 +685,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 11. Backup
 - [x] 12. Rotina e Hoje básico
 - [x] 13. Treino em andamento: registrar séries
-- [ ] 13b. Fluxo do treino
+- [x] 13b. Fluxo do treino
 - [ ] 14. Tabela antes / hoje / +1
 - [ ] 15. Descanso
 - [ ] 16. Finalizar, descartar, avulso e treino livre (início do uso real)

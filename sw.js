@@ -14,8 +14,10 @@
 // hoje.js, db/trilhas.js, ui/componentes.js e componentes.css alterados (Hoje básico).
 // Etapa 13 (v12): js/db/series.js no precache; treino.js, hoje.js, db/sessoes.js, logica/tipos.js,
 // ui/componentes.js e componentes.css alterados (registrar séries).
+// Etapa 13b (v13): js/logica/fluxo-treino.js e js/logica/cronometro.js no precache; treino.js, roteador.js,
+// ui/componentes.js e componentes.css alterados (fluxo do treino).
 
-const VERSAO = 'v12';
+const VERSAO = 'v13';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -38,7 +40,9 @@ const ARQUIVOS = [
   'js/db/sessoes.js',
   'js/db/series.js',
   'js/logica/busca.js',
+  'js/logica/cronometro.js',
   'js/logica/datas.js',
+  'js/logica/fluxo-treino.js',
   'js/logica/rotina.js',
   'js/logica/tipos.js',
   'js/logica/validar-dados.js',

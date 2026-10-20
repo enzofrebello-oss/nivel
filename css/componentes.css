@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. Etapa 13: contador e tela Treino. */
+/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. Etapa 13: contador e tela Treino. Etapa 13b: bolinhas das séries, cronômetro do tempo, tela de treino sem abas e toast. */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -53,6 +53,11 @@
 /* ---------- Conteúdo ---------- */
 #app {
   padding: 0 var(--gutter) calc(var(--altura-abas) + env(safe-area-inset-bottom) + var(--gutter));
+}
+
+/* Rotas sem a barra de abas (tela de treino, etapa 13b): o pé não reserva espaço para ela. */
+body.sem-abas #app {
+  padding-bottom: calc(env(safe-area-inset-bottom) + var(--gutter));
 }
 
 /* Telas sem topo (o roteador esconde o .topo): o conteúdo cuida da área segura do topo. */
@@ -1054,41 +1059,34 @@
   gap: 6px;
 }
 
-.treino-series-lista {
-  display: grid;
-  gap: 6px;
-}
-
-.treino-serie {
+/* Etapa 13b: séries como bolinhas compactas (tocar edita); as que faltam aparecem vazias. */
+.treino-bolinhas {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.treino-bolinha {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  width: 100%;
-  min-height: var(--toque-min);
-  padding: 8px 14px;
-  border: 1px solid var(--cor-borda);
-  border-radius: 12px;
-  background: var(--cor-fundo);
+  justify-content: center;
+  min-width: var(--toque-min);
+  height: var(--toque-min);
+  padding: 0 12px;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 999px;
+  background: var(--cor-aviso-fundo);
   color: var(--cor-texto);
-  text-align: left;
-}
-
-.treino-serie-numero {
-  color: var(--cor-texto-2);
-  font-size: 0.875rem;
-}
-
-.treino-serie-valor {
-  flex: 1;
   font-family: var(--fonte-titulo);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
+  line-height: 1;
 }
 
-.treino-serie-editar {
-  color: var(--cor-destaque);
-  font-size: 0.875rem;
-  font-weight: 700;
+.treino-bolinha-vazia {
+  border-style: dashed;
+  border-color: var(--cor-borda);
+  background: transparent;
 }
 
 .treino-contadores {
@@ -1104,6 +1102,41 @@
   margin-top: -8px;
   color: var(--cor-texto-2);
   text-align: center;
+}
+
+.treino-final {
+  color: var(--cor-texto-2);
+  text-align: center;
+}
+
+/* Cronômetro do exercício de tempo (etapa 13b): play embaixo do número; visor grande durante a contagem. */
+.cronometro-play {
+  justify-self: center;
+  min-width: 160px;
+}
+
+.cronometro {
+  display: grid;
+  gap: 8px;
+}
+
+.cronometro-numero {
+  color: var(--cor-destaque);
+  font-family: var(--fonte-titulo);
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 88px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.cronometro-botoes {
+  display: grid;
+  gap: 12px;
+}
+
+.cronometro-botoes .botao:not(.botao-grande) {
+  justify-self: center;
 }
 
 .treino-navegacao {
@@ -1126,4 +1159,37 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+/* ---------- Toast (etapa 13b) ---------- */
+/* Aviso curto no pé da tela ("Próximo: <nome>"); some sozinho. Acima das abas quando elas aparecem. */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--altura-abas) + env(safe-area-inset-bottom) + 16px);
+  z-index: 30;
+  max-width: calc(100% - 2 * var(--gutter));
+  padding: 12px 20px;
+  border: 1px solid var(--cor-destaque);
+  border-radius: var(--raio-botao);
+  background: var(--cor-cartao);
+  color: var(--cor-texto);
+  font-weight: 700;
+  text-align: center;
+  transform: translateX(-50%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  animation: toast-entrar 0.2s ease-out;
+}
+
+body.sem-abas .toast {
+  bottom: calc(env(safe-area-inset-bottom) + 24px);
+}
+
+@keyframes toast-entrar {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { animation: none; }
 }

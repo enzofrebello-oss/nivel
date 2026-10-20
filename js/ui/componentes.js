@@ -3,7 +3,8 @@
 // Etapa 8: banner de atualização ("Nova versão disponível · Atualizar").
 // Etapa 12: modal (abrirModal), usado pela escolha da rotina no Hoje.
 // Etapa 13: contador (número grande com − e +, que vira campo de digitação ao tocar), usado na tela Treino.
-// Os outros componentes (confirmação, toast, seletor) entram nas etapas que os usam.
+// Etapa 13b: toast (aviso curto que some sozinho), usado no "Próximo: <nome>" da tela Treino.
+// Os outros componentes (confirmação, seletor) entram nas etapas que os usam.
 
 import { h } from './dom.js';
 import { aplicarPasso, parseCampo, formatarCampo } from '../logica/tipos.js';
@@ -183,4 +184,20 @@ export function contador({ campo, tipo, valor, grande = false, aoMudar }) {
     erro);
 
   return { elemento, valor: () => atual, confirmar };
+}
+
+// ---------- Toast (etapa 13b) ----------
+
+let toastAtual = null;
+
+// Aviso curto no pé da tela que some sozinho depois de `duracao` ms. Um novo toast substitui o anterior.
+export function toast(texto, { duracao = 2500 } = {}) {
+  if (toastAtual) toastAtual.remove();
+  const elemento = h('div', { class: 'toast', role: 'status' }, texto);
+  document.body.append(elemento);
+  toastAtual = elemento;
+  setTimeout(() => {
+    elemento.remove();
+    if (toastAtual === elemento) toastAtual = null;
+  }, duracao);
 }
