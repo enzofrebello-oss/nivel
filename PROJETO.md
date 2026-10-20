@@ -604,7 +604,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 9. IndexedDB + migração 1.
 - **Feito:** etapa 10. Publicado no GitHub Pages (https://enzofrebello-oss.github.io/nivel/) e instalado no Android. **Próxima etapa de código:** **11. Backup.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
-- **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
+- **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
 - **Pendente:** no teclado numérico do Android pode faltar a tecla ":"; o tempo na tela de registrar série talvez precise de botões − e + ou de campos separados de minutos e segundos.
 - **Pendente:** Conferir no navegador que o aviso de versão nova fica escondido na tela de treino.
