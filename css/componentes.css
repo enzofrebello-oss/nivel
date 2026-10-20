@@ -1183,6 +1183,89 @@ body.sem-abas #app {
   justify-self: center;
 }
 
+/* Anel de progresso (etapa 15, ui/anel.js): traço laranja sobre o fundo da borda; conteúdo no centro. */
+.anel {
+  position: relative;
+  width: min(240px, 70vw);
+  aspect-ratio: 1;
+  justify-self: center;
+}
+
+.anel-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.anel-fundo,
+.anel-traco {
+  fill: none;
+  stroke-width: 8;
+}
+
+.anel-fundo {
+  stroke: var(--cor-borda);
+}
+
+.anel-traco {
+  stroke: var(--cor-destaque);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.25s linear;
+}
+
+.anel-centro {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anel-traco { transition: none; }
+}
+
+/* Modo Descanso da tela Treino (etapa 15): anel com o tempo, −15 s / +15 s, Pular e "A seguir". */
+.descanso {
+  display: grid;
+  gap: 16px;
+}
+
+.descanso-titulo {
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.descanso-tempo {
+  color: var(--cor-texto);
+  font-family: var(--fonte-titulo);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.descanso-ajustes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.descanso-seguir {
+  text-align: center;
+}
+
+.descanso-seguir-rotulo {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .treino-navegacao {
   display: flex;
   justify-content: space-between;

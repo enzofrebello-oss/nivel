@@ -24,8 +24,11 @@
 // (event.clientId, ou event.resultingClientId / a própria URL na navegação) vai sempre para a rede,
 // sem ler nem gravar cache. Antes, /testes/ vinha da rede, mas os js/*.js que ela importa estão em
 // ARQUIVOS e saíam do cache da versão ativa (código velho nos testes). Lista do precache igual.
+// Etapa 15 (v17): js/logica/descanso.js e js/ui/anel.js no precache; treino.js, db/sessoes.js,
+// logica/cronometro.js e componentes.css alterados (modo Descanso).
+// Etapa 15, ajuste (v18): treino.js sem o toast "Próximo" durante o descanso (lista do precache igual).
 
-const VERSAO = 'v16';
+const VERSAO = 'v18';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -51,12 +54,14 @@ const ARQUIVOS = [
   'js/logica/comparacao.js',
   'js/logica/cronometro.js',
   'js/logica/datas.js',
+  'js/logica/descanso.js',
   'js/logica/fluxo-treino.js',
   'js/logica/rotina.js',
   'js/logica/tipos.js',
   'js/logica/validar-dados.js',
   'js/ui/dom.js',
   'js/ui/componentes.js',
+  'js/ui/anel.js',
   'js/ui/semana.js',
   'js/telas/hoje.js',
   'js/telas/trilhas.js',

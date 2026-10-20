@@ -1,7 +1,7 @@
 // sessoes.js: treinos na store sessoes (PROJETO.md, seção 4.2, "sessoes").
 // Etapa 12: leitura (o Hoje usa para o calendário da semana e o treino do dia).
 // Etapa 13: iniciar (no máximo uma sessão em andamento), ler uma sessão e a sessão em andamento.
-// Descanso, finalizar e descartar entram nas etapas 15 e 16.
+// Etapa 15: gravar/limpar o descanso em curso (sessao.descanso). Finalizar e descartar entram na etapa 16.
 // db é opcional: sem ele usa a conexão do app (os testes passam um banco separado).
 
 import { obterBanco } from './conexao.js';
@@ -70,4 +70,25 @@ export async function iniciarSessao(dados, { agora = Date.now() } = {}, db) {
   store.add(sessao);
   await tx.done;
   return { sessao, jaExistia: false };
+}
+
+// Etapa 15. Grava o descanso em curso da sessão ({ ate, duracao }) ou limpa (null). Ler e gravar na
+// mesma transação. Devolve a sessão atualizada; sem a sessão (ou já finalizada), não grava e devolve null.
+export async function salvarDescanso(id, descanso, db) {
+  if (descanso !== null && !(descanso && Number.isFinite(descanso.ate)
+    && Number.isInteger(descanso.duracao) && descanso.duracao >= 1)) {
+    throw new Error('Descanso inválido.');
+  }
+  const banco = db || await obterBanco();
+  const tx = banco.transaction('sessoes', 'readwrite');
+  const store = tx.objectStore('sessoes');
+  const sessao = await store.get(id);
+  if (!sessao || sessao.status !== 'andamento') {
+    await tx.done;
+    return null;
+  }
+  const nova = { ...sessao, descanso: descanso === null ? null : { ate: descanso.ate, duracao: descanso.duracao } };
+  store.put(nova);
+  await tx.done;
+  return nova;
 }

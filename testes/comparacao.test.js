@@ -332,11 +332,19 @@ teste('tela Treino de carga sem nenhum histórico: carga vazia e "Registrar sér
     igual(botao().disabled, false);
 
     botao().click();
-    for (let i = 0; i < 100 && !container.querySelector('.treino-bolinha:not(.treino-bolinha-vazia)'); i++) {
+    // Etapa 15: depois de registrar vem o Descanso (90 s do item); "Pular descanso" volta para a série 2.
+    for (let i = 0; i < 100 && !container.querySelector('.descanso'); i++) {
       await new Promise((r) => setTimeout(r, 20));
     }
     const series = await db.getAll('series');
     igual(series.map((x) => [x.carga, x.reps]), [[42.5, 8]], 'gravou a carga digitada');
+    igual((await db.get('sessoes', 'em-andamento')).descanso.duracao, 90, 'descanso gravado com o tempo do item');
+    igual(container.querySelector('.descanso-seguir').textContent, 'A seguir Supino reto com barra · série 2 de 3');
+    [...container.querySelectorAll('.descanso button')].find((b) => b.textContent === 'Pular descanso').click();
+    for (let i = 0; i < 100 && !container.querySelector('.contador-numero'); i++) {
+      await new Promise((r) => setTimeout(r, 20));
+    }
+    igual((await db.get('sessoes', 'em-andamento')).descanso, null, 'pular limpa o descanso');
     const [cargaDepois] = container.querySelectorAll('.contador-numero');
     igual(cargaDepois.value, '42,5', 'série 2 começa com a última carga de hoje');
     igual(botao().disabled, false);

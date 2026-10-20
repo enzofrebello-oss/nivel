@@ -7,11 +7,12 @@
 // - Contadores por tipo (ui/componentes.js, contador): carga = carga + reps; corpo = reps; tempo = segundos.
 //   Passos: reps 1, tempo 5 s, carga 1 kg; nada abaixo do mínimo válido. Tocar no número abre o teclado.
 // - Cada série é gravada no banco na hora (db/series.js); a tela relê o banco a cada mudança.
-// Valor inicial do contador: etapa 14 (abaixo). O Descanso entra na 15; Finalizar/Descartar e
+// Valor inicial do contador: etapa 14 (abaixo). Descanso: etapa 15 (abaixo). Finalizar/Descartar e
 // "+ Exercício", na 16.
 // Etapa 13b (fluxo do treino; regras puras em logica/fluxo-treino.js e logica/cronometro.js):
 // - Registrar a última série pedida avança sozinho para o próximo exercício pendente, com o toast
-//   "Próximo: <nome>". Séries extras (voltando com Anterior) não avançam.
+//   "Próximo: <nome>" (etapa 15: o toast não aparece durante o descanso, que já mostra "A seguir").
+//   Séries extras (voltando com Anterior) não avançam.
 // - Séries feitas viram bolinhas compactas (tocar abre editar/apagar); as que faltam aparecem vazias.
 // - Exercício de tempo: play embaixo do número. Contagem regressiva com a tela acesa (Wake Lock; sem
 //   suporte, segue sem); ao zerar, vibra e registra a série sozinha com o tempo escolhido. Pausar,
@@ -28,11 +29,21 @@
 //   vazio ("Digite a carga (kg)") e "Registrar série" fica desabilitado até a carga ser válida.
 //   Mexer no contador guarda um rascunho só daquela série (exercício + número da série), que some ao registrar.
 // - render aceita um 3º parâmetro opcional { db, catalogo } (só os testes usam: banco e catálogo de teste).
+// Etapa 15 (Descanso; regras puras em logica/descanso.js, contagem em logica/cronometro.js):
+// - Registrar uma série (no botão ou no fim da contagem do tempo) grava sessao.descanso = { ate, duracao }
+//   com o descanso do item e abre o modo Descanso: anel com o tempo, −15 s, +15 s, "Pular descanso" e
+//   "A seguir: <exercício> · série n de m". Também depois da última série de um exercício (o avanço já
+//   aconteceu, o "a seguir" mostra o próximo exercício); depois da última série do treino, não há descanso.
+// - O tempo vem do horário de término (ate), não de um contador: minimizar, apagar a tela ou recarregar
+//   não muda nada (ao voltar à aba, recalcula). Tela acesa durante o descanso (o mesmo Wake Lock da contagem).
+// - Ao zerar: vibra (se houver) e volta sozinho para a série. Pular, −15 s até zero ou tocar na barra de
+//   progresso encerram sem vibrar. Ao abrir a tela com um descanso que já acabou, só limpa.
 import { h, limpar } from '../ui/dom.js';
 import { abrirModal, comoFazer, contador, toast } from '../ui/componentes.js';
 import { calendarioSemana } from '../ui/semana.js';
 import { obterCatalogo } from '../catalogo.js';
-import { obterSessao, listarSessoes } from '../db/sessoes.js';
+import { anel } from '../ui/anel.js';
+import { obterSessao, listarSessoes, salvarDescanso } from '../db/sessoes.js';
 import {
   adicionarSerie, editarSerie, apagarSerie, listarSeriesDaSessao, seriesDaUltimaVez,
 } from '../db/series.js';
@@ -42,8 +53,11 @@ import { CAMPOS, formatarSerie, formatarTempo } from '../logica/tipos.js';
 import { compararSeries, textoAntes, valoresIniciais } from '../logica/comparacao.js';
 import { indiceInicial, aposRegistrar, modoFinal, textoBolinha } from '../logica/fluxo-treino.js';
 import {
-  novoCronometro, rodando, segundosRestantes, zerou, iniciar, pausar,
+  novoCronometro, rodando, segundosRestantes, zerou, iniciar, pausar, fracaoRestante,
 } from '../logica/cronometro.js';
+import {
+  duracaoDoItem, deveDescansar, comecarDescanso, ajustarDescanso, paraSalvar, doSalvo, textoASeguir,
+} from '../logica/descanso.js';
 
 const formatoHora = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
@@ -59,9 +73,12 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
   const chaveRascunho = (exercicioId, n) => `${exercicioId}#${n}`;
   let conferirAvanco = false; // true logo depois de registrar: o próximo desenho decide se avança
   let cron = null; // { exercicio, estado } da contagem do exercício de tempo; null = sem contagem
-  let intervalo = null;
-  let visor = null; // <p> com o tempo restante (atualizado a cada tique, sem redesenhar a tela)
-  let travaTela = null; // WakeLockSentinel enquanto a contagem roda
+  let descanso = null; // cronômetro do descanso em curso (espelho de sessao.descanso); null = sem descanso
+  let intervalo = null; // um só setInterval para a contagem e o descanso (os dois nunca rodam juntos)
+  let visor = null; // <p> com o tempo restante da contagem (atualizado a cada tique, sem redesenhar a tela)
+  let visorDescanso = null; // idem, no centro do anel do descanso
+  let anelDescanso = null; // { elemento, atualizar } do anel do descanso
+  let travaTela = null; // WakeLockSentinel enquanto a contagem ou o descanso roda
   let saiu = false;
 
   const fechar = () => {
@@ -69,12 +86,15 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     fecharModal = null;
   };
 
+  // Há relógio correndo (contagem rodando ou descanso)? Só então tique e tela acesa.
+  const relogioAtivo = () => Boolean((cron && rodando(cron.estado)) || descanso);
+
   // ---------- Tela acesa (Screen Wake Lock); sem suporte ou recusado = segue sem, calado ----------
   async function manterTelaAcesa() {
     if (travaTela || !('wakeLock' in navigator)) return;
     try {
       const trava = await navigator.wakeLock.request('screen');
-      if (saiu || !cron || !rodando(cron.estado) || travaTela) {
+      if (saiu || !relogioAtivo() || travaTela) {
         trava.release().catch(() => {});
         return;
       }
@@ -83,7 +103,7 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
         if (travaTela === trava) travaTela = null;
       });
     } catch {
-      // Sem permissão (ex.: aba em segundo plano) ou sem suporte: a contagem continua igual.
+      // Sem permissão (ex.: aba em segundo plano) ou sem suporte: o relógio continua igual.
     }
   }
 
@@ -92,56 +112,119 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     travaTela = null;
   }
 
-  // O navegador solta a trava quando a aba fica oculta: ao voltar, pede de novo e confere se zerou.
+  // Liga ou desliga o tique e a tela acesa conforme o estado (chamar depois de mudar cron ou descanso).
+  function atualizarRelogio() {
+    if (relogioAtivo()) {
+      if (!intervalo) intervalo = setInterval(tique, 250);
+      manterTelaAcesa();
+    } else {
+      if (intervalo) clearInterval(intervalo);
+      intervalo = null;
+      liberarTela();
+    }
+  }
+
+  // O navegador solta a trava quando a aba fica oculta e pode atrasar o setInterval: ao voltar, pede de
+  // novo e recalcula pelo relógio (o tempo vem do horário de término, então continua certo).
   function aoMudarVisibilidade() {
-    if (document.visibilityState !== 'visible' || !cron) return;
-    if (rodando(cron.estado)) manterTelaAcesa();
+    if (document.visibilityState !== 'visible' || !relogioAtivo()) return;
+    manterTelaAcesa();
     tique();
   }
   document.addEventListener('visibilitychange', aoMudarVisibilidade);
 
+  function vibrar() {
+    if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
+  }
+
   // ---------- Cronômetro do exercício de tempo ----------
   function pararCronometro() {
-    if (intervalo) clearInterval(intervalo);
-    intervalo = null;
     cron = null;
     visor = null;
-    liberarTela();
+    atualizarRelogio();
   }
 
   function tique() {
-    if (!cron || !rodando(cron.estado)) return;
     const agora = Date.now();
-    if (zerou(cron.estado, agora)) {
-      const { exercicio, estado } = cron;
-      pararCronometro();
-      if (navigator.vibrate) navigator.vibrate([300, 150, 300]);
-      registrar(exercicio, { segundos: estado.total });
+    if (cron && rodando(cron.estado)) {
+      if (zerou(cron.estado, agora)) {
+        const { exercicio, estado } = cron;
+        pararCronometro();
+        vibrar();
+        registrar(exercicio, { segundos: estado.total });
+        return;
+      }
+      if (visor) visor.textContent = formatarTempo(segundosRestantes(cron.estado, agora));
       return;
     }
-    if (visor) visor.textContent = formatarTempo(segundosRestantes(cron.estado, agora));
+    if (descanso) {
+      if (zerou(descanso, agora)) {
+        terminarDescanso({ vibrando: true });
+        return;
+      }
+      mostrarDescanso(agora);
+    }
   }
 
   function comecarContagem(exercicio, segundos) {
-    pararCronometro();
     cron = { exercicio, estado: iniciar(novoCronometro(segundos), Date.now()) };
-    intervalo = setInterval(tique, 250);
-    manterTelaAcesa();
+    atualizarRelogio();
     desenhar();
   }
 
   function pausarContagem() {
     if (!cron) return;
     cron = { ...cron, estado: pausar(cron.estado, Date.now()) };
-    liberarTela();
+    atualizarRelogio();
     desenhar();
   }
 
   function continuarContagem() {
     if (!cron) return;
     cron = { ...cron, estado: iniciar(cron.estado, Date.now()) };
-    manterTelaAcesa();
+    atualizarRelogio();
     desenhar();
+  }
+
+  // ---------- Descanso (estado no banco: sessao.descanso) ----------
+  function mostrarDescanso(agora) {
+    if (!descanso) return;
+    if (visorDescanso) visorDescanso.textContent = formatarTempo(segundosRestantes(descanso, agora));
+    if (anelDescanso) anelDescanso.atualizar(fracaoRestante(descanso, agora));
+  }
+
+  // Encerra o descanso (zerou, Pular, −15 s até zero ou troca de exercício): limpa no banco e, se
+  // redesenhar, volta para a série. Espera a gravação antes de redesenhar (senão a leitura ainda o veria).
+  async function terminarDescanso({ vibrando = false, redesenhar = true } = {}) {
+    if (!descanso) return;
+    descanso = null;
+    visorDescanso = null;
+    anelDescanso = null;
+    atualizarRelogio();
+    if (vibrando) vibrar();
+    try {
+      await salvarDescanso(params.id, null, db);
+    } catch (erro) {
+      console.error('Treino: não foi possível limpar o descanso:', erro);
+    }
+    if (redesenhar && !saiu) await desenhar();
+  }
+
+  // −15 s (vezes = -1) / +15 s (vezes = 1): muda o horário de término e grava.
+  async function ajustarTempo(vezes) {
+    if (!descanso) return;
+    const agora = Date.now();
+    descanso = ajustarDescanso(descanso, vezes, agora);
+    if (zerou(descanso, agora)) {
+      await terminarDescanso();
+      return;
+    }
+    mostrarDescanso(agora);
+    try {
+      await salvarDescanso(params.id, paraSalvar(descanso), db);
+    } catch (erro) {
+      console.error('Treino: não foi possível salvar o descanso:', erro);
+    }
   }
 
   // Grava a série (botão "Registrar série" ou fim da contagem) e redesenha; o desenho decide se avança.
@@ -153,11 +236,30 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
       rascunhos.delete(chaveRascunho(exercicio.id, n - 1)); // a série n já foi feita
       mensagem = `Série ${n} registrada: ${formatarSerie(serie)}`;
       conferirAvanco = true;
+      await iniciarDescansoSeFaltar(exercicio, series);
     } catch (erro) {
       console.error('Treino: não foi possível registrar a série:', erro);
       mensagem = `Não foi possível salvar a série: ${erro.message}`;
     }
     if (!saiu) await desenhar();
+  }
+
+  // Depois de registrar: descansa o tempo do item, a não ser que o treino tenha acabado (sem pendentes).
+  // Se gravar falhar, segue sem descanso (a série já está salva).
+  async function iniciarDescansoSeFaltar(exercicio, series) {
+    try {
+      const sessao = await obterSessao(params.id, db);
+      if (!sessao) return;
+      const itens = sessao.itens;
+      const contagens = itens.map((it) => series.filter((s) => s.exercicioId === it.exercicioId).length);
+      if (!deveDescansar(itens, contagens)) return;
+      const item = itens[indice] && itens[indice].exercicioId === exercicio.id
+        ? itens[indice]
+        : itens.find((it) => it.exercicioId === exercicio.id);
+      await salvarDescanso(params.id, paraSalvar(comecarDescanso(duracaoDoItem(item), Date.now())), db);
+    } catch (erro) {
+      console.error('Treino: não foi possível começar o descanso:', erro);
+    }
   }
 
   async function desenhar() {
@@ -205,6 +307,7 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
       // Ao abrir (ou reabrir o app): o primeiro exercício que ainda não foi feito; tudo feito = o último.
       indice = indiceInicial(itens, contagens);
     }
+    let avisoProximo = null; // texto do toast "Próximo: <nome>" (só sai se não houver descanso)
     if (conferirAvanco) {
       // Acabou de registrar: se foi a última série pedida, vai para o próximo exercício pendente.
       conferirAvanco = false;
@@ -213,12 +316,44 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
         indice = destino;
         mensagem = '';
         const proximo = catalogo.exercicioPorId.get(itens[destino].exercicioId);
-        toast(`Próximo: ${proximo ? proximo.nome : itens[destino].exercicioId}`);
+        avisoProximo = `Próximo: ${proximo ? proximo.nome : itens[destino].exercicioId}`;
       }
     }
     const item = itens[indice];
     const exercicio = catalogo.exercicioPorId.get(item.exercicioId);
     const final = modoFinal(itens, contagens, indice);
+
+    const irPara = async (i) => {
+      pararCronometro(); // trocar de exercício cancela a contagem
+      await terminarDescanso({ redesenhar: false }); // e o descanso
+      indice = i;
+      mensagem = '';
+      desenhar();
+    };
+
+    // Descanso gravado na sessão (acabou de registrar, ou o app reabriu no meio dele).
+    const agora = Date.now();
+    descanso = doSalvo(sessao.descanso, agora);
+    if (descanso && zerou(descanso, agora)) {
+      // Acabou enquanto o app estava fechado: só limpa e segue para a série.
+      descanso = null;
+      salvarDescanso(params.id, null, db).catch((erro) => console.error('Treino: não foi possível limpar o descanso:', erro));
+    }
+    // Durante o descanso a tela já mostra "A seguir"; o toast só aparece sem descanso.
+    if (avisoProximo && !descanso) toast(avisoProximo);
+    atualizarRelogio();
+    if (descanso) {
+      limpar(tela);
+      tela.append(
+        calendarioSemana(diasTreinadosNaSemana(sessoes)),
+        cabecalho(sessao),
+        barraDeProgresso(catalogo, itens, indice, feitas, irPara),
+        cartaoDescanso(exercicio ? exercicio.nome : item.exercicioId, contagens[indice], item.series),
+      );
+      return;
+    }
+    visorDescanso = null;
+    anelDescanso = null;
 
     // "Antes" do exercício aberto: último treino concluído (se a leitura falhar, segue sem antes).
     let antes = [];
@@ -230,18 +365,9 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     if (minha !== rodada) return;
     limpar(tela); // só agora, com tudo lido: a tela não pisca vazia entre as leituras
 
-    const irPara = (i) => {
-      pararCronometro(); // trocar de exercício cancela a contagem
-      indice = i;
-      mensagem = '';
-      desenhar();
-    };
-
     tela.append(
       calendarioSemana(diasTreinadosNaSemana(sessoes)),
-      h('header', { class: 'treino-cabecalho' },
-        h('h2', { class: 'treino-nome' }, sessao.nome),
-        h('p', { class: 'treino-inicio' }, `Começou às ${formatoHora.format(sessao.inicio)}`)),
+      cabecalho(sessao),
       barraDeProgresso(catalogo, itens, indice, feitas, irPara),
       exercicio
         ? cartaoExercicio({ item, exercicio, seriesFeitas: porExercicio.get(item.exercicioId) || [] })
@@ -253,6 +379,23 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
           ? h('button', { type: 'button', class: 'botao botao-destaque', onclick: () => { location.hash = '#/'; } }, 'Sair')
           : h('button', { type: 'button', class: 'botao', disabled: indice === itens.length - 1, onclick: () => irPara(indice + 1) }, 'Próximo ›')),
     );
+
+    // Modo Descanso: anel com o tempo, −15 s / +15 s, Pular e o que vem a seguir.
+    function cartaoDescanso(nome, feitasNoProximo, previstas) {
+      const t = Date.now();
+      visorDescanso = h('p', { class: 'descanso-tempo', role: 'timer' }, formatarTempo(segundosRestantes(descanso, t)));
+      anelDescanso = anel({ fracao: fracaoRestante(descanso, t), conteudo: visorDescanso });
+      return h('section', { class: 'cartao descanso', 'aria-labelledby': 'descanso-titulo' },
+        h('h3', { class: 'descanso-titulo', id: 'descanso-titulo' }, 'Descanso'),
+        anelDescanso.elemento,
+        h('div', { class: 'descanso-ajustes' },
+          h('button', { type: 'button', class: 'botao', 'aria-label': 'Menos 15 segundos', onclick: () => ajustarTempo(-1) }, '−15 s'),
+          h('button', { type: 'button', class: 'botao', 'aria-label': 'Mais 15 segundos', onclick: () => ajustarTempo(1) }, '+15 s')),
+        h('button', { type: 'button', class: 'botao botao-destaque botao-grande', onclick: () => terminarDescanso() }, 'Pular descanso'),
+        h('p', { class: 'descanso-seguir' },
+          h('span', { class: 'descanso-seguir-rotulo' }, 'A seguir'), ` ${textoASeguir(nome, feitasNoProximo, previstas)}`),
+        h('p', { class: 'treino-status', role: 'status' }, mensagem));
+    }
 
     function cartaoExercicio({ item: it, exercicio: ex, seriesFeitas }) {
       const trilha = it.trilhaId ? catalogo.trilhaPorId.get(it.trilhaId) : null;
@@ -428,9 +571,18 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
   return () => {
     saiu = true;
     fechar();
-    pararCronometro();
+    // Sair da tela solta o relógio e a tela acesa; o descanso continua gravado (volta certo ao reabrir).
+    cron = null;
+    descanso = null;
+    atualizarRelogio();
     document.removeEventListener('visibilitychange', aoMudarVisibilidade);
   };
+}
+
+function cabecalho(sessao) {
+  return h('header', { class: 'treino-cabecalho' },
+    h('h2', { class: 'treino-nome' }, sessao.nome),
+    h('p', { class: 'treino-inicio' }, `Começou às ${formatoHora.format(sessao.inicio)}`));
 }
 
 function aviso(texto) {

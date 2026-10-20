@@ -86,11 +86,12 @@ Alternativas descartadas: React/Vue/Svelte com Vite (exigem build e toolchain No
 - Na primeira abertura: `navigator.storage.persist()` (pede ao navegador para não apagar os dados sob pressão de espaço). O status aparece em Ajustes.
 
 ### Como testar
-**No PC (localhost é contexto seguro: SW e instalação funcionam).** Node 24 e Python 3.13 estão instalados nesta máquina.
+**Como testar no PC (localhost é contexto seguro: SW e instalação funcionam).** Node 24 e Python 3.13 estão instalados nesta máquina.
 - Preferido: `npx http-server -p 8080 -c-1` na pasta do projeto (`-c-1` desliga o cache HTTP).
 - Alternativa: `python -m http.server 8080`. Se der erro "MIME type text/plain" ao carregar módulos, a causa é o registro do Windows. Use o `http-server`.
 - Abrir `http://localhost:8080`, DevTools no modo dispositivo móvel. Para o offline: Application › Service workers › Offline.
 - Testes de lógica: `http://localhost:8080/testes/` (roda no navegador, sem Node).
+- Com o DevTools aberto, deixar marcados Network › Disable cache e Application › Service workers › Bypass for network (sempre o código novo). Desmarcar só para testar o aviso de atualização.
 
 **No celular (Android, com Chrome). O IP da rede local via `http://` NÃO é contexto seguro: não instala nem registra SW.**
 - **Desenvolvimento (com cabo):** depuração USB ligada, `chrome://inspect/#devices` no PC › Port forwarding `8080 → localhost:8080`. No celular, abrir `http://localhost:8080`: é contexto seguro, instala e dá para depurar pelo DevTools do PC.
@@ -623,7 +624,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 12. Rotina e Hoje básico (calendário da semana, rotina com "Trocar" e treino do dia).
 - **Feito:** etapa 13. Treino em andamento: registrar séries (contadores com − e + e digitação, salvar na hora, editar/apagar, "Continuar treino" no Hoje), conferida no PC.
 - **Feito:** etapa 13b. Fluxo do treino (avanço automático com "Próximo: <nome>", séries em bolinhas, cronômetro regressivo no tempo com tela acesa e vibração, "Anterior"/"Sair" no fim, sem abas no treino), conferida no PC.
-- **Feito:** etapa 14. Tabela antes / hoje / +1 (linha "ANTES" em cima das bolinhas, +1 por série com ganho em laranja, carga só é "+" sem piorar nenhum campo, contador começa na mesma série da última vez); conferência visual fica para depois da etapa 16. **Próxima etapa de código:** **15. Descanso.**
+- **Feito:** etapa 14. Tabela antes / hoje / +1 (linha "ANTES" em cima das bolinhas, +1 por série com ganho em laranja, carga só é "+" sem piorar nenhum campo, contador começa na mesma série da última vez); conferência visual fica para depois da etapa 16.
+- **Feito:** etapa 15. Descanso (anel com o tempo, −15 s / +15 s, "Pular descanso" e "A seguir"; pelo horário de término gravado na sessão, com tela acesa; ao zerar vibra e volta sozinho; descansa também antes do próximo exercício, mas não depois da última série do treino); conferida no PC; vibração no celular pendente. **Próxima etapa de código:** **16. Finalizar, descartar, avulso e treino livre.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -688,7 +690,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 13. Treino em andamento: registrar séries
 - [x] 13b. Fluxo do treino
 - [x] 14. Tabela antes / hoje / +1
-- [ ] 15. Descanso
+- [x] 15. Descanso
 - [ ] 16. Finalizar, descartar, avulso e treino livre (início do uso real)
 - [ ] 17. Trilhas: lógica
 - [ ] 18. Tela Trilhas + avanço
