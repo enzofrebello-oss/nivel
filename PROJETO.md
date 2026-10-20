@@ -601,7 +601,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 6. Manifest + ícones (app "Nível").
 - **Feito:** etapa 7. Service worker.
 - **Feito:** etapa 8. Fluxo de atualização.
-- **Feito:** etapa 9. IndexedDB + migração 1. **Próxima etapa de código:** **10. Publicar e instalar no Android.**
+- **Feito:** etapa 9. IndexedDB + migração 1.
+- **Feito:** etapa 10. Publicado no GitHub Pages (https://enzofrebello-oss.github.io/nivel/) e instalado no Android. **Próxima etapa de código:** **11. Backup.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** como fazer as ilustrações dos exercícios (a v1 funciona sem elas).
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -660,7 +661,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 7. Service worker
 - [x] 8. Fluxo de atualização
 - [x] 9. IndexedDB + migração 1
-- [ ] 10. Publicar e instalar no Android
+- [x] 10. Publicar e instalar no Android
 - [ ] 11. Backup
 - [ ] 12. Rotina e Hoje básico
 - [ ] 13. Treino em andamento: registrar séries
