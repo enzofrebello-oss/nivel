@@ -77,9 +77,9 @@ Alternativas descartadas: React/Vue/Svelte com Vite (exigem build e toolchain No
 - A versão do **banco** é independente da versão dos **dados** do catálogo (seção 4.2, "Versões").
 
 ### Backup (exportar/importar JSON)
-- **Exportar**: lê todas as stores e gera `treino-backup-AAAA-MM-DD.json`:
-  `{ "app": "treino-app", "formato": 1, "versaoDb": 1, "versaoDados": 1, "exportadoEm": 1760790000000, "dados": { "sessoes": [...], "series": [...], "trilhas": [...], "meta": [...] } }`
-  No celular usa `navigator.share({ files })` quando disponível (permite salvar no Drive/Arquivos). Fora disso, download por `<a download>`. Grava `meta.ultimoBackup`.
+- **Exportar**: lê todas as stores e gera `nivel-backup-AAAA-MM-DD.json` (data local do aparelho):
+  `{ "app": "nivel", "formato": 1, "versaoDb": 1, "versaoDados": 1, "exportadoEm": 1760790000000, "dados": { "sessoes": [...], "series": [...], "trilhas": [...], "meta": [...] } }`
+  No celular usa `navigator.share({ files })` quando disponível (permite salvar no Drive/Arquivos). Fora disso, ou se o share falhar com erro que não seja `AbortError` (cancelar a folha de compartilhar não baixa nada), download por `<a download>` (Blob + `URL.createObjectURL`, link anexado ao DOM antes do `click()`, `revokeObjectURL` com atraso). Grava `meta.ultimoBackup`.
 - **Importar**: escolhe o arquivo, valida (`app`, `formato <= atual`, arrays presentes, cada registro passa na validação do seu tipo, todo `exercicioId`/`trilhaId` existe no catálogo), mostra prévia ("80 treinos, 1.900 séries, 5 trilhas em andamento") e pede confirmação. Então **substitui tudo** numa única transação sobre todas as stores (atômico: se falhar, nada muda). Mesclar fica fora da v1.
 - `formato` é independente de `versaoDb`. Se o formato mudar, o importador converte formatos antigos antes de gravar.
 - Lembrete no Hoje se o último backup tiver mais de 7 dias.
@@ -602,12 +602,12 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 7. Service worker.
 - **Feito:** etapa 8. Fluxo de atualização.
 - **Feito:** etapa 9. IndexedDB + migração 1.
-- **Feito:** etapa 10. Publicado no GitHub Pages (https://enzofrebello-oss.github.io/nivel/) e instalado no Android. **Próxima etapa de código:** **11. Backup.**
+- **Feito:** etapa 10. Publicado no GitHub Pages (https://enzofrebello-oss.github.io/nivel/) e instalado no Android.
+- **Feito:** etapa 11. Backup (exportar/importar em Ajustes). **Próxima etapa de código:** **12. Rotina e Hoje básico.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
 - **Pendente:** no teclado numérico do Android pode faltar a tecla ":"; o tempo na tela de registrar série talvez precise de botões − e + ou de campos separados de minutos e segundos.
-- **Pendente:** Conferir no navegador que o aviso de versão nova fica escondido na tela de treino.
 - Detalhes de cada etapa em HISTORICO.md
 
 ### Decisões tomadas
@@ -662,7 +662,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 8. Fluxo de atualização
 - [x] 9. IndexedDB + migração 1
 - [x] 10. Publicar e instalar no Android
-- [ ] 11. Backup
+- [x] 11. Backup
 - [ ] 12. Rotina e Hoje básico
 - [ ] 13. Treino em andamento: registrar séries
 - [ ] 14. Tabela antes / hoje / +1

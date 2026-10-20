@@ -516,3 +516,79 @@
   opacity: 0.6;
   cursor: default;
 }
+
+/* ---------- Botões de texto e cartão Backup em Ajustes (etapa 11) ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--toque-min);
+  padding: 0 20px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-botao);
+  background: transparent;
+  color: var(--cor-texto);
+  font-weight: 700;
+}
+
+.botao-destaque {
+  border-color: var(--cor-destaque);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.botao-perigo {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.backup {
+  margin-top: 8px; /* sem título no conteúdo (fica no topo), como a Biblioteca */
+}
+
+.backup-texto,
+.backup-previa-aviso {
+  color: var(--cor-texto-2);
+}
+
+.backup-ultimo {
+  margin: 12px 0 16px;
+}
+
+.backup-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.backup-previa:not(:empty) {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.backup-previa-texto {
+  font-weight: 700;
+}
+
+.backup-previa-aviso {
+  margin: 4px 0 12px;
+}
+
+.backup-mensagem:not(:empty) {
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+
+.backup-mensagem.ok {
+  color: var(--cor-texto);
+}
+
+.backup-mensagem.erro {
+  color: var(--cor-destaque);
+}

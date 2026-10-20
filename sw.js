@@ -9,8 +9,9 @@
 // como as licenças das fontes: o app não os carrega). v6: banco renomeado para 'nivel' e aviso de
 // falha do banco em js/app.js. v7: o fetch só responde pelo app (raiz/index.html e ARQUIVOS); testes/ e
 // pesquisa/ vão direto para a rede (antes /testes/ recebia o index.html do app).
+// Etapa 11 (v8 a v10): js/db/backup.js no precache; ajustes.js, backup.js e componentes.css alterados (backup em Ajustes).
 
-const VERSAO = 'v7';
+const VERSAO = 'v10';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -29,6 +30,7 @@ const ARQUIVOS = [
   'js/db/migracoes.js',
   'js/db/meta.js',
   'js/db/trilhas.js',
+  'js/db/backup.js',
   'js/logica/busca.js',
   'js/logica/tipos.js',
   'js/logica/validar-dados.js',
