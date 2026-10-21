@@ -399,7 +399,7 @@ Store separada (e não embutida na sessão) porque o histórico, o gráfico e as
 
 #### `meta` (keyPath `chave`)
 Chave-valor, ex. `{ "chave": "rotinaAtualId", "valor": "massa-3-casa" }`.
-- v1: `ultimoBackup`, `rotinaAtualId`, `versaoDadosVista`, `persistenciaPedida`.
+- v1: `ultimoBackup`, `rotinaAtualId`, `versaoDadosVista`, `persistenciaPedida`, `trilhaEscolhida` (última trilha aberta na tela Trilhas).
 - v1.1: `objetivo`, `diasPorSemana`, `local`.
 
 #### Versões e migração
@@ -491,6 +491,8 @@ Componentes compartilhados: modal de confirmação (não usar `confirm()`), toas
 ## 6. Etapas de construção
 
 Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já útil offline) e o **ciclo principal (Hoje → treino → resumo) usável logo depois**. O backup vem logo depois da instalação no celular (etapa 11). O **uso real começa na etapa 16**: precisa do backup pronto e de um treino completo (Hoje → registrar séries → finalizar). Cada etapa termina com algo verificável e, a partir da etapa 10, com deploy (`VERSAO` nova) e conferência no celular.
+
+**Mudança de ordem (aprovada pelo usuário):** a etapa da tela Trilhas (etapa 18, "Tela Trilhas + avanço") foi adiantada e passa a ser feita antes da etapa 16b. A numeração das etapas continua a mesma.
 
 ### Antes da etapa 1: Fase 2b (geração dos JSON)
 **Fase 2b. Catálogo.** Objetivo: gerar `dados/exercicios.json`, `dados/progressoes.json` e `dados/rotinas.json` a partir de `pesquisa/`, no formato da seção 4.1, propondo as metas das trilhas e o conteúdo das 12 rotinas. Pronto quando: os 3 arquivos passam em todas as regras de validação (script temporário fora do projeto), há 159 exercícios (os 157 da pesquisa + 2 de adutores) e 13 trilhas, há 12 rotinas, e o usuário aprovou metas e rotinas. As etapas 1 a 3 não dependem dos JSON; da etapa 4 em diante, sim.
@@ -638,7 +640,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 14. Tabela antes / hoje / +1 (linha "ANTES" em cima das bolinhas, +1 por série com ganho em laranja, carga só é "+" sem piorar nenhum campo, contador começa na mesma série da última vez); conferência visual fica para depois da etapa 16.
 - **Feito:** etapa 15. Descanso (anel com o tempo, −15 s / +15 s, "Pular descanso" e "A seguir"; pelo horário de término gravado na sessão, com tela acesa; ao zerar vibra e volta sozinho; descansa também antes do próximo exercício, mas não depois da última série do treino); conferida no PC; vibração no celular pendente.
 - **Feito:** etapa 15b. Nível de cada trilha (cartão em Ajustes com as 15 trilhas, casa primeiro; tocar abre os níveis com exercício e meta e escolher grava o nível atual, inclusive mais fácil; usado pelo treino do dia e pelo treino, e entra no backup).
-- **Feito:** etapa 16. Finalizar, descartar e resumo (no fim do treino, "‹ Anterior" e "Finalizar treino"; menu "⋯" com Sair e continuar depois, Finalizar agora com confirmação se faltar exercício e Descartar com confirmação, que apaga a sessão e as séries; resumo = Detalhe da sessão em modo leitura com duração, séries e +1; Hoje mostra o treino concluído e o próximo dia da rotina; backup de ida e volta conferido). **Próxima etapa de código:** **16b. Hoje novo.**
+- **Feito:** etapa 16. Finalizar, descartar e resumo (no fim do treino, "‹ Anterior" e "Finalizar treino"; menu "⋯" com Sair e continuar depois, Finalizar agora com confirmação se faltar exercício e Descartar com confirmação, que apaga a sessão e as séries; resumo = Detalhe da sessão em modo leitura com duração, séries e +1; Hoje mostra o treino concluído e o próximo dia da rotina; backup de ida e volta conferido).
+- **Feito:** tela Trilhas, adiantada antes da 16b (chips com as trilhas de casa primeiro e a última escolhida lembrada; caminho com concluídos ✓, nível atual com anel e "seu melhor" só de séries reais, bloqueados tracejados; tocar abre o "Como fazer"; sem "Treinar este nível" e sem avanço automático). **Próxima etapa de código:** **16b. Hoje novo.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).

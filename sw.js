@@ -36,8 +36,10 @@
 // db/series.js, logica/datas.js, logica/fluxo-treino.js, logica/comparacao.js e componentes.css alterados
 // (lista do precache igual).
 // Etapa 16, ajuste (v23): "kg" nas séries com carga do resumo (sessao-detalhe.js; lista do precache igual).
+// Tela Trilhas, adiantada antes da 16b (v24): js/logica/trilhas.js no precache; telas/trilhas.js e
+// componentes.css alterados (chips, caminho dos níveis, anel e "seu melhor").
 
-const VERSAO = 'v23';
+const VERSAO = 'v24';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -67,6 +69,7 @@ const ARQUIVOS = [
   'js/logica/fluxo-treino.js',
   'js/logica/rotina.js',
   'js/logica/tipos.js',
+  'js/logica/trilhas.js',
   'js/logica/validar-dados.js',
   'js/ui/dom.js',
   'js/ui/componentes.js',

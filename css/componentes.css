@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. Etapa 13: contador e tela Treino. Etapa 13b: bolinhas das séries, cronômetro do tempo, tela de treino sem abas e toast. Etapa 16: menu "⋯" do treino, Finalizar treino, card do treino concluído no Hoje e Detalhe da sessão (resumo). */
+/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. Etapa 13: contador e tela Treino. Etapa 13b: bolinhas das séries, cronômetro do tempo, tela de treino sem abas e toast. Etapa 16: menu "⋯" do treino, Finalizar treino, card do treino concluído no Hoje e Detalhe da sessão (resumo). Tela Trilhas (antes da 16b): chips, caminho dos níveis, anel e cartão do nível atual. */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -1547,4 +1547,194 @@ body.sem-abas .toast {
 
 .resumo-voltar {
   margin-top: 4px;
+}
+
+/* ---------- Tela Trilhas (adiantada antes da etapa 16b) ---------- */
+/* Chips das trilhas no topo; caminho vertical do último nível (em cima) para o primeiro (embaixo).
+   A linha que liga os níveis é laranja no trecho já percorrido e tracejada perto dos bloqueados. */
+.trilhas-chips {
+  margin-top: 8px;
+}
+
+.trilha-titulo {
+  margin-top: 20px;
+}
+
+.trilha-resumo {
+  margin-top: 4px;
+  color: var(--cor-texto-2);
+  font-weight: 700;
+}
+
+.trilha-aviso {
+  margin-top: 8px;
+  color: var(--cor-destaque);
+}
+
+.trilha-caminho {
+  margin-top: 16px;
+}
+
+.trilha-nivel {
+  position: relative;
+  padding: 8px 0;
+}
+
+/* Metade de cima e metade de baixo da linha, no centro da coluna das marcas (64 px). */
+.trilha-nivel::before,
+.trilha-nivel::after {
+  content: "";
+  position: absolute;
+  left: 31px;
+  width: 0;
+  border-left: 2px solid var(--cor-destaque);
+}
+
+.trilha-nivel::before {
+  top: 0;
+  bottom: 50%;
+}
+
+.trilha-nivel::after {
+  top: 50%;
+  bottom: 0;
+}
+
+.trilha-nivel:first-child::before,
+.trilha-nivel:last-child::after {
+  display: none;
+}
+
+.trilha-nivel.bloqueado::before,
+.trilha-nivel.bloqueado::after,
+.trilha-nivel.bloqueado + .trilha-nivel::before,
+.trilha-nivel:has(+ .bloqueado)::after {
+  border-left: 2px dashed var(--cor-borda);
+}
+
+.trilha-nivel-botao {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: var(--toque-min);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.trilha-marca {
+  display: grid;
+  place-items: center;
+}
+
+.trilha-bolinha {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.trilha-nivel.concluido .trilha-bolinha {
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.trilha-nivel.bloqueado .trilha-bolinha {
+  border: 2px dashed var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-2);
+}
+
+.trilha-texto {
+  display: grid;
+  gap: 2px;
+}
+
+.trilha-nome {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.trilha-nivel.bloqueado .trilha-nome {
+  color: var(--cor-texto-2);
+}
+
+.trilha-detalhe {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+/* Nível atual: anel pequeno (fundo opaco para a linha não passar por dentro) e cartão ao lado. */
+.anel.trilha-anel {
+  width: 64px;
+  border-radius: 50%;
+  background: var(--cor-fundo);
+}
+
+.trilha-anel .anel-fundo,
+.trilha-anel .anel-traco {
+  stroke-width: 12;
+}
+
+.trilha-anel-texto {
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.trilha-cartao {
+  display: grid;
+  gap: 4px;
+  border-color: var(--cor-destaque);
+}
+
+.trilha-cartao-rotulo {
+  color: var(--cor-destaque);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.trilha-cartao-nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.trilha-cartao-linha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 8px;
+}
+
+.trilha-cartao-chave {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+.trilha-melhor.vazio {
+  color: var(--cor-texto-2);
+  font-weight: 400;
+}
+
+.trilha-modal-meta {
+  margin-bottom: 12px;
+  color: var(--cor-texto-2);
+}
+
+.trilha-modal-link {
+  margin-top: 8px;
 }
