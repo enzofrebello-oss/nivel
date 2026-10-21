@@ -1,4 +1,4 @@
-/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. Etapa 13: contador e tela Treino. Etapa 13b: bolinhas das séries, cronômetro do tempo, tela de treino sem abas e toast. */
+/* componentes.css: componentes visuais. Etapas 1, 2, 4, 5, 8, 11 e 12: topo, ícones, barra inferior de abas, telas placeholder, aviso de erro, cartões, chips, selos, Biblioteca, "Como fazer", banner de atualização, botões, Backup, Hoje (calendário da semana, rotina, treino do dia) e modal. Etapa 13: contador e tela Treino. Etapa 13b: bolinhas das séries, cronômetro do tempo, tela de treino sem abas e toast. Etapa 16: menu "⋯" do treino, Finalizar treino, card do treino concluído no Hoje e Detalhe da sessão (resumo). */
 
 /* ---------- Ícones (SVG inline, traço) ---------- */
 .icone {
@@ -1406,4 +1406,145 @@ body.sem-abas .toast {
 
 @media (prefers-reduced-motion: reduce) {
   .toast { animation: none; }
+}
+
+/* ---------- Finalizar, descartar e resumo (etapa 16) ---------- */
+/* Topo da tela Treino: nome e horário à esquerda, menu "⋯" à direita. */
+.treino-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.treino-cabecalho-texto {
+  min-width: 0;
+}
+
+.treino-menu-botao {
+  flex: none;
+  width: var(--toque-min);
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* Último exercício concluído: "‹ Anterior" e o botão grande "Finalizar treino", que ocupa o resto. */
+.treino-navegacao-final {
+  align-items: center;
+}
+
+.treino-navegacao-final .botao:first-child {
+  flex: none;
+}
+
+.treino-finalizar {
+  flex: 1;
+  width: auto;
+}
+
+/* Modal do menu "⋯" e das confirmações. */
+.treino-menu {
+  display: grid;
+  gap: 12px;
+}
+
+.treino-menu-opcao {
+  width: 100%;
+}
+
+.treino-menu-texto {
+  color: var(--cor-texto);
+}
+
+.treino-menu-faltam {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--cor-texto-2);
+  list-style: disc;
+}
+
+/* Hoje: card simples do treino concluído (o visual novo é da etapa 16b). */
+.hoje-concluido-nome {
+  margin: 2px 0 4px;
+  font-size: 1.5rem;
+}
+
+.hoje-concluido-texto {
+  margin-bottom: 4px;
+}
+
+/* Detalhe da sessão (resumo), modo leitura. */
+.resumo {
+  display: grid;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.resumo-nome {
+  margin-top: 2px;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+.resumo-data {
+  color: var(--cor-texto-2);
+}
+
+.resumo-numeros {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+  margin: 0;
+}
+
+.resumo-numero dd {
+  margin: 2px 0 0;
+}
+
+.resumo-valor {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.resumo-lista {
+  display: grid;
+  gap: 12px;
+}
+
+.resumo-exercicio {
+  display: grid;
+  gap: 10px;
+}
+
+.resumo-exercicio-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.resumo-exercicio-nome {
+  font-size: 1.25rem;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.resumo-exercicio-feitas {
+  flex: none;
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.resumo-exercicio-feitas.completo {
+  color: var(--cor-destaque);
+}
+
+.resumo-voltar {
+  margin-top: 4px;
 }

@@ -32,8 +32,12 @@
 // Etapa 15b, ajuste (v20): voltar de nível não apaga os concluídos de cima e ✓ nos níveis concluídos;
 // db/trilhas.js, logica/rotina.js, ajustes.js e componentes.css alterados (lista do precache igual).
 // Etapa 15b, rótulo (v21): "nível N de M" sem quebra de linha no meio (logica/rotina.js; lista do precache igual).
+// Etapa 16 (v22): finalizar, descartar e resumo; treino.js, hoje.js, sessao-detalhe.js, db/sessoes.js,
+// db/series.js, logica/datas.js, logica/fluxo-treino.js, logica/comparacao.js e componentes.css alterados
+// (lista do precache igual).
+// Etapa 16, ajuste (v23): "kg" nas séries com carga do resumo (sessao-detalhe.js; lista do precache igual).
 
-const VERSAO = 'v21';
+const VERSAO = 'v23';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.

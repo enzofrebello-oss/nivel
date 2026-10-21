@@ -1,6 +1,6 @@
 // datas.js: datas em hora local (PROJETO.md, seção 2, "Datas": epoch em ms, semana de segunda a domingo).
-// Etapa 12: só o que o calendário da semana do Hoje usa. Formatação, duração e agrupamento por mês
-// entram nas etapas que os usam. Funções puras: recebem o "agora" como parâmetro (os testes passam datas fixas).
+// Etapa 12: só o que o calendário da semana do Hoje usa. Etapa 16: duração do treino (resumo e Hoje).
+// Agrupamento por mês entra na etapa que o usa. Funções puras: recebem o "agora" como parâmetro (os testes passam datas fixas).
 
 export const ROTULOS_DIA = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
 
@@ -49,4 +49,28 @@ export function diasTreinadosNaSemana(sessoes, agora = Date.now()) {
     if (semana.has(chave)) treinados.add(chave);
   }
   return treinados;
+}
+
+// Etapa 16. Duração de um treino em texto, em minutos arredondados: "menos de 1 min", "52 min",
+// "1 h", "1 h 05 min". ms negativo ou inválido = "menos de 1 min".
+export function textoDuracao(ms) {
+  const minutos = Number.isFinite(ms) && ms > 0 ? Math.round(ms / 60000) : 0;
+  if (minutos < 1) return 'menos de 1 min';
+  if (minutos < 60) return `${minutos} min`;
+  const horas = Math.floor(minutos / 60);
+  const resto = minutos % 60;
+  return resto ? `${horas} h ${String(resto).padStart(2, '0')} min` : `${horas} h`;
+}
+
+// Etapa 16. A sessão concluída mais recente que começou no dia de `agora` (o Hoje mostra o treino
+// concluído), ou null. Mesma regra do calendário: conta o dia do início.
+export function concluidaHoje(sessoes, agora = Date.now()) {
+  const hoje = chaveDoDia(agora);
+  let ultima = null;
+  for (const sessao of sessoes || []) {
+    if (sessao.status !== 'concluida' || !Number.isFinite(sessao.inicio)) continue;
+    if (chaveDoDia(sessao.inicio) !== hoje) continue;
+    if (!ultima || sessao.inicio > ultima.inicio) ultima = sessao;
+  }
+  return ultima;
 }

@@ -1,12 +1,13 @@
 // series.js: séries na store series (PROJETO.md, seção 4.2, "series").
 // Etapa 13: adicionar (salva na hora, com tipo e grupos copiados do exercício), editar, apagar e
 // listar por sessão. Etapa 14: por exercício e "última vez" (comparação antes / hoje / +1).
+// Etapa 16: "antes" de uma sessão já feita (resumo, seriesAntesDaSessao).
 // Campos de medida conforme o tipo (js/logica/tipos.js): carga + reps, reps, ou segundos;
 // os de outro tipo ficam ausentes. db é opcional: sem ele usa a conexão do app.
 
 import { obterBanco } from './conexao.js';
 import { CAMPOS, validarSerie } from '../logica/tipos.js';
-import { seriesDeAntes } from '../logica/comparacao.js';
+import { seriesDeAntes, seriesDeAntesDaSessao } from '../logica/comparacao.js';
 
 // Só os campos de medida do tipo (o resto é ignorado).
 function medidasDoTipo(tipo, medidas) {
@@ -109,6 +110,19 @@ export async function seriesDaUltimaVez(exercicioId, sessaoAtualId, db) {
   const sessoes = (await Promise.all(ids.map((id) => tx.objectStore('sessoes').get(id)))).filter(Boolean);
   await tx.done;
   return seriesDeAntes(series, sessoes, sessaoAtualId);
+}
+
+// Etapa 16: "antes" de uma sessão (resumo): séries do exercício no último treino concluído que começou
+// antes dela (logica/comparacao.js, seriesDeAntesDaSessao). Mesma transação para séries e sessões.
+export async function seriesAntesDaSessao(exercicioId, sessao, db) {
+  const banco = db || await obterBanco();
+  const tx = banco.transaction(['series', 'sessoes']);
+  const series = await tx.objectStore('series').index('por_exercicio')
+    .getAll(IDBKeyRange.bound([exercicioId, 0], [exercicioId, Infinity]));
+  const ids = [...new Set(series.map((s) => s.sessaoId))];
+  const sessoes = (await Promise.all(ids.map((id) => tx.objectStore('sessoes').get(id)))).filter(Boolean);
+  await tx.done;
+  return seriesDeAntesDaSessao(series, sessoes, sessao);
 }
 
 // Séries de uma sessão em ordem de feitaEm (índice por_sessao).

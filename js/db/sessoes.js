@@ -1,7 +1,9 @@
 // sessoes.js: treinos na store sessoes (PROJETO.md, seção 4.2, "sessoes").
 // Etapa 12: leitura (o Hoje usa para o calendário da semana e o treino do dia).
 // Etapa 13: iniciar (no máximo uma sessão em andamento), ler uma sessão e a sessão em andamento.
-// Etapa 15: gravar/limpar o descanso em curso (sessao.descanso). Finalizar e descartar entram na etapa 16.
+// Etapa 15: gravar/limpar o descanso em curso (sessao.descanso).
+// Etapa 16: finalizar (status 'concluida', fim e descanso limpo) e descartar (apaga a sessão e as séries
+// dela na mesma transação). O avanço de trilha ao finalizar entra na etapa 18.
 // db é opcional: sem ele usa a conexão do app (os testes passam um banco separado).
 
 import { obterBanco } from './conexao.js';
@@ -91,4 +93,41 @@ export async function salvarDescanso(id, descanso, db) {
   store.put(nova);
   await tx.done;
   return nova;
+}
+
+// Etapa 16. Finaliza o treino em andamento: status 'concluida', fim = agora e descanso limpo, numa
+// transação só. Devolve a sessão finalizada; se não existe ou já não está em andamento, não grava e
+// devolve null.
+export async function finalizarSessao(id, { agora = Date.now() } = {}, db) {
+  const banco = db || await obterBanco();
+  const tx = banco.transaction('sessoes', 'readwrite');
+  const store = tx.objectStore('sessoes');
+  const sessao = await store.get(id);
+  if (!sessao || sessao.status !== 'andamento') {
+    await tx.done;
+    return null;
+  }
+  const nova = { ...sessao, status: 'concluida', fim: Math.max(agora, sessao.inicio), descanso: null };
+  store.put(nova);
+  await tx.done;
+  return nova;
+}
+
+// Etapa 16. Descarta o treino em andamento: apaga a sessão e todas as séries dela na MESMA transação
+// (seção 4.2, "Regras de exclusão"). Só vale para treino em andamento (apagar um treino concluído é do
+// Detalhe da sessão, etapa 19). Devolve quantas séries foram apagadas, ou null se não descartou.
+export async function descartarSessao(id, db) {
+  const banco = db || await obterBanco();
+  const tx = banco.transaction(['sessoes', 'series'], 'readwrite');
+  const sessao = await tx.objectStore('sessoes').get(id);
+  if (!sessao || sessao.status !== 'andamento') {
+    await tx.done;
+    return null;
+  }
+  const series = tx.objectStore('series');
+  const chaves = await series.index('por_sessao').getAllKeys(id);
+  for (const chave of chaves) series.delete(chave);
+  tx.objectStore('sessoes').delete(id);
+  await tx.done;
+  return chaves.length;
 }

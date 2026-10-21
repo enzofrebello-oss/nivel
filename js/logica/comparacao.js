@@ -37,6 +37,15 @@ export function seriesDeAntes(seriesDoExercicio, sessoes, sessaoAtualId) {
     .sort((a, b) => a.feitaEm - b.feitaEm);
 }
 
+// Etapa 16 (resumo = Detalhe da sessão): "antes" de uma sessão já feita = o último treino concluído que
+// começou ANTES dela (os treinos feitos depois não contam). Para o treino que acabou de ser finalizado,
+// dá o mesmo que seriesDeAntes.
+export function seriesDeAntesDaSessao(seriesDoExercicio, sessoes, sessao) {
+  const lista = sessoes instanceof Map ? [...sessoes.values()] : (sessoes || []);
+  const anteriores = lista.filter((s) => s.inicio < sessao.inicio);
+  return seriesDeAntes(seriesDoExercicio, anteriores, sessao.id);
+}
+
 // Texto da linha "antes": "20 · 20 · 18" (carga "60×10 · 60×8", tempo "0:50 · 0:45"); '' sem antes.
 export function textoAntes(antes) {
   return (antes || []).map(textoBolinha).join(' · ');

@@ -4,7 +4,9 @@
 // - Ao registrar a série que completa o pedido (exatamente a última pedida), avança para o próximo
 //   exercício pendente (em ciclo, depois do atual); sem pendentes, vai para o último exercício.
 //   Séries extras (além do pedido) não avançam.
-// - Modo final: no último exercício, já concluído, a tela mostra só "Anterior" e "Sair".
+// - Modo final: no último exercício, já concluído, a tela mostra só "Anterior" e "Finalizar treino"
+//   (etapa 16; na 13b era "Sair").
+// - Etapa 16: pendentes = exercícios que ainda não têm as séries pedidas (a confirmação do Finalizar).
 // contagens = séries registradas por item, na mesma ordem de itens.
 import { CAMPOS, formatarCampo } from './tipos.js';
 
@@ -47,4 +49,13 @@ export function modoFinal(itens, contagens, indice) {
 export function textoBolinha(serie) {
   const campos = CAMPOS[serie.tipo] || [];
   return campos.map((campo) => formatarCampo(campo, serie[campo])).join('×');
+}
+
+// Etapa 16: índices dos itens ainda não concluídos (vazio = treino completo; Finalizar sem confirmação).
+export function pendentes(itens, contagens) {
+  const lista = [];
+  itens.forEach((item, i) => {
+    if (!concluido(item, contagens[i] || 0)) lista.push(i);
+  });
+  return lista;
 }

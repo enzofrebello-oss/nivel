@@ -7,8 +7,8 @@
 // - Contadores por tipo (ui/componentes.js, contador): carga = carga + reps; corpo = reps; tempo = segundos.
 //   Passos: reps 1, tempo 5 s, carga 1 kg; nada abaixo do mínimo válido. Tocar no número abre o teclado.
 // - Cada série é gravada no banco na hora (db/series.js); a tela relê o banco a cada mudança.
-// Valor inicial do contador: etapa 14 (abaixo). Descanso: etapa 15 (abaixo). Finalizar/Descartar e
-// "+ Exercício", na 16.
+// Valor inicial do contador: etapa 14 (abaixo). Descanso: etapa 15 (abaixo). Finalizar/Descartar: etapa 16
+// (abaixo). "+ Exercício": etapa 16c.
 // Etapa 13b (fluxo do treino; regras puras em logica/fluxo-treino.js e logica/cronometro.js):
 // - Registrar a última série pedida avança sozinho para o próximo exercício pendente, com o toast
 //   "Próximo: <nome>" (etapa 15: o toast não aparece durante o descanso, que já mostra "A seguir").
@@ -17,7 +17,7 @@
 // - Exercício de tempo: play embaixo do número. Contagem regressiva com a tela acesa (Wake Lock; sem
 //   suporte, segue sem); ao zerar, vibra e registra a série sozinha com o tempo escolhido. Pausar,
 //   continuar e parar (parar volta ao número). Trocar de exercício ou sair da tela cancela a contagem.
-// - No último exercício concluído: só "Anterior" e "Sair" (volta ao Hoje; o treino segue em andamento).
+// - No último exercício concluído: só "Anterior" e o botão grande "Finalizar treino" (etapa 16; era "Sair").
 // - A barra de abas some nesta rota (roteador.js, semAbas).
 // Etapa 14 (antes / hoje / +1; regras puras em logica/comparacao.js):
 // - "Antes" = séries deste exercício no último treino CONCLUÍDO (db/series.js, seriesDaUltimaVez); nunca
@@ -39,11 +39,22 @@
 // - Ao zerar: vibra (se houver) e volta sozinho para a série. Pular, −15 s até zero ou tocar na barra de
 //   progresso encerram sem vibrar. Ao abrir a tela com um descanso que já acabou, só limpa.
 import { h, limpar } from '../ui/dom.js';
+// Etapa 16 (Finalizar, descartar e resumo):
+// - Menu "⋯" no topo (modal): "Sair e continuar depois" (volta ao Hoje, o treino segue em andamento),
+//   "Finalizar agora" e "Descartar treino".
+// - Finalizar (menu ou botão do fim): se faltar exercício (séries registradas < pedidas), pede confirmação
+//   com os nomes; grava status 'concluida' e fim (db/sessoes.js, finalizarSessao), cancela contagem e
+//   descanso, e abre o resumo (#/evolucao/treino/:id, Detalhe da sessão em modo leitura), substituindo a
+//   entrada do histórico (voltar não cai no treino já finalizado).
+// - Descartar: confirmação com o número de séries; apaga a sessão e as séries dela na mesma transação
+//   (descartarSessao) e volta ao Hoje.
 import { abrirModal, comoFazer, contador, toast } from '../ui/componentes.js';
 import { calendarioSemana } from '../ui/semana.js';
 import { obterCatalogo } from '../catalogo.js';
 import { anel } from '../ui/anel.js';
-import { obterSessao, listarSessoes, salvarDescanso } from '../db/sessoes.js';
+import {
+  obterSessao, listarSessoes, salvarDescanso, finalizarSessao, descartarSessao,
+} from '../db/sessoes.js';
 import {
   adicionarSerie, editarSerie, apagarSerie, listarSeriesDaSessao, seriesDaUltimaVez,
 } from '../db/series.js';
@@ -51,7 +62,9 @@ import { diasTreinadosNaSemana } from '../logica/datas.js';
 import { textoAlvo, textoTrilhaDoItem } from '../logica/rotina.js';
 import { CAMPOS, formatarSerie, formatarTempo } from '../logica/tipos.js';
 import { compararSeries, textoAntes, valoresIniciais } from '../logica/comparacao.js';
-import { indiceInicial, aposRegistrar, modoFinal, textoBolinha } from '../logica/fluxo-treino.js';
+import {
+  indiceInicial, aposRegistrar, modoFinal, textoBolinha, pendentes,
+} from '../logica/fluxo-treino.js';
 import {
   novoCronometro, rodando, segundosRestantes, zerou, iniciar, pausar, fracaoRestante,
 } from '../logica/cronometro.js';
@@ -80,6 +93,7 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
   let anelDescanso = null; // { elemento, atualizar } do anel do descanso
   let travaTela = null; // WakeLockSentinel enquanto a contagem ou o descanso roda
   let saiu = false;
+  let atual = null; // { itens, contagens, totalSeries, catalogo } do último desenho (menu, Finalizar, Descartar)
 
   const fechar = () => {
     if (fecharModal) fecharModal();
@@ -290,7 +304,8 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     }
     if (sessao.status !== 'andamento') {
       limpar(tela);
-      tela.append(aviso('Este treino já foi finalizado.'));
+      tela.append(aviso('Este treino já foi finalizado.',
+        h('a', { class: 'botao botao-destaque', href: `#/evolucao/treino/${encodeURIComponent(sessao.id)}` }, 'Ver resumo')));
       return;
     }
 
@@ -302,6 +317,7 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     const feitas = (item) => (porExercicio.get(item.exercicioId) || []).length;
     const itens = sessao.itens;
     const contagens = itens.map(feitas);
+    atual = { itens, contagens, totalSeries: series.length, catalogo };
 
     if (indice === null || indice >= itens.length) {
       // Ao abrir (ou reabrir o app): o primeiro exercício que ainda não foi feito; tudo feito = o último.
@@ -346,7 +362,7 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
       limpar(tela);
       tela.append(
         calendarioSemana(diasTreinadosNaSemana(sessoes)),
-        cabecalho(sessao),
+        cabecalho(sessao, abrirMenu),
         barraDeProgresso(catalogo, itens, indice, feitas, irPara),
         cartaoDescanso(exercicio ? exercicio.nome : item.exercicioId, contagens[indice], item.series),
       );
@@ -367,16 +383,16 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
 
     tela.append(
       calendarioSemana(diasTreinadosNaSemana(sessoes)),
-      cabecalho(sessao),
+      cabecalho(sessao, abrirMenu),
       barraDeProgresso(catalogo, itens, indice, feitas, irPara),
       exercicio
         ? cartaoExercicio({ item, exercicio, seriesFeitas: porExercicio.get(item.exercicioId) || [] })
         : aviso(`Exercício "${item.exercicioId}" não está no catálogo.`),
-      h('nav', { class: 'treino-navegacao', 'aria-label': 'Trocar de exercício' },
+      h('nav', { class: `treino-navegacao${final ? ' treino-navegacao-final' : ''}`, 'aria-label': 'Trocar de exercício' },
         h('button', { type: 'button', class: 'botao', disabled: indice === 0, onclick: () => irPara(indice - 1) }, '‹ Anterior'),
         final
-          // Sair: volta ao Hoje; o treino continua em andamento (Finalizar entra na etapa 16).
-          ? h('button', { type: 'button', class: 'botao botao-destaque', onclick: () => { location.hash = '#/'; } }, 'Sair')
+          // Fim do treino: Finalizar (com confirmação se algum exercício ficou faltando).
+          ? h('button', { type: 'button', class: 'botao botao-destaque botao-grande treino-finalizar', onclick: () => pedirFinalizar() }, 'Finalizar treino')
           : h('button', { type: 'button', class: 'botao', disabled: indice === itens.length - 1, onclick: () => irPara(indice + 1) }, 'Próximo ›')),
     );
 
@@ -567,6 +583,132 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     fecharModal = abrirModal({ titulo: `${exercicio.nome} · série ${n}`, conteudo: corpo });
   }
 
+  // ---------- Menu "⋯", Finalizar e Descartar (etapa 16) ----------
+  // Nomes dos exercícios que ainda não têm as séries pedidas.
+  function nomesPendentes() {
+    if (!atual) return [];
+    return pendentes(atual.itens, atual.contagens).map((i) => {
+      const ex = atual.catalogo.exercicioPorId.get(atual.itens[i].exercicioId);
+      return ex ? ex.nome : atual.itens[i].exercicioId;
+    });
+  }
+
+  // Modal cujo corpo troca de conteúdo (menu → confirmação), como o de editar série.
+  function abrirCorpo(titulo) {
+    fechar();
+    const corpo = h('div', { class: 'treino-menu' });
+    fecharModal = abrirModal({ titulo, conteudo: corpo });
+    return corpo;
+  }
+
+  // Para a contagem e o descanso na tela (antes de finalizar ou descartar).
+  function pararRelogios() {
+    cron = null;
+    visor = null;
+    descanso = null;
+    atualizarRelogio();
+  }
+
+  function abrirMenu() {
+    const corpo = abrirCorpo('Treino');
+    corpo.append(
+      h('button', {
+        type: 'button',
+        class: 'botao treino-menu-opcao',
+        onclick: () => { fechar(); location.hash = '#/'; },
+      }, 'Sair e continuar depois'),
+      h('button', { type: 'button', class: 'botao botao-destaque treino-menu-opcao', onclick: () => pedirFinalizar(corpo) }, 'Finalizar agora'),
+      h('button', { type: 'button', class: 'botao botao-perigo treino-menu-opcao', onclick: () => confirmarDescartar(corpo) }, 'Descartar treino'),
+    );
+  }
+
+  // Finalizar: direto se o treino está completo; senão, confirmação com o que falta.
+  function pedirFinalizar(corpoAberto) {
+    const faltam = nomesPendentes();
+    if (!faltam.length) {
+      finalizar();
+      return;
+    }
+    const corpo = corpoAberto || abrirCorpo('Finalizar treino');
+    const erro = h('p', { class: 'contador-erro', 'aria-live': 'polite' });
+    limpar(corpo);
+    corpo.append(
+      h('p', { class: 'treino-menu-texto' },
+        faltam.length === 1 ? 'Falta 1 exercício:' : `Faltam ${faltam.length} exercícios:`),
+      h('ul', { class: 'treino-menu-faltam' }, faltam.map((nome) => h('li', null, nome))),
+      h('p', { class: 'treino-menu-texto' }, 'Finalizar mesmo assim? As séries já registradas ficam salvas.'),
+      erro,
+      h('div', { class: 'editar-serie-botoes' },
+        h('button', {
+          type: 'button',
+          class: 'botao botao-destaque',
+          onclick: (ev) => finalizar(ev.currentTarget, erro),
+        }, 'Finalizar mesmo assim'),
+        h('button', { type: 'button', class: 'botao', onclick: fechar }, 'Voltar ao treino')),
+    );
+  }
+
+  // Grava a sessão como concluída e abre o resumo (substitui a entrada do histórico).
+  async function finalizar(botao, erroEl) {
+    if (botao) botao.disabled = true;
+    pararRelogios();
+    try {
+      const feita = await finalizarSessao(params.id, {}, db);
+      fechar();
+      if (!feita) {
+        // Já finalizado (ou descartado) em outra aba: o desenho mostra o aviso.
+        if (!saiu) await desenhar();
+        return;
+      }
+      location.replace(`#/evolucao/treino/${encodeURIComponent(params.id)}`);
+    } catch (e) {
+      console.error('Treino: não foi possível finalizar:', e);
+      if (erroEl) {
+        erroEl.textContent = `Não foi possível finalizar: ${e.message}`;
+        if (botao) botao.disabled = false;
+      } else {
+        fechar();
+        mensagem = `Não foi possível finalizar: ${e.message}`;
+        if (!saiu) await desenhar();
+      }
+    }
+  }
+
+  // Descartar: confirmação com o número de séries; apaga a sessão e as séries e volta ao Hoje.
+  function confirmarDescartar(corpo) {
+    const total = atual ? atual.totalSeries : 0;
+    const erro = h('p', { class: 'contador-erro', 'aria-live': 'polite' });
+    let texto = 'Descartar este treino? Nenhuma série foi registrada.';
+    if (total === 1) texto = 'Descartar este treino? A série registrada será apagada.';
+    else if (total > 1) texto = `Descartar este treino? As ${total} séries registradas serão apagadas.`;
+    limpar(corpo);
+    corpo.append(
+      h('p', { class: 'treino-menu-texto' }, `${texto} Não dá para desfazer.`),
+      erro,
+      h('div', { class: 'editar-serie-botoes' },
+        h('button', {
+          type: 'button',
+          class: 'botao botao-perigo',
+          onclick: async (ev) => {
+            const botao = ev.currentTarget;
+            botao.disabled = true;
+            pararRelogios();
+            try {
+              await descartarSessao(params.id, db);
+              fechar();
+              toast('Treino descartado.');
+              location.replace('#/');
+            } catch (e) {
+              console.error('Treino: não foi possível descartar:', e);
+              erro.textContent = `Não foi possível descartar: ${e.message}`;
+              botao.disabled = false;
+            }
+          },
+        }, 'Descartar'),
+        h('button', { type: 'button', class: 'botao', onclick: fechar }, 'Cancelar')),
+    );
+  }
+
   await desenhar();
   return () => {
     saiu = true;
@@ -579,15 +721,25 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
   };
 }
 
-function cabecalho(sessao) {
+// Nome e horário do treino, com o menu "⋯" (etapa 16) à direita.
+function cabecalho(sessao, aoMenu) {
   return h('header', { class: 'treino-cabecalho' },
-    h('h2', { class: 'treino-nome' }, sessao.nome),
-    h('p', { class: 'treino-inicio' }, `Começou às ${formatoHora.format(sessao.inicio)}`));
+    h('div', { class: 'treino-cabecalho-texto' },
+      h('h2', { class: 'treino-nome' }, sessao.nome),
+      h('p', { class: 'treino-inicio' }, `Começou às ${formatoHora.format(sessao.inicio)}`)),
+    h('button', {
+      type: 'button',
+      class: 'botao treino-menu-botao',
+      'aria-label': 'Opções do treino',
+      'aria-haspopup': 'dialog',
+      onclick: aoMenu,
+    }, '⋯'));
 }
 
-function aviso(texto) {
+function aviso(texto, extra = null) {
   return h('section', { class: 'cartao' },
     h('p', { class: 'hoje-aviso' }, texto),
+    extra,
     h('a', { class: 'link-destaque', href: '#/' }, 'Voltar para o Hoje'));
 }
 

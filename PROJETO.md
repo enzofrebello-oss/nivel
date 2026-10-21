@@ -532,10 +532,13 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
     - Dá para trocar de novo a qualquer hora, inclusive para um nível mais fácil.
     - O nível escolhido fica salvo no banco, entra no backup e é usado pelo card do treino do dia e pela tela de treino.
     - Testes na página /testes/: escolher nível, trocar de volta, persistir no banco, aparecer no card do Hoje e entrar no backup.
-16. **Finalizar, descartar, avulso e treino livre**. Objetivo: Finalizar/Descartar com confirmação, "+ Exercício" (seletor), Treino livre, resumo = Detalhe da sessão em modo leitura. Pronto quando: um treino inteiro vai do Hoje ao resumo; descartar apaga as séries; depois de finalizar, o Hoje mostra o dia seguinte da rotina; um backup exportado depois de um treino e importado restaura a sessão e as séries. **A partir daqui, uso real** (o que foi registrado antes é teste e pode ser apagado). O avanço automático de nível só chega na etapa 18; até lá, as séries já contam para o progresso das trilhas, e o nível pode ser ajustado à mão.
+16. **Finalizar, descartar e resumo**. Objetivo: Finalizar/Descartar com confirmação; resumo = Detalhe da sessão em modo leitura. Pronto quando: um treino inteiro vai do Hoje ao resumo; descartar apaga as séries; depois de finalizar, o Hoje mostra, de forma simples, o treino concluído e também o próximo dia da rotina (decisão tomada: os dois aparecem; o visual novo vem na 16b); um backup exportado depois de um treino e importado restaura a sessão e as séries. **A partir daqui, uso real** (o que foi registrado antes é teste e pode ser apagado). O avanço automático de nível só chega na etapa 18; até lá, as séries já contam para o progresso das trilhas, e o nível pode ser ajustado à mão.
+16b. **Hoje novo**. Objetivo:
     - Hoje com a data grande no topo (ex.: "Terça, 20 de outubro") e o card do treino do dia.
     - Abaixo, "Treino para amanhã · <dia da semana, data>". Ao tocar, perguntar "Tem certeza que quer fazer esse treino hoje?", com "Não" em laranja (destaque) e "Sim" em preto.
     - Treino concluído: o card encolhe e mostra "Concluído · Parabéns, campeão", uma frase motivacional curta em cinza, um ícone de foguinho e, à direita, o botão ↻ para refazer o mesmo treino do zero. Isso conta como um segundo treino no dia, mas o calendário marca o dia uma vez só.
+    Pronto quando: depois de finalizar, o Hoje mostra com o visual novo o card concluído e o próximo dia da rotina ("Treino para amanhã"); a confirmação de fazer o treino de amanhã hoje funciona; refazer pelo ↻ começa o mesmo treino do zero e o calendário marca o dia uma vez só.
+16c. **"+ Exercício" e Treino livre**. Objetivo: "+ Exercício" avulso (seletor) na tela de treino e o link Treino livre no Hoje. Pronto quando: um exercício avulso acrescentado entra nos itens da sessão e registra séries como os outros; um treino livre vai do Hoje ao resumo; os dois entram no backup.
 17. **Trilhas: lógica**. Objetivo: `logica/trilhas.js` + `testes/trilhas.test.js`. Pronto quando: os casos da seção 4.3 passam.
 18. **Tela Trilhas + avanço**. Objetivo: `db/trilhas.js`, tela Trilhas, avanço ao finalizar (mesma transação), "Definir como nível atual", "Novo nível" no resumo. Pronto quando: bater a meta num treino avança o nível e o treino seguinte já usa o novo exercício; a escolha manual persiste; anel e "seu melhor" conferem com um cálculo manual.
 19. **Histórico**. Objetivo: aba Evolução (Treinos) e Detalhe da sessão com edição (editar/apagar série, adicionar série esquecida, apagar sessão). Pronto quando: as sessões aparecem agrupadas por mês, e as edições persistem e aparecem na coluna "antes" do treino seguinte.
@@ -634,7 +637,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 13b. Fluxo do treino (avanço automático com "Próximo: <nome>", séries em bolinhas, cronômetro regressivo no tempo com tela acesa e vibração, "Anterior"/"Sair" no fim, sem abas no treino), conferida no PC.
 - **Feito:** etapa 14. Tabela antes / hoje / +1 (linha "ANTES" em cima das bolinhas, +1 por série com ganho em laranja, carga só é "+" sem piorar nenhum campo, contador começa na mesma série da última vez); conferência visual fica para depois da etapa 16.
 - **Feito:** etapa 15. Descanso (anel com o tempo, −15 s / +15 s, "Pular descanso" e "A seguir"; pelo horário de término gravado na sessão, com tela acesa; ao zerar vibra e volta sozinho; descansa também antes do próximo exercício, mas não depois da última série do treino); conferida no PC; vibração no celular pendente.
-- **Feito:** etapa 15b. Nível de cada trilha (cartão em Ajustes com as 15 trilhas, casa primeiro; tocar abre os níveis com exercício e meta e escolher grava o nível atual, inclusive mais fácil; usado pelo treino do dia e pelo treino, e entra no backup). **Próxima etapa de código:** **16. Finalizar, descartar, avulso e treino livre.**
+- **Feito:** etapa 15b. Nível de cada trilha (cartão em Ajustes com as 15 trilhas, casa primeiro; tocar abre os níveis com exercício e meta e escolher grava o nível atual, inclusive mais fácil; usado pelo treino do dia e pelo treino, e entra no backup).
+- **Feito:** etapa 16. Finalizar, descartar e resumo (no fim do treino, "‹ Anterior" e "Finalizar treino"; menu "⋯" com Sair e continuar depois, Finalizar agora com confirmação se faltar exercício e Descartar com confirmação, que apaga a sessão e as séries; resumo = Detalhe da sessão em modo leitura com duração, séries e +1; Hoje mostra o treino concluído e o próximo dia da rotina; backup de ida e volta conferido). **Próxima etapa de código:** **16b. Hoje novo.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
@@ -700,7 +704,9 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 14. Tabela antes / hoje / +1
 - [x] 15. Descanso
 - [x] 15b. Nível de cada trilha
-- [ ] 16. Finalizar, descartar, avulso e treino livre (início do uso real)
+- [x] 16. Finalizar, descartar e resumo (início do uso real)
+- [ ] 16b. Hoje novo
+- [ ] 16c. "+ Exercício" e Treino livre
 - [ ] 17. Trilhas: lógica
 - [ ] 18. Tela Trilhas + avanço
 - [ ] 19. Histórico

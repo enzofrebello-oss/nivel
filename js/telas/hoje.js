@@ -7,10 +7,13 @@
 //   (db/sessoes.js, iniciarSessao) e abre a tela Treino.
 // Etapa 13: com um treino em andamento, o card mostra esse treino e o botão vira "Continuar treino".
 // Começar um segundo treino é impedido: se outra aba já começou um, o modal oferece continuar.
-// O título "Hoje" fica só no topo (roteador). Próximo nível, recorde da semana, aviso de backup e
-// Treino livre entram nas etapas 16 e 23.
+// O título "Hoje" fica só no topo (roteador). Próximo nível, recorde da semana e aviso de backup entram
+// na etapa 23; Treino livre na 16c.
 // Etapa 15b: o card do treino do dia usa o nível escolhido em Ajustes (store trilhas, lido a cada desenho).
 // render aceita um 3º parâmetro opcional { db, catalogo } (só os testes, como a tela Treino).
+// Etapa 16 (forma simples; o visual novo é da 16b): com um treino concluído hoje (pelo início, como o
+// calendário), aparece o card "Treino concluído" (nome, duração, séries e "Ver resumo") e, abaixo, o
+// próximo dia da rotina como "Próximo treino", com "Começar treino".
 import { h, limpar } from '../ui/dom.js';
 import { abrirModal } from '../ui/componentes.js';
 import { calendarioSemana } from '../ui/semana.js';
@@ -19,7 +22,7 @@ import { lerMeta, gravarMeta } from '../db/meta.js';
 import { listarSessoes, iniciarSessao } from '../db/sessoes.js';
 import { listarSeriesDaSessao } from '../db/series.js';
 import { lerProgressoTrilhas } from '../db/trilhas.js';
-import { diasTreinadosNaSemana } from '../logica/datas.js';
+import { diasTreinadosNaSemana, concluidaHoje, textoDuracao } from '../logica/datas.js';
 import { nomeRotina, rotinasParaEscolha, treinoDoDia, textoAlvo, textoTrilhaDoItem } from '../logica/rotina.js';
 
 export async function render(container, params, { db, catalogo: catalogoDeTeste } = {}) {
@@ -47,10 +50,11 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     const emAndamento = sessoes
       .filter((s) => s.status === 'andamento')
       .reduce((a, b) => (!a || b.inicio > a.inicio ? b : a), null);
+    const feitaHoje = emAndamento ? null : concluidaHoje(sessoes);
     let seriesFeitas = 0;
-    if (emAndamento) {
+    if (emAndamento || feitaHoje) {
       try {
-        seriesFeitas = (await listarSeriesDaSessao(emAndamento.id, db)).length;
+        seriesFeitas = (await listarSeriesDaSessao((emAndamento || feitaHoje).id, db)).length;
       } catch (erro) {
         console.error('Hoje: não foi possível contar as séries:', erro);
       }
@@ -106,7 +110,13 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
       cartaoRotina(catalogo, rotina, bancoOk, escolher),
     );
     if (emAndamento) tela.append(cartaoEmAndamento(catalogo, emAndamento, seriesFeitas));
-    else if (rotina) tela.append(cartaoTreinoDoDia(catalogo, treinoDoDia(rotina, sessoes, catalogo, progresso), comecar));
+    else {
+      if (feitaHoje) tela.append(cartaoConcluido(feitaHoje, seriesFeitas));
+      if (rotina) {
+        tela.append(cartaoTreinoDoDia(catalogo, treinoDoDia(rotina, sessoes, catalogo, progresso), comecar,
+          feitaHoje ? 'Próximo treino' : 'Treino do dia'));
+      }
+    }
   }
 
   await desenhar();
@@ -159,6 +169,16 @@ function cartaoEmAndamento(catalogo, sessao, seriesFeitas) {
     h('a', { class: 'botao botao-destaque botao-grande', href: `#/treino/${encodeURIComponent(sessao.id)}` }, 'Continuar treino'));
 }
 
+// Etapa 16: card simples do treino concluído hoje (nome, duração, séries) com o link para o resumo.
+function cartaoConcluido(sessao, seriesFeitas) {
+  return h('section', { class: 'cartao hoje-concluido', 'aria-labelledby': 'hoje-concluido-titulo' },
+    h('p', { class: 'hoje-rotulo' }, 'Treino concluído hoje'),
+    h('h2', { class: 'hoje-concluido-nome', id: 'hoje-concluido-titulo' }, sessao.nome),
+    h('p', { class: 'hoje-aviso hoje-concluido-texto' },
+      `${textoDuracao(sessao.fim - sessao.inicio)} · ${seriesFeitas} ${seriesFeitas === 1 ? 'série' : 'séries'}`),
+    h('a', { class: 'link-destaque', href: `#/evolucao/treino/${encodeURIComponent(sessao.id)}` }, 'Ver resumo'));
+}
+
 // Conteúdo do modal quando já existe um treino em andamento.
 function avisoJaExiste(sessao) {
   return [
@@ -168,7 +188,8 @@ function avisoJaExiste(sessao) {
 }
 
 // Card do treino do dia: nome do dia, exercícios com séries × alvo e o botão grande "Começar treino".
-function cartaoTreinoDoDia(catalogo, treino, aoComecar) {
+// rotulo = "Treino do dia", ou "Próximo treino" depois de um treino concluído hoje (etapa 16).
+function cartaoTreinoDoDia(catalogo, treino, aoComecar, rotulo = 'Treino do dia') {
   const { dia, itens } = treino;
   const erroEl = h('p', { class: 'hoje-aviso hoje-erro', role: 'alert' });
   const botao = h('button', {
@@ -177,7 +198,7 @@ function cartaoTreinoDoDia(catalogo, treino, aoComecar) {
     onclick: () => aoComecar(botao, treino, erroEl),
   }, 'Começar treino');
   return h('section', { class: 'cartao hoje-treino', 'aria-labelledby': 'hoje-treino-titulo' },
-    h('p', { class: 'hoje-rotulo' }, 'Treino do dia'),
+    h('p', { class: 'hoje-rotulo' }, rotulo),
     h('h2', { class: 'hoje-treino-nome', id: 'hoje-treino-titulo' }, dia.nome),
     listaDeItens(catalogo, itens),
     botao,
