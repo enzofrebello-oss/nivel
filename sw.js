@@ -38,8 +38,11 @@
 // Etapa 16, ajuste (v23): "kg" nas séries com carga do resumo (sessao-detalhe.js; lista do precache igual).
 // Tela Trilhas, adiantada antes da 16b (v24): js/logica/trilhas.js no precache; telas/trilhas.js e
 // componentes.css alterados (chips, caminho dos níveis, anel e "seu melhor").
+// Tela Evolução (v25): js/logica/evolucao.js e js/ui/grafico.js no precache; telas/evolucao.js, db/series.js
+// e componentes.css alterados (constância, recordes, gráfico compacto e últimos treinos).
+// Tela Evolução, ajuste (v26): nomes de exercício em até 2 linhas, quebrando só entre palavras (componentes.css).
 
-const VERSAO = 'v24';
+const VERSAO = 'v26';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -66,6 +69,7 @@ const ARQUIVOS = [
   'js/logica/cronometro.js',
   'js/logica/datas.js',
   'js/logica/descanso.js',
+  'js/logica/evolucao.js',
   'js/logica/fluxo-treino.js',
   'js/logica/rotina.js',
   'js/logica/tipos.js',
@@ -74,6 +78,7 @@ const ARQUIVOS = [
   'js/ui/dom.js',
   'js/ui/componentes.js',
   'js/ui/anel.js',
+  'js/ui/grafico.js',
   'js/ui/semana.js',
   'js/telas/hoje.js',
   'js/telas/trilhas.js',

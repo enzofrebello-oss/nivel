@@ -1738,3 +1738,310 @@ body.sem-abas .toast {
 .trilha-modal-link {
   margin-top: 8px;
 }
+
+/* ---------- Tela Evolução (seção 8, "6. Evolução"; etapas 19 a 22) ---------- */
+.evolucao {
+  display: grid;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.evolucao-rotulo {
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-texto);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.evolucao-legenda {
+  margin-top: 8px;
+  color: var(--cor-texto-2);
+  font-size: 0.8125rem;
+}
+
+.evolucao-vazio {
+  color: var(--cor-texto-2);
+  text-align: center;
+}
+
+/* Constância: foguinho num quadrado laranja escuro, sequência e barras das 8 semanas. */
+.evolucao-constancia-topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.evolucao-fogo {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-destaque);
+}
+
+.evolucao-fogo svg {
+  width: 26px;
+  height: 26px;
+}
+
+.evolucao-seguidas {
+  font-family: var(--fonte-titulo);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.evolucao-nesta-semana {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+}
+
+.evolucao-barras {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  align-items: end;
+  gap: 6px;
+  height: 64px;
+  margin-top: 16px;
+}
+
+.evolucao-barra {
+  height: max(var(--altura), 4px);
+  border-radius: 6px 6px 3px 3px;
+  background: var(--cor-destaque);
+}
+
+.evolucao-barra.vazia {
+  background: var(--cor-borda);
+}
+
+.evolucao-barra.atual {
+  outline: 2px solid var(--cor-texto);
+  outline-offset: 1px;
+}
+
+/* Dois recordes lado a lado. */
+.evolucao-recordes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.evolucao-recorde .evolucao-rotulo {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.evolucao-recorde-valor {
+  margin-top: 6px;
+  color: var(--cor-destaque);
+  font-family: var(--fonte-titulo);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Gráfico compacto. */
+.evolucao-grafico-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.evolucao-trocar {
+  display: inline-flex;
+  min-width: 0;
+  min-height: var(--toque-min);
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  font-weight: 700;
+  text-align: left;
+}
+
+.evolucao-trocar-nome {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.evolucao-ganho {
+  flex: none;
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-titulo);
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.evolucao-ganho.positivo {
+  color: var(--cor-destaque);
+}
+
+.grafico-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 4px;
+}
+
+.grafico-grade {
+  stroke: var(--cor-borda);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.grafico-linha {
+  fill: none;
+  stroke: var(--cor-destaque);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.grafico-ponto {
+  fill: var(--cor-destaque);
+  stroke: var(--cor-cartao);
+  stroke-width: 2;
+}
+
+.evolucao-escolha {
+  display: grid;
+  gap: 8px;
+}
+
+.evolucao-escolha-item {
+  display: flex;
+  width: 100%;
+  min-height: var(--toque-min);
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  background: var(--cor-cartao);
+  color: var(--cor-texto);
+  font-weight: 700;
+  text-align: left;
+}
+
+.evolucao-escolha-item[aria-pressed="true"] {
+  border-color: var(--cor-destaque);
+}
+
+.evolucao-escolha-treinos {
+  flex: none;
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Últimos treinos: linha vertical com bolinhas (a mais recente laranja cheia, as outras vazadas). */
+.evolucao-secao {
+  margin-top: 8px;
+}
+
+.evolucao-treino {
+  position: relative;
+}
+
+.evolucao-treino::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 7px;
+  border-left: 2px solid var(--cor-borda);
+}
+
+.evolucao-treino:first-child::before {
+  top: 50%;
+}
+
+.evolucao-treino:last-child::before {
+  bottom: 50%;
+}
+
+.evolucao-treino:only-child::before {
+  display: none;
+}
+
+.evolucao-treino-link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--toque-min);
+  padding: 10px 0;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.evolucao-bolinha {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--cor-texto-2);
+  border-radius: 50%;
+  background: var(--cor-fundo);
+}
+
+.evolucao-treino.recente .evolucao-bolinha {
+  border-color: var(--cor-destaque);
+  background: var(--cor-destaque);
+}
+
+.evolucao-treino-texto {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.evolucao-treino-nome {
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.evolucao-treino-detalhe {
+  color: var(--cor-texto-2);
+  font-size: 0.8125rem;
+}
+
+.evolucao-pilula {
+  min-width: 40px;
+  padding: 4px 10px;
+  border-radius: var(--raio-botao);
+  background: var(--cor-borda);
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-titulo);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.evolucao-pilula.positivo {
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}

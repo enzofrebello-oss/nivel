@@ -2,6 +2,7 @@
 // Etapa 13: adicionar (salva na hora, com tipo e grupos copiados do exercício), editar, apagar e
 // listar por sessão. Etapa 14: por exercício e "última vez" (comparação antes / hoje / +1).
 // Etapa 16: "antes" de uma sessão já feita (resumo, seriesAntesDaSessao).
+// Tela Evolução: todas as séries (listarTodasSeries).
 // Campos de medida conforme o tipo (js/logica/tipos.js): carga + reps, reps, ou segundos;
 // os de outro tipo ficam ausentes. db é opcional: sem ele usa a conexão do app.
 
@@ -130,4 +131,10 @@ export async function listarSeriesDaSessao(sessaoId, db) {
   const banco = db || await obterBanco();
   const lista = await banco.getAllFromIndex('series', 'por_sessao', sessaoId);
   return lista.sort((a, b) => a.feitaEm - b.feitaEm);
+}
+
+// Tela Evolução: todas as séries do banco (recordes, gráfico e "+N" dos últimos treinos).
+export async function listarTodasSeries(db) {
+  const banco = db || await obterBanco();
+  return banco.getAll('series');
 }
