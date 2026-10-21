@@ -5,7 +5,7 @@
 //   e não mexe nas de outro treino;
 // - telas: treino inteiro do Hoje até o resumo (Começar treino → registrar todas as séries → Finalizar
 //   treino → Detalhe da sessão), o calendário marca o dia e o Hoje mostra o treino concluído e o próximo
-//   dia da rotina; menu "⋯" (Sair e continuar depois, Finalizar agora com confirmação, Descartar);
+//   dia da rotina (com o visual da 16b: card compacto com a frase gravada e "Próximo treino"); menu "⋯" (Sair e continuar depois, Finalizar agora com confirmação, Descartar);
 //   +1 no resumo de um segundo treino;
 // - backup exportado depois do treino e importado restaura a sessão e as séries.
 // O banco é separado, 'nivel-teste-finalizar', apagado no começo e no fim; NUNCA o banco real 'nivel'.
@@ -24,6 +24,7 @@ import { pendentes } from '../js/logica/fluxo-treino.js';
 import { textoDuracao, concluidaHoje, chaveDoDia } from '../js/logica/datas.js';
 import { seriesDeAntesDaSessao } from '../js/logica/comparacao.js';
 import { diaDoTreino, treinoDoDia } from '../js/logica/rotina.js';
+import { FRASES } from '../js/logica/hoje.js';
 import { render as renderHoje } from '../js/telas/hoje.js';
 import { render as renderTreino } from '../js/telas/treino.js';
 import { render as renderDetalhe } from '../js/telas/sessao-detalhe.js';
@@ -295,7 +296,10 @@ teste('treino inteiro: Hoje → Começar treino → todas as séries → Finaliz
     resumo.remove();
   }
 
-  // Hoje depois de finalizar: dia marcado, treino concluído e o próximo dia da rotina (B).
+  // Etapa 16b: finalizar grava a frase motivacional do treino.
+  igual(FRASES.includes(finalizada.frase), true, 'frase sorteada e gravada na sessão');
+
+  // Hoje depois de finalizar (visual da 16b): dia marcado, card concluído e o próximo dia da rotina (B).
   const depois = montarContainer();
   limpezaHoje = await renderHoje(depois, {}, { db, catalogo });
   try {
@@ -303,13 +307,15 @@ teste('treino inteiro: Hoje → Começar treino → todas as séries → Finaliz
     igual(marcado.classList.contains('treinado'), true, 'o calendário marca o dia');
     const concluido = depois.querySelector('.hoje-concluido');
     igual(Boolean(concluido), true, 'card do treino concluído');
-    igual(concluido.querySelector('.hoje-concluido-nome').textContent, 'A · Empurrar');
-    igual(concluido.querySelector('.hoje-concluido-texto').textContent.endsWith(`${previstas} séries`), true);
-    igual(concluido.querySelector('a').getAttribute('href'), `#/evolucao/treino/${encodeURIComponent(sessao.id)}`, 'Ver resumo');
-    const proximo = depois.querySelector('.hoje-treino');
-    igual(proximo.querySelector('.hoje-rotulo').textContent, 'Próximo treino');
-    igual(proximo.querySelector('.hoje-treino-nome').textContent, rotina.dias[1].nome, 'próximo dia da rotina (B)');
-    igual(Boolean(botaoCom(proximo, 'Começar treino')), true);
+    igual(concluido.dataset.sessao, sessao.id);
+    igual(concluido.querySelector('.hoje-concluido-rotulo').textContent, 'Concluído');
+    igual(concluido.querySelector('.hoje-concluido-titulo').textContent, 'Parabéns, campeão');
+    igual(concluido.querySelector('.hoje-concluido-frase').textContent, finalizada.frase, 'a frase gravada');
+    igual(concluido.querySelector('a').getAttribute('href'), `#/evolucao/treino/${encodeURIComponent(sessao.id)}`, 'abre o resumo');
+    igual(depois.querySelector('.hoje-treino'), null, 'sem o card grande do treino do dia');
+    const proximo = depois.querySelector('.hoje-proximo');
+    igual(proximo.querySelector('.hoje-proximo-rotulo').textContent, 'Próximo treino');
+    igual(proximo.querySelector('.hoje-proximo-nome').textContent, rotina.dias[1].nome, 'próximo dia da rotina (B)');
   } finally {
     if (limpezaHoje) limpezaHoje();
     depois.remove();
@@ -330,8 +336,8 @@ teste('próximo dia: depois de finalizar o B, o Hoje mostra o C; depois do C, vo
     const container = montarContainer();
     const limpeza = await renderHoje(container, {}, { db, catalogo });
     try {
-      igual(container.querySelector('.hoje-concluido-nome').textContent, dia.nome, 'concluído = o último');
-      igual(container.querySelector('.hoje-treino-nome').textContent, rotina.dias.find((d) => d.id === esperado).nome);
+      igual(container.querySelector('.hoje-concluido').dataset.sessao, sessao.id, 'concluído = o último');
+      igual(container.querySelector('.hoje-proximo-nome').textContent, rotina.dias.find((d) => d.id === esperado).nome);
     } finally {
       if (limpeza) limpeza();
       container.remove();
@@ -511,11 +517,13 @@ teste('menu: "Descartar treino" confirma, apaga a sessão e as séries e volta a
     container.remove();
     limparRestos();
   }
-  // O Hoje volta a oferecer o treino do dia (sem treino em andamento).
+  // O Hoje sai do "em andamento" (etapa 16b: como o treino do fluxo foi concluído hoje, mostra o card
+  // concluído com o ↻ para treinar de novo).
   const hoje = montarContainer();
   const limpezaHoje = await renderHoje(hoje, {}, { db, catalogo });
   try {
-    igual(Boolean(botaoCom(hoje, 'Começar treino')), true);
+    igual(hoje.querySelector('.hoje').dataset.situacao, 'concluido');
+    igual(Boolean(hoje.querySelector('.hoje-refazer')), true);
     igual(Boolean([...hoje.querySelectorAll('a')].find((a) => a.textContent === 'Continuar treino')), false);
   } finally {
     if (limpezaHoje) limpezaHoje();

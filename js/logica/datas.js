@@ -74,3 +74,21 @@ export function concluidaHoje(sessoes, agora = Date.now()) {
   }
   return ultima;
 }
+
+// Etapa 16b. Meia-noite local de `n` dias depois (ou antes, se negativo) do dia de `momento`, em ms.
+// Montado por new Date(ano, mês, dia + n): a troca de horário de verão não pula nem repete um dia.
+export function somarDias(momento, n) {
+  const d = new Date(momento);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n).getTime();
+}
+
+const NOMES_DIA = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+const NOMES_MES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto',
+  'setembro', 'outubro', 'novembro', 'dezembro'];
+
+// Etapa 16b. Data por extenso, curta e sem "-feira": "Terça, 20 de outubro" (data grande do Hoje e
+// data do próximo treino).
+export function textoDataLonga(momento) {
+  const d = new Date(momento);
+  return `${NOMES_DIA[d.getDay()]}, ${d.getDate()} de ${NOMES_MES[d.getMonth()]}`;
+}

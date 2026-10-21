@@ -69,7 +69,8 @@ export function comoFazer(exercicio) {
 // Modal: <dialog> nativo aberto com showModal() (prende o foco, Esc fecha, fundo escurecido).
 // Toque fora do quadro ou em "Fechar" também fecha. O dialog sai do DOM ao fechar.
 // conteudo = nó (ou lista de nós) do corpo. Devolve fechar().
-export function abrirModal({ titulo, conteudo }) {
+// semFechar = true: sem o botão "Fechar" no topo (diálogos de Não/Sim, em que o "Não" já fecha; etapa 16b).
+export function abrirModal({ titulo, conteudo, semFechar = false }) {
   const idTitulo = `modal-titulo-${Date.now()}`;
   const fechar = () => {
     if (dialogo.open) dialogo.close();
@@ -78,7 +79,7 @@ export function abrirModal({ titulo, conteudo }) {
     h('div', { class: 'modal-quadro' },
       h('div', { class: 'modal-topo' },
         h('h2', { class: 'modal-titulo', id: idTitulo }, titulo),
-        h('button', { type: 'button', class: 'botao', onclick: fechar }, 'Fechar')),
+        semFechar ? null : h('button', { type: 'button', class: 'botao', onclick: fechar }, 'Fechar')),
       h('div', { class: 'modal-corpo' }, conteudo)),
   );
   // Toque no fundo: o alvo é o próprio dialog (o quadro cobre todo o conteúdo).

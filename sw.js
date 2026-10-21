@@ -42,8 +42,14 @@
 // e componentes.css alterados (constância, recordes, gráfico compacto e últimos treinos).
 // Tela Evolução, ajuste (v26): nomes de exercício em até 2 linhas, quebrando só entre palavras (componentes.css).
 // Tela Evolução, ajuste (v27): cartão de recorde com rótulo "RECORDE", nome do exercício em até 2 linhas e valor.
+// Etapa 16b (v28): Hoje novo; js/logica/hoje.js e js/ui/icones.js no precache; telas/hoje.js, telas/treino.js,
+// telas/evolucao.js, db/sessoes.js, db/backup.js, logica/datas.js e componentes.css alterados (data grande,
+// três situações, frase do treino gravada na sessão, ↻ refazer).
+// Etapa 16b, ajustes (v29): linha compacta do próximo treino, "CONCLUÍDO" / "Parabéns, campeão", Começar preso
+// acima das abas no descanso, diálogos sem "Fechar", ↻ com confirmação e intervalo alternado na rotina de 4 dias;
+// telas/hoje.js, logica/hoje.js, ui/componentes.js e componentes.css alterados (lista do precache igual).
 
-const VERSAO = 'v27';
+const VERSAO = 'v29';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.
@@ -72,6 +78,7 @@ const ARQUIVOS = [
   'js/logica/descanso.js',
   'js/logica/evolucao.js',
   'js/logica/fluxo-treino.js',
+  'js/logica/hoje.js',
   'js/logica/rotina.js',
   'js/logica/tipos.js',
   'js/logica/trilhas.js',
@@ -80,6 +87,7 @@ const ARQUIVOS = [
   'js/ui/componentes.js',
   'js/ui/anel.js',
   'js/ui/grafico.js',
+  'js/ui/icones.js',
   'js/ui/semana.js',
   'js/telas/hoje.js',
   'js/telas/trilhas.js',

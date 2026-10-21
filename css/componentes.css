@@ -1464,16 +1464,6 @@ body.sem-abas .toast {
   list-style: disc;
 }
 
-/* Hoje: card simples do treino concluído (o visual novo é da etapa 16b). */
-.hoje-concluido-nome {
-  margin: 2px 0 4px;
-  font-size: 1.5rem;
-}
-
-.hoje-concluido-texto {
-  margin-bottom: 4px;
-}
-
 /* Detalhe da sessão (resumo), modo leitura. */
 .resumo {
   display: grid;
@@ -2055,4 +2045,188 @@ body.sem-abas .toast {
 .evolucao-pilula.positivo {
   background: var(--cor-destaque);
   color: var(--cor-sobre-destaque);
+}
+
+/* ---------- Hoje novo (etapa 16b) ---------- */
+/* Data grande no topo ("Terça, 20 de outubro"), acima do calendário da semana. */
+.hoje-data {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Botão "preto": fundo do app, borda discreta (o "Sim" do dia de descanso e o "Começar" fora do dia). */
+.botao-escuro {
+  border-color: var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+/* Situação 3: dia de descanso. */
+.hoje-descanso {
+  margin-top: 4px;
+  font-size: 1.5rem;
+}
+
+.hoje-treino-descanso {
+  border-color: var(--cor-borda);
+}
+
+/* "Começar treino" fora do dia sugerido (descanso e próximo treino aberto): fica preso logo acima da barra
+   de abas enquanto o card aparece, visível sem rolar; a sombra da cor do card esconde a lista por trás. */
+.hoje-comecar-fixo {
+  position: sticky;
+  bottom: calc(var(--altura-abas) + env(safe-area-inset-bottom) + 12px);
+  z-index: 1;
+  box-shadow: 0 0 0 12px var(--cor-cartao), 0 -14px 14px 8px var(--cor-cartao);
+}
+
+.hoje-confirmar-botoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Situação 2: card compacto do treino concluído (foguinho, texto e ↻ à direita). */
+.hoje-concluido {
+  padding: 12px 12px 12px 14px;
+  border-color: var(--cor-destaque);
+}
+
+.hoje-concluido-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hoje-fogo {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-destaque);
+}
+
+.hoje-fogo svg {
+  width: 24px;
+  height: 24px;
+}
+
+.hoje-concluido-texto {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  min-height: var(--toque-min);
+  align-content: center;
+}
+
+.hoje-concluido-rotulo {
+  color: var(--cor-destaque);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.hoje-concluido-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hoje-concluido-frase {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.hoje-refazer {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--toque-min);
+  height: var(--toque-min);
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-size: 1.375rem;
+  line-height: 1;
+}
+
+.hoje-refazer:active:not(:disabled) {
+  border-color: var(--cor-destaque);
+  color: var(--cor-destaque);
+}
+
+.hoje-refazer:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.hoje-concluido .hoje-erro {
+  margin: 8px 0 0;
+}
+
+/* Situação 2: linha compacta "Próximo treino · B · Puxar · <data>" com ›; tocar abre o card completo. */
+.hoje-proximo {
+  padding: 0;
+}
+
+.hoje-proximo-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 14px 10px 16px;
+  border: 0;
+  border-radius: var(--raio);
+  background: transparent;
+  color: var(--cor-texto);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.hoje-proximo-texto {
+  flex: 1;
+  min-width: 0;
+  color: var(--cor-texto-2);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+
+.hoje-proximo-nome {
+  color: var(--cor-texto);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hoje-proximo-data {
+  color: var(--cor-destaque);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hoje-proximo-seta {
+  flex: none;
+  color: var(--cor-texto-2);
+  font-size: 1.75rem;
+  line-height: 1;
+  transition: transform 0.15s;
+}
+
+.hoje-proximo.aberto .hoje-proximo-seta {
+  transform: rotate(90deg);
+}
+
+.hoje-proximo-corpo {
+  padding: 0 16px 16px;
 }

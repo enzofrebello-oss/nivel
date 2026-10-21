@@ -98,7 +98,9 @@ export async function salvarDescanso(id, descanso, db) {
 // Etapa 16. Finaliza o treino em andamento: status 'concluida', fim = agora e descanso limpo, numa
 // transação só. Devolve a sessão finalizada; se não existe ou já não está em andamento, não grava e
 // devolve null.
-export async function finalizarSessao(id, { agora = Date.now() } = {}, db) {
+// Etapa 16b: `frase` (texto, opcional) = frase motivacional sorteada para este treino (logica/hoje.js),
+// gravada na sessão para não mudar ao recarregar.
+export async function finalizarSessao(id, { agora = Date.now(), frase } = {}, db) {
   const banco = db || await obterBanco();
   const tx = banco.transaction('sessoes', 'readwrite');
   const store = tx.objectStore('sessoes');
@@ -108,6 +110,7 @@ export async function finalizarSessao(id, { agora = Date.now() } = {}, db) {
     return null;
   }
   const nova = { ...sessao, status: 'concluida', fim: Math.max(agora, sessao.inicio), descanso: null };
+  if (typeof frase === 'string' && frase.trim()) nova.frase = frase;
   store.put(nova);
   await tx.done;
   return nova;

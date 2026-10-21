@@ -71,6 +71,7 @@ import {
 import {
   duracaoDoItem, deveDescansar, comecarDescanso, ajustarDescanso, paraSalvar, doSalvo, textoASeguir,
 } from '../logica/descanso.js';
+import { sortearFrase } from '../logica/hoje.js';
 
 const formatoHora = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
@@ -653,7 +654,7 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     if (botao) botao.disabled = true;
     pararRelogios();
     try {
-      const feita = await finalizarSessao(params.id, {}, db);
+      const feita = await finalizarSessao(params.id, { frase: sortearFrase() }, db);
       fechar();
       if (!feita) {
         // Já finalizado (ou descartado) em outra aba: o desenho mostra o aviso.

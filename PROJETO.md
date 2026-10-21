@@ -650,6 +650,8 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 16. Finalizar, descartar e resumo (no fim do treino, "‹ Anterior" e "Finalizar treino"; menu "⋯" com Sair e continuar depois, Finalizar agora com confirmação se faltar exercício e Descartar com confirmação, que apaga a sessão e as séries; resumo = Detalhe da sessão em modo leitura com duração, séries e +1; Hoje mostra o treino concluído e o próximo dia da rotina; backup de ida e volta conferido).
 - **Feito:** tela Trilhas, adiantada antes da 16b (chips com as trilhas de casa primeiro e a última escolhida lembrada; caminho com concluídos ✓, nível atual com anel e "seu melhor" só de séries reais, bloqueados tracejados; tocar abre o "Como fazer"; sem "Treinar este nível" e sem avanço automático). **Próxima etapa de código:** **16b. Hoje novo.**
 - **Feito:** tela Evolução, etapas 19 a 22 no formato do design (constância com semanas seguidas e barras das 8 semanas, 2 recordes, gráfico compacto com troca de exercício e ganho, últimos treinos com "+N" abrindo o resumo; só dados reais, mensagem amigável sem treino).
+- **Feito:** Evolução, ajuste do cartão de recorde (rótulo "RECORDE" numa linha, nome do exercício em até 2 linhas com espaço reservado para os 2 cartões ficarem alinhados, valor em laranja; cache v27).
+- **Feito:** etapa 16b. Hoje novo (data grande e calendário da semana; próximo treino sugerido = último concluído + 2 dias na rotina de 3 e 1/2 alternados na de 4, nunca antes de hoje; três situações: dia de treino, já treinou hoje com "CONCLUÍDO" / "Parabéns, campeão", frase, foguinho, ↻ com confirmação e a linha compacta do próximo treino que abre o card, e dia de descanso com "Próximo treino · <data>", Começar visível sem rolar e confirmação sem "Fechar"; frase sorteada e gravada no treino; cache v29).
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Constância (v1.1): a meta das semanas antigas usa os dias da rotina atual; ao trocar de rotina, guardar a meta de cada semana.
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
@@ -717,7 +719,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 15. Descanso
 - [x] 15b. Nível de cada trilha
 - [x] 16. Finalizar, descartar e resumo (início do uso real)
-- [ ] 16b. Hoje novo
+- [x] 16b. Hoje novo
 - [ ] 16c. "+ Exercício" e Treino livre
 - [ ] 17. Trilhas: lógica
 - [ ] 18. Tela Trilhas + avanço

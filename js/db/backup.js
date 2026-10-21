@@ -131,6 +131,8 @@ export function validarBackup(objeto, catalogo) {
       erro(`${onde}: descanso inválido.`);
     }
     if (!ehInteiro(s.versaoDados, 1)) erro(`${onde}: versaoDados inválida.`);
+    // Etapa 16b: frase motivacional do treino concluído (opcional; backups antigos não têm).
+    if (s.frase !== undefined && !ehTexto(s.frase)) erro(`${onde}: frase inválida.`);
     if (!Array.isArray(s.itens)) {
       erro(`${onde}: falta a lista de itens.`);
     } else {
