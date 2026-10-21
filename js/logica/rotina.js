@@ -4,6 +4,7 @@
 // - Treino do dia: o dia seguinte ao da última sessão concluída daquela rotina, em ciclo
 //   (A → B → C → A; com 4 dias, A → B → C → D → A); sem sessões, o dia A. Não depende do dia da semana.
 // - Item de trilha vira o exercício do nível atual: sem registro = nível 1; trilha concluída = último nível.
+// - Etapa 15b: trilhasParaAjuste, textoNivel, textoMeta e textoTrilhaDoItem (cartão "Nível de cada trilha" em Ajustes).
 
 import { formatarTempo } from './tipos.js';
 
@@ -103,4 +104,57 @@ export function textoAlvo(item, tipo) {
     ? item.alvo.split('-').map((s) => formatarTempo(Number(s))).join('-')
     : item.alvo;
   return `${item.series} × ${alvo}`;
+}
+
+// ---------- Nível de cada trilha (etapa 15b, cartão em Ajustes) ----------
+
+// Trilha de casa: todos os níveis servem em casa (mesma regra das rotinas, seção 4.1).
+export function trilhaDeCasa(trilha, catalogo) {
+  return trilha.niveis.every((nivel) => {
+    const exercicio = catalogo.exercicioPorId.get(nivel.exercicio);
+    return Boolean(exercicio) && exercicio.locais.includes('casa');
+  });
+}
+
+// Meta de um nível para exibir: "3 × 20" (reps) ou "3 × 0:45" (segundos).
+export function textoMeta(meta) {
+  const valor = meta.reps !== undefined ? String(meta.reps) : formatarTempo(meta.segundos);
+  return `${meta.series} × ${valor}`;
+}
+
+// As trilhas com o nível atual de cada uma: primeiro as de casa, depois as outras (cada grupo na
+// ordem do catálogo). progresso = Map trilhaId → registro da store trilhas.
+// concluidos = Set dos exercícios já concluídos da trilha (podem estar acima do nível atual).
+// Devolve [{ trilha, nivel: { exercicioId, meta, posicao }, total, concluida, deCasa, concluidos }].
+export function trilhasParaAjuste(catalogo, progresso = new Map()) {
+  const linhas = catalogo.trilhas.map((trilha) => {
+    const registro = progresso.get(trilha.id);
+    return {
+      trilha,
+      nivel: nivelAtualDaTrilha(trilha, registro),
+      total: trilha.niveis.length,
+      concluida: Boolean(registro) && registro.exercicioAtualId === null,
+      deCasa: trilhaDeCasa(trilha, catalogo),
+      concluidos: new Set(((registro && registro.concluidos) || []).map((c) => c.exercicioId)),
+    };
+  });
+  return [...linhas.filter((l) => l.deCasa), ...linhas.filter((l) => !l.deCasa)];
+}
+
+// "Nível 1 de 6 · Flexão na parede" (o nome da trilha vem antes, à parte).
+export function textoNivel(linha, catalogo) {
+  const exercicio = catalogo.exercicioPorId.get(linha.nivel.exercicioId);
+  const nome = exercicio ? exercicio.nome : linha.nivel.exercicioId;
+  return `Nível ${linha.nivel.posicao} de ${linha.total} · ${nome}${linha.concluida ? ' · concluída' : ''}`;
+}
+
+// Rótulo da trilha de um item resolvido (sessao.itens): "Trilha Flexões · nível 3 de 6", ou null se o
+// item não é de trilha. Usado no card do Hoje e no card do exercício do treino.
+// "nível N de M" usa espaços não separáveis (\u00A0): não quebra no meio, desce inteiro.
+export function textoTrilhaDoItem(item, catalogo) {
+  const trilha = item.trilhaId ? catalogo.trilhaPorId.get(item.trilhaId) : null;
+  if (!trilha) return null;
+  const naTrilha = catalogo.trilhaDoExercicio.get(item.exercicioId);
+  const nivel = naTrilha && naTrilha.trilha.id === trilha.id ? ` · nível\u00A0${naTrilha.posicao}\u00A0de\u00A0${trilha.niveis.length}` : '';
+  return `Trilha ${trilha.nome}${nivel}`;
 }

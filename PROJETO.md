@@ -473,7 +473,7 @@ Barra inferior fixa com 4 abas: **Hoje · Trilhas · Evolução · Biblioteca**.
 | `#/evolucao/exercicio/:id` | **Evolução do exercício** | Gráfico SVG com seletor de métrica (conforme o tipo), cartões de recordes, lista de sessões com as séries de cada uma. | Detalhe da sessão, Detalhe do exercício |
 | `#/biblioteca` | **Biblioteca** | Busca (sem diferenciar acentos e maiúsculas), filtros **Local** (Todos / Casa / Academia) e **Grupo** (chips), lista com selo do tipo e nível. Descontinuados não aparecem. | Detalhe do exercício |
 | `#/biblioteca/:id` | **Detalhe do exercício** | "Como fazer" (espaço da ilustração, 3 passos, erro comum), equipamento, músculos, nível, trilha e posição (link), **Ver evolução** se houver séries. | Trilhas, Evolução do exercício |
-| `#/ajustes` | **Ajustes** | Exportar backup, Importar backup (com prévia e confirmação), data do último backup, armazenamento persistente (sim/não) e uso (`storage.estimate`), versão do app e dos dados, "Procurar atualização". | n/a |
+| `#/ajustes` | **Ajustes** | Exportar backup, Importar backup (com prévia e confirmação), data do último backup, **Nível de cada trilha** (as 15 trilhas, casa primeiro, com o nível atual; tocar abre os níveis e escolher um o torna o atual, etapa 15b), armazenamento persistente (sim/não) e uso (`storage.estimate`), versão do app e dos dados, "Procurar atualização". | n/a |
 
 Componentes compartilhados: modal de confirmação (não usar `confirm()`), toast, seletor de exercício (modal com busca, filtrado pelo local do treino, com "mostrar todos"), stepper, contador grande, "Como fazer", calendário da semana, anel, banner de atualização.
 
@@ -524,6 +524,14 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
     - Testes na página /testes/ para a lógica de avançar e do cronômetro (`testes/fluxo-treino.test.js` e `testes/cronometro.test.js`), com a lógica separada da interface (`js/logica/fluxo-treino.js` e `js/logica/cronometro.js`).
 14. **Tabela antes / hoje / +1**. Objetivo: `logica/comparacao.js` + `testes/comparacao.test.js`, tabela e pré-preenchimento na tela Treino. Pronto quando: os testes passam (3 tipos, mais séries hoje que antes, sem "antes", carga e reps mudando juntas); no segundo treino com o mesmo exercício, "antes" e "+1" conferem com o primeiro.
 15. **Descanso**. Objetivo: `ui/anel.js`, modo Descanso, `sessao.descanso` no banco. Pronto quando: concluir uma série abre o descanso com o tempo do item; −15 s e +15 s funcionam; ao zerar, vibra e volta sozinho para a série; recarregar no meio continua com o tempo certo.
+15b. **Nível de cada trilha**. Objetivo:
+    - Em Ajustes, um cartão "Nível de cada trilha", com a lista das 15 trilhas (as de casa primeiro) mostrando o nível atual de cada uma (ex.: "Flexões · Nível 1 de 6 · Flexão na parede").
+    - Tocar numa trilha abre a lista dos níveis dela, com o nome do exercício e a meta de cada um. Escolher um nível passa a ser o nível atual daquela trilha.
+    Pronto quando:
+    - Escolher um nível numa trilha o torna o nível atual dela.
+    - Dá para trocar de novo a qualquer hora, inclusive para um nível mais fácil.
+    - O nível escolhido fica salvo no banco, entra no backup e é usado pelo card do treino do dia e pela tela de treino.
+    - Testes na página /testes/: escolher nível, trocar de volta, persistir no banco, aparecer no card do Hoje e entrar no backup.
 16. **Finalizar, descartar, avulso e treino livre**. Objetivo: Finalizar/Descartar com confirmação, "+ Exercício" (seletor), Treino livre, resumo = Detalhe da sessão em modo leitura. Pronto quando: um treino inteiro vai do Hoje ao resumo; descartar apaga as séries; depois de finalizar, o Hoje mostra o dia seguinte da rotina; um backup exportado depois de um treino e importado restaura a sessão e as séries. **A partir daqui, uso real** (o que foi registrado antes é teste e pode ser apagado). O avanço automático de nível só chega na etapa 18; até lá, as séries já contam para o progresso das trilhas, e o nível pode ser ajustado à mão.
     - Hoje com a data grande no topo (ex.: "Terça, 20 de outubro") e o card do treino do dia.
     - Abaixo, "Treino para amanhã · <dia da semana, data>". Ao tocar, perguntar "Tem certeza que quer fazer esse treino hoje?", com "Não" em laranja (destaque) e "Sim" em preto.
@@ -625,11 +633,11 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - **Feito:** etapa 13. Treino em andamento: registrar séries (contadores com − e + e digitação, salvar na hora, editar/apagar, "Continuar treino" no Hoje), conferida no PC.
 - **Feito:** etapa 13b. Fluxo do treino (avanço automático com "Próximo: <nome>", séries em bolinhas, cronômetro regressivo no tempo com tela acesa e vibração, "Anterior"/"Sair" no fim, sem abas no treino), conferida no PC.
 - **Feito:** etapa 14. Tabela antes / hoje / +1 (linha "ANTES" em cima das bolinhas, +1 por série com ganho em laranja, carga só é "+" sem piorar nenhum campo, contador começa na mesma série da última vez); conferência visual fica para depois da etapa 16.
-- **Feito:** etapa 15. Descanso (anel com o tempo, −15 s / +15 s, "Pular descanso" e "A seguir"; pelo horário de término gravado na sessão, com tela acesa; ao zerar vibra e volta sozinho; descansa também antes do próximo exercício, mas não depois da última série do treino); conferida no PC; vibração no celular pendente. **Próxima etapa de código:** **16. Finalizar, descartar, avulso e treino livre.**
+- **Feito:** etapa 15. Descanso (anel com o tempo, −15 s / +15 s, "Pular descanso" e "A seguir"; pelo horário de término gravado na sessão, com tela acesa; ao zerar vibra e volta sozinho; descansa também antes do próximo exercício, mas não depois da última série do treino); conferida no PC; vibração no celular pendente.
+- **Feito:** etapa 15b. Nível de cada trilha (cartão em Ajustes com as 15 trilhas, casa primeiro; tocar abre os níveis com exercício e meta e escolher grava o nível atual, inclusive mais fácil; usado pelo treino do dia e pelo treino, e entra no backup). **Próxima etapa de código:** **16. Finalizar, descartar, avulso e treino livre.**
 - **Pendente:** regra de horas de recuperação por grupo muscular (v1.1, etapa 26).
 - **Pendente:** Ilustrações: o usuário quer uma animação curta em loop em cada exercício, para entender o movimento só de olhar (o texto fica de apoio). Decidir depois: fonte (banco com licença livre ou feitas sob medida), formato leve para funcionar offline e conferência da execução correta.
 - **Pendente:** ajustar metas das trilhas e rotinas conforme o uso real (aprovadas como ponto de partida).
-- **Pendente:** Escolher o nível inicial de cada trilha (ex.: começar a trilha de flexões direto no nível 3). Sem isso, todo mundo começa no nível 1. Encaixar antes da etapa 16 (uso real).
 - **Pendente:** Conferir no celular: vibração ao zerar, tela acesa durante a contagem e se minimizar o app no meio da contagem cancela ou mantém o tempo.
 - Detalhes de cada etapa em HISTORICO.md
 
@@ -691,6 +699,7 @@ Ordem pensada para ter o **app instalado no celular cedo** (com a Biblioteca já
 - [x] 13b. Fluxo do treino
 - [x] 14. Tabela antes / hoje / +1
 - [x] 15. Descanso
+- [x] 15b. Nível de cada trilha
 - [ ] 16. Finalizar, descartar, avulso e treino livre (início do uso real)
 - [ ] 17. Trilhas: lógica
 - [ ] 18. Tela Trilhas + avanço

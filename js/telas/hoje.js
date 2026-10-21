@@ -9,6 +9,8 @@
 // Começar um segundo treino é impedido: se outra aba já começou um, o modal oferece continuar.
 // O título "Hoje" fica só no topo (roteador). Próximo nível, recorde da semana, aviso de backup e
 // Treino livre entram nas etapas 16 e 23.
+// Etapa 15b: o card do treino do dia usa o nível escolhido em Ajustes (store trilhas, lido a cada desenho).
+// render aceita um 3º parâmetro opcional { db, catalogo } (só os testes, como a tela Treino).
 import { h, limpar } from '../ui/dom.js';
 import { abrirModal } from '../ui/componentes.js';
 import { calendarioSemana } from '../ui/semana.js';
@@ -18,24 +20,24 @@ import { listarSessoes, iniciarSessao } from '../db/sessoes.js';
 import { listarSeriesDaSessao } from '../db/series.js';
 import { lerProgressoTrilhas } from '../db/trilhas.js';
 import { diasTreinadosNaSemana } from '../logica/datas.js';
-import { nomeRotina, rotinasParaEscolha, treinoDoDia, textoAlvo } from '../logica/rotina.js';
+import { nomeRotina, rotinasParaEscolha, treinoDoDia, textoAlvo, textoTrilhaDoItem } from '../logica/rotina.js';
 
-export async function render(container) {
+export async function render(container, params, { db, catalogo: catalogoDeTeste } = {}) {
   let fecharModal = null;
   const tela = h('div', { class: 'hoje' });
   container.append(tela);
 
   async function desenhar() {
-    const catalogo = obterCatalogo();
+    const catalogo = catalogoDeTeste || obterCatalogo();
     let rotinaId;
     let sessoes = [];
     let progresso = new Map();
     let bancoOk = true;
     try {
       [rotinaId, sessoes, progresso] = await Promise.all([
-        lerMeta('rotinaAtualId'),
-        listarSessoes(),
-        lerProgressoTrilhas(),
+        lerMeta('rotinaAtualId', db),
+        listarSessoes(db),
+        lerProgressoTrilhas(db),
       ]);
     } catch (erro) {
       console.error('Hoje: banco indisponível:', erro);
@@ -48,7 +50,7 @@ export async function render(container) {
     let seriesFeitas = 0;
     if (emAndamento) {
       try {
-        seriesFeitas = (await listarSeriesDaSessao(emAndamento.id)).length;
+        seriesFeitas = (await listarSeriesDaSessao(emAndamento.id, db)).length;
       } catch (erro) {
         console.error('Hoje: não foi possível contar as séries:', erro);
       }
@@ -67,7 +69,7 @@ export async function render(container) {
           local: rotina.local,
           itens: treino.itens,
           versaoDados: catalogo.versaoDados,
-        });
+        }, {}, db);
         if (jaExistia) {
           botao.disabled = false;
           fecharModal = abrirModal({ titulo: 'Treino em andamento', conteudo: avisoJaExiste(sessao) });
@@ -87,7 +89,7 @@ export async function render(container) {
         titulo: 'Escolher rotina',
         conteudo: listaDeRotinas(catalogo, rotina ? rotina.id : null, async (id) => {
           try {
-            await gravarMeta('rotinaAtualId', id);
+            await gravarMeta('rotinaAtualId', id, db);
           } catch (erro) {
             console.error('Hoje: não foi possível gravar a rotina:', erro);
           }
@@ -133,16 +135,16 @@ function cartaoRotina(catalogo, rotina, bancoOk, aoEscolher) {
     h('button', { type: 'button', class: 'botao', 'aria-label': 'Trocar rotina', onclick: aoEscolher }, 'Trocar'));
 }
 
-// Lista de exercícios do card (nome, trilha, séries × alvo).
+// Lista de exercícios do card (nome, trilha com o nível, séries × alvo).
 function listaDeItens(catalogo, itens) {
   return h('ol', { class: 'hoje-itens' },
     itens.map((item) => {
       const exercicio = catalogo.exercicioPorId.get(item.exercicioId);
-      const trilha = item.trilhaId ? catalogo.trilhaPorId.get(item.trilhaId) : null;
+      const trilha = textoTrilhaDoItem(item, catalogo);
       return h('li', { class: 'hoje-item' },
         h('span', { class: 'hoje-item-texto' },
           h('span', { class: 'hoje-item-nome' }, exercicio ? exercicio.nome : item.exercicioId),
-          trilha ? h('span', { class: 'hoje-item-trilha' }, `Trilha ${trilha.nome}`) : null),
+          trilha ? h('span', { class: 'hoje-item-trilha' }, trilha) : null),
         h('span', { class: 'hoje-item-alvo' }, textoAlvo(item, exercicio ? exercicio.tipo : null)));
     }));
 }

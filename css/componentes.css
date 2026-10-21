@@ -598,6 +598,93 @@ body.sem-abas #app {
   color: var(--cor-destaque);
 }
 
+/* ---------- Nível de cada trilha (etapa 15b, Ajustes) ---------- */
+.niveis-texto {
+  color: var(--cor-texto-2);
+}
+
+.niveis-aviso {
+  margin-top: 8px;
+  color: var(--cor-destaque);
+}
+
+.niveis-grupo {
+  margin-top: 16px;
+}
+
+.niveis-grupo-nome {
+  margin-bottom: 6px;
+  color: var(--cor-texto-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.niveis-lista {
+  display: grid;
+  gap: 8px;
+}
+
+.niveis-trilha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  min-height: 52px;
+  padding: 8px 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  background: var(--cor-fundo);
+  text-align: left;
+}
+
+.niveis-trilha:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.niveis-trilha-nome {
+  font-weight: 700;
+}
+
+.niveis-trilha-nivel {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.niveis-opcoes {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.niveis-opcao {
+  width: 100%;
+}
+
+.niveis-feito {
+  color: var(--cor-texto-2);
+  font-weight: 400;
+}
+
+.niveis-opcao-meta {
+  color: var(--cor-texto-2);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.niveis-mensagem:not(:empty) {
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+
+.niveis-mensagem.erro {
+  color: var(--cor-destaque);
+}
+
 /* ---------- Hoje (etapa 12) ---------- */
 .hoje {
   display: grid;

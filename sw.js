@@ -27,8 +27,13 @@
 // Etapa 15 (v17): js/logica/descanso.js e js/ui/anel.js no precache; treino.js, db/sessoes.js,
 // logica/cronometro.js e componentes.css alterados (modo Descanso).
 // Etapa 15, ajuste (v18): treino.js sem o toast "Próximo" durante o descanso (lista do precache igual).
+// Etapa 15b (v19): nível de cada trilha em Ajustes; ajustes.js, hoje.js, treino.js, db/trilhas.js,
+// logica/rotina.js e componentes.css alterados (lista do precache igual).
+// Etapa 15b, ajuste (v20): voltar de nível não apaga os concluídos de cima e ✓ nos níveis concluídos;
+// db/trilhas.js, logica/rotina.js, ajustes.js e componentes.css alterados (lista do precache igual).
+// Etapa 15b, rótulo (v21): "nível N de M" sem quebra de linha no meio (logica/rotina.js; lista do precache igual).
 
-const VERSAO = 'v18';
+const VERSAO = 'v21';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.

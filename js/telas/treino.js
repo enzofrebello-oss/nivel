@@ -2,7 +2,7 @@
 // registrar séries.
 // - Calendário da semana e barra de progresso dos exercícios (feito = séries registradas ≥ previstas);
 //   tocar num trecho da barra, ou em Anterior/Próximo, troca o exercício.
-// - Card do exercício: nome, alvo ("4 × 8-12"), trilha, botão "Como fazer" (componente da Biblioteca num modal),
+// - Card do exercício: nome, alvo ("4 × 8-12"), trilha com o nível (etapa 15b), botão "Como fazer" (componente da Biblioteca num modal),
 //   séries já registradas (tocar edita ou apaga), contador grande com − e + e o botão grande "Registrar série".
 // - Contadores por tipo (ui/componentes.js, contador): carga = carga + reps; corpo = reps; tempo = segundos.
 //   Passos: reps 1, tempo 5 s, carga 1 kg; nada abaixo do mínimo válido. Tocar no número abre o teclado.
@@ -48,7 +48,7 @@ import {
   adicionarSerie, editarSerie, apagarSerie, listarSeriesDaSessao, seriesDaUltimaVez,
 } from '../db/series.js';
 import { diasTreinadosNaSemana } from '../logica/datas.js';
-import { textoAlvo } from '../logica/rotina.js';
+import { textoAlvo, textoTrilhaDoItem } from '../logica/rotina.js';
 import { CAMPOS, formatarSerie, formatarTempo } from '../logica/tipos.js';
 import { compararSeries, textoAntes, valoresIniciais } from '../logica/comparacao.js';
 import { indiceInicial, aposRegistrar, modoFinal, textoBolinha } from '../logica/fluxo-treino.js';
@@ -398,13 +398,13 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste 
     }
 
     function cartaoExercicio({ item: it, exercicio: ex, seriesFeitas }) {
-      const trilha = it.trilhaId ? catalogo.trilhaPorId.get(it.trilhaId) : null;
+      const trilha = textoTrilhaDoItem(it, catalogo);
       const status = h('p', { class: 'treino-status', role: 'status' }, mensagem);
       const topo = h('div', { class: 'treino-exercicio-topo' },
         h('div', { class: 'treino-exercicio-texto' },
           h('h3', { class: 'treino-exercicio-nome', id: 'treino-exercicio-nome' }, ex.nome),
           h('p', { class: 'treino-exercicio-alvo' }, textoAlvo(it, ex.tipo)),
-          trilha ? h('p', { class: 'treino-exercicio-trilha' }, `Trilha ${trilha.nome}`) : null),
+          trilha ? h('p', { class: 'treino-exercicio-trilha' }, trilha) : null),
         h('button', {
           type: 'button',
           class: 'botao',
