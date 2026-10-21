@@ -41,8 +41,9 @@
 // Tela Evolução (v25): js/logica/evolucao.js e js/ui/grafico.js no precache; telas/evolucao.js, db/series.js
 // e componentes.css alterados (constância, recordes, gráfico compacto e últimos treinos).
 // Tela Evolução, ajuste (v26): nomes de exercício em até 2 linhas, quebrando só entre palavras (componentes.css).
+// Tela Evolução, ajuste (v27): cartão de recorde com rótulo "RECORDE", nome do exercício em até 2 linhas e valor.
 
-const VERSAO = 'v26';
+const VERSAO = 'v27';
 const CACHE = `nivel-${VERSAO}`;
 
 // Caminhos relativos ao sw.js (raiz do app), para funcionar também numa subpasta do GitHub Pages.

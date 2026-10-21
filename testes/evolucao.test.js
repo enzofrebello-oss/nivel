@@ -334,7 +334,8 @@ teste('tela: com treinos reais, constância, 2 recordes, gráfico no mais treina
     igual(cartoes.map((r) => r.dataset.exercicio), ['flexao-no-chao', 'prancha-alta']);
     igual(cartoes[0].querySelector('.evolucao-recorde-valor').textContent, '14 reps');
     igual(cartoes[1].querySelector('.evolucao-recorde-valor').textContent, '0:40');
-    igual(cartoes[0].querySelector('.evolucao-rotulo').textContent, `Recorde · ${catalogo.exercicioPorId.get('flexao-no-chao').nome}`);
+    igual(cartoes[0].querySelector('.evolucao-rotulo').textContent, 'Recorde');
+    igual(cartoes[0].querySelector('.evolucao-recorde-nome').textContent, catalogo.exercicioPorId.get('flexao-no-chao').nome);
 
     igual(container.querySelector('.evolucao-grafico').dataset.exercicio, 'flexao-no-chao');
     igual(container.querySelector('.evolucao-ganho').textContent, '+4 reps');

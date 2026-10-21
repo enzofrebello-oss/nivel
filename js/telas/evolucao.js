@@ -62,7 +62,8 @@ export async function render(container, params, { db, catalogo: catalogoDeTeste,
   // Recordes (os 2 mais recentes).
   tela.append(h('div', { class: 'evolucao-recordes' },
     recordes(series, sessoes, 2).map((r) => h('section', { class: 'cartao evolucao-recorde', 'data-exercicio': r.exercicioId },
-      h('p', { class: 'evolucao-rotulo' }, `Recorde · ${nomeDe(r.exercicioId)}`),
+      h('p', { class: 'evolucao-rotulo' }, 'Recorde'),
+      h('p', { class: 'evolucao-recorde-nome' }, nomeDe(r.exercicioId)),
       h('p', { class: 'evolucao-recorde-valor' }, formatarSerie(r.serie))))));
 
   // Gráfico compacto.
